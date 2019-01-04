@@ -65,30 +65,89 @@
     color: var(--grey);
 }
 
-.cf-meetup_container{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(2,1fr);
-    grid-template-areas:
-    "one one two"
-    "one one three";
-    /* grid-gap: 2rem; */
-}
 
-.cf-meetup_item_one{
-    grid-area: one;
-}
-
-.cf-meetup_item_two{
-    grid-area: two;
-}
-
-.cf-meetup_item_three{
-    grid-area: three;
-}
 
 .cf-meetup_item_text{
     font-size: 1rem;
     text-transform: uppercase;
     color: var(--grey);
+}
+
+.cf-meetup_question h4{
+    color: var(--yellow);
+}
+
+
+
+/* responsive */
+@media only screen and (min-width: 768px){
+  
+
+    .cf-meetup_container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(2,1fr);
+        grid-template-areas:
+        "one one two"
+        "one one three";
+        /* grid-gap: 2rem; */
+    }
+    
+    .cf-meetup_item_one{
+        grid-area: one;
+    }
+    
+    .cf-meetup_item_two{
+        grid-area: two;
+    }
+    
+    .cf-meetup_item_three{
+        grid-area: three;
+    }
+    
+    .cf-meetup_item_text{
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: var(--grey);
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .cf-nav{
+        width: 0;
+        overflow: hidden;
+        transition: all 0.5s linear;
+    }
+    
+    .cf-nav_show{
+        width: 7rem;
+    }
+
+    .cf-meetup_container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(2,1fr);
+        grid-template-areas:
+        "two two one"
+        "two two three";
+        grid-gap: 2rem;
+    }
+    
+    .cf-meetup_item_one{
+        grid-area: one;
+    }
+    
+    .cf-meetup_item_two{
+        grid-area: two;
+    }
+    
+    .cf-meetup_item_three{
+        grid-area: three;
+    }
+
+    .cf-meetup_photo{
+        width: 250px;
+        height: 250px;
+    }
+
 }
