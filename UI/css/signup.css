@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=La+Belle+Aurore|Open+Sans');
+
+:root{
+    --brightYellow: #e3b505;
+    --darkBrown: #bb9457;
+    --yellow: #f2b450;
+    --brown: #382923;
+    --black: #191919;
+    --grey: #a9b2ac;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open sans', sans-serif;
+    color: var(--black);
+}
+
+/** global style*/
+.cf-bell-fonts{
+    font-family: 'La Belle Aurore', cursive;
+}
+
+/* section padding */
+.cf-section_padding{
+    padding: 3rem 0;
+}
+/* grid container */
+.cf-grid_container{
+    max-width: 90vw;
+    margin: 2rem auto;
+    display: grid;
+    grid-row-gap: 2rem;
+}
+
+/**nav*/
+.cf-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100% !important;
+    width: 10rem;
+    background: rgba(242, 180, 80, 0.9);
+    z-index: 3;
+}
+
+.cf-nav_links{
+    list-style-type: none;
+}
+
+.cf-nav_single_link{
+    display: block;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: var(--brown);
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.8s ease-in-out;
+}
+
+.cf-nav_single_link img{
+    widows: 100px;
+    height: 100px;
+}
+
+.cf-nav_single_link:hover{
+    background: var(--brown);
+    color: rgba(242, 180, 80, 0.9);
+    padding-left: 1.5rem;
+}
+
+.cf-nav_logo:hover{
+    background: var(--yellow);
+}
+
+.cf-nav_btn{
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    font-size: 3rem;
+    color: var(--brightYellow);
+    cursor: pointer;
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+/** nav hide*/
+.cf-nav{
+    width: 0;
+    overflow: hidden;
+    transition: all 0.5s linear;
+}
+
+.cf-nav_show{
+    width: 10rem;
+    height: 100%;
+}
+
+/*signup*/
+.cf-signup{
+    height: 100vh;
+    background: var(--brown);
+    color: var(--brightYellow);
+    text-transform: capitalize;
+}
+.cf-signup_form{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 60%;
+    justify-content: center;
+    grid-row-gap: 1.25rem; 
+}
+
+.cf-signup_form_feedback{
+    border: 0.1rem solid var(--brightYellow);
+    padding: 0.25rem;
+    display: none;
+}
+
+.error{
+    display: block;
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.success{
+    display: block;
+    color: #008000;
+    border-color: #008000;
+}
+
+.cf-signup_form_title{
+    font-size: 3rem;
+}
+
+.cf-input_username, .cf-input_password, .cf-input_email, .cf-input_submit{
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(111,87,77,0.6);
+    color: var(--darkBrown);
+    border: none;
+    outline: none;
+}
+
+.cf-input_username::placeholder, .cf-input_password::placeholder, .cf-input_email::placeholder{
+    color: var(--darkBrown);
+    text-transform: capitalize;
+} 
+
+.cf-input_submit{
+    background: var(--yellow);
+    color: var(--black);
+    transition: all 0.5s linear;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.cf-input_submit:hover{
+    opacity: 0.6;
+}
+
+.cf-signup_btn_link{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: var(--grey);
+}
+
+/*animation*/
+@keyframes pulse{
+    0%{
+        transform: scale(1)
+    }
+    50%{
+        transform: scale(1.5)
+    }
+    100%{
+        transform: scale(1)
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px){
+    .cf-nav{
+        width: 7rem;
+    }
+
+    .cf-nav_single_link{
+        font-size: 1rem;
+    }
+
+    .cf-nav_single_link img{
+        widows: 70px;
+        height: 70px;
+    }
+}
