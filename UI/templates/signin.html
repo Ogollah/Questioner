@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Signup Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--main css-->
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/signin.css" />
+    <!--font awsome-->
+    <script src="../js/all.js"></script>
+
+</head>
+
+<body>
+    <!--nav btn-->
+    <div class="cf-nav_btn">
+        <i class="fas fa-bars"></i>
+    </div>
+    <!--end of nav btn-->
+    <!--nav-->
+
+    <nav class="cf-nav">
+        <ul class="cf-nav_links">
+            <!--logo-->
+            <li><a href="#" class="cf-nav_single_link cf-nav_logo">
+                    <img src="../img/logo.png" alt="">
+                </a></li>
+            <li><a href="#" class="cf-nav_single_link">home</a></li>
+            <li><a href="#" class="cf-nav_single_link ">about</a></li>
+            <li><a href="#" class="cf-nav_single_link">feedback</a></li>
+            <li><a href="#" class="cf-nav_single_link ">galary</a></li>
+            <li><a href="#" class="cf-nav_single_link">contact</a></li>
+            <li><a href="#" class="cf-nav_single_link">signin</a></li>
+        </ul>
+    </nav>
+    <!--end of nav-->
+    <!--signin section-->
+    <section class="cf-signin cf-section_padding" id="cf-signin">
+        <div class="cf-grid_container">
+            <!-- User signin form -->
+            <div class="cf-signin_user">
+            <form action="" class="cf-signin_form ">
+                <h3 class="cf-signin_form_title cf-bell-fonts">User signin</h3>
+                <div class="cf-signin_form_input">
+                    <input type="email" name="" id="" maxlength="" class="cf-input_email" placeholder="email">
+                </div>
+                <div class="cf-signin_form_input">
+                    <input type="password" name="" id="" maxlength="15" class="cf-input_password" placeholder="Password">
+                </div>
+                <input type="submit" value="user Sign in" class="cf-input_submit">
+                <p>No Account? signup<a href="#signin" class="cf-signin_btn_link"> here</a></p>
+                <p>admin? signin<a href="#signin" class="cf-signin_btn_link cf-signin_users"> here</a></p>
+
+            </form>
+            <!-- Admin sign in form -->
+            </div>
+            <div class="cf-signin_admin">
+
+            <form action="" class="cf-signin_form ">
+                <h3 class="cf-signin_form_title cf-bell-fonts">admin signin</h3>
+                <div class="cf-signin_form_input">
+                    <input type="email" name="" id="" maxlength="" class="cf-input_email" placeholder="email">
+                </div>
+                <div class="cf-signin_form_input">
+                    <input type="password" name="" id="" maxlength="15" class="cf-input_password" placeholder="Password">
+                </div>
+                <input type="submit" value="admin Sign in" class="cf-input_submit">
+                <p>user? signin<a href="#signin" class="cf-signin_btn_link cf-signin_admins"> here</a></p>
+
+            </form>
+            </div>
+        </div>
+    </section>
+    <!--end of signin section-->
+
+    <script src="../js/signin.js"></script>
+</body>
+
+</html>
