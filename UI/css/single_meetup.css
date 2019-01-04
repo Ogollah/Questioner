@@ -1,0 +1,94 @@
+/*section*/
+.cf-section_title{
+    padding: 1rem 0.5rem;
+}
+.cf-section_title_left{
+    margin-left: 10rem;
+}
+
+.cf-section_title_name{
+    font-size: 3rem;
+    text-transform: capitalize;
+}
+
+.cf-section_title_underline{
+    background: var(--yellow);
+    width: 5rem;
+    height: 0.25rem;
+}
+.cf-section_title_text{
+    letter-spacing: 0.1rem;
+    line-height: 1.5rem;
+    margin-top: 1rem;
+    color: var(--grey);
+}
+/* meetup section */
+.cf-meetup_main_container{
+    max-width: 90vw;
+    margin: 0 auto;
+    display: grid;
+    grid-row-gap: 1rem;
+}
+
+.cf-meetup_info{
+    display: grid;
+    justify-content: first baseline;
+    background: #e6e6e6;
+}
+
+.cf-meetup_item{
+    margin: 1rem 0;
+    padding: 0.5rem;
+}
+
+.cf-meetup_img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.cf-meetup_question_container{
+    max-width: 90vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-column-gap: 2rem;
+}
+
+.cf-meetup_question{
+    font-size: 1.5rem;
+    color: #404040;
+}
+
+.cf-meetup_time{
+    font-size: 1rem;
+    color: var(--grey);
+}
+
+.cf-meetup_container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+    grid-template-areas:
+    "one one two"
+    "one one three";
+    /* grid-gap: 2rem; */
+}
+
+.cf-meetup_item_one{
+    grid-area: one;
+}
+
+.cf-meetup_item_two{
+    grid-area: two;
+}
+
+.cf-meetup_item_three{
+    grid-area: three;
+}
+
+.cf-meetup_item_text{
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--grey);
+}
