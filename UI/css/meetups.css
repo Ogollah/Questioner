@@ -199,3 +199,62 @@ body{
     color: var(--grey);
     padding: 1rem 0.5rem;
 }
+
+/*animation*/
+@keyframes pulse{
+    0%{
+        transform: scale(1)
+    }
+    50%{
+        transform: scale(1.5)
+    }
+    100%{
+        transform: scale(1)
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px){
+    .cf-nav{
+        width: 7rem;
+    }
+
+    .cf-nav_single_link{
+        font-size: 1rem;
+    }
+
+    .cf-nav_single_link img{
+        widows: 70px;
+        height: 70px;
+    }
+
+    /** nav hide*/
+    .cf-nav{
+        width: 0;
+        overflow: hidden;
+        transition: all 0.5s linear;
+    }
+    .cf-nav_show{
+        width: 7rem;
+        height: 100%;
+    }
+
+    .cf-meetups_image {
+        height: 150px;
+        background-position: center;
+        background-color: #ccc;
+      }
+
+      .cf-card_img{
+        width: 290px;
+        height: 150px;
+        border-radius: 0.25rem;
+    }
+}
+
+@media screen and (max-width: 683px){
+
+    .cf-card_img{
+      width: 218px;
+  }
+}
