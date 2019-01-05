@@ -1,0 +1,148 @@
+
+.cf-user_image img{
+    width: 10rem;
+    height: 10rem;
+    border: 0.25rem solid var(--grey);
+    border-radius: 50%;
+    margin: 2rem;
+}
+
+.cf-user_details{
+    display: grid;
+    grid-template-rows: 40% auto;
+}
+
+.cf-user_bio{
+    height: 50vh;
+    color: var(--brightYello);
+}
+
+.cf-profile_item{
+    margin: 1rem 0;
+    padding: 0.5rem;
+}
+
+.cf-profile_item_text{
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--grey);
+}
+
+.cf-profile_item_title{
+    text-transform: uppercase;
+    margin: 0.5rem 0;
+    letter-spacing: 0.1rem;
+    font-style: italic;
+    color: var(--yellow);
+}
+
+.cf-profile_container{
+    max-width: 90vw;
+    margin: 0 auto;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 0.3rem;
+    grid-template-areas: 
+    "one two two two two"
+    "one two two two two"
+    "one two two two two"
+    "one three three three three"
+    "one three three three three"
+    "one three three three three"
+    "one three three three three"
+    "one three three three three"
+}
+
+.cf-profile_item_one{
+    grid-area: one;
+}
+
+.cf-profile_item_two{
+    grid-area: two;
+}
+
+.cf-profile_item_three{
+    grid-area: three;
+}
+
+.cf-profile_name{
+    background: var(--brown);
+}
+
+.cf-profile_bio{
+    background:var(--grey);
+}
+
+.cf-profile_image{
+    background: var(--grey);
+}
+
+/* Responsive */
+
+@media screen and (max-width: 768px){
+    .cf-profile_container{
+        max-width: 90vw;
+        margin: 0 auto;
+        height: 90vh;
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        grid-template-rows: repeat(8, 1fr);
+        grid-gap: 1rem;
+        grid-template-areas: 
+        "one one one one one"
+        "two two two two two"
+        "two two two two two"
+        "three three three three three"
+        "three three three three three"
+        "three three three three three"
+        "three three three three three"
+        "three three three three three"
+    }
+    
+    .cf-profile_item_one{
+        grid-area: one;
+    }
+    
+    .cf-profile_item_two{
+        grid-area: two;
+    }  
+
+    .cf-profile_item_three{
+        grid-area: three;
+    }
+    
+    .cf-user_bio{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cf-user_bio{
+        height: 12vh;
+    }
+
+    .cf-user_image img{
+        width: 5rem;
+        height: 5rem;
+        border: 0.25rem solid var(--grey);
+        border-radius: 50%;
+        margin: 1rem;
+        margin-left: 11rem;
+    }
+
+    .cf-profile_item{
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+    }
+    
+    .cf-profile_item_text{
+        font-size: 0.8rem;
+    }
+    
+    .cf-profile_item_title{
+        text-transform: uppercase;
+        margin: 0.25rem 0;
+        letter-spacing: 0.15rem;
+    }
+}
