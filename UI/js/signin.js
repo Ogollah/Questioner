@@ -39,5 +39,6 @@ UI.prototype.showUser = function(){
     document.querySelector('.cf-signin_user').style.display = 'block';
     document.querySelector('.cf-signin_admin').style.display = 'none';
 }
+
 // call event listener
 eventListeners();  
