@@ -143,12 +143,6 @@
     height: 2rem;
 }
 
-.cf-vote_divider_container{
-    display: grid;
-    grid-template-columns: 10rem auto;
-
-}
-
 .cf-chevron-up{
     text-decoration: none;
     color: var(--grey)
@@ -181,7 +175,7 @@
     resize: none;
 }
 .cf-comment_form form textarea {
-    width: 30vw;
+    width: 33vw;
     padding: 2rem;
     margin: 2rem;
     margin-bottom: 2rem;
@@ -267,6 +261,18 @@
         text-transform: uppercase;
         color: var(--grey);
     }
+
+    /* .cf-vote_divider_container{
+        display: grid;
+        grid-gap: 2rem;
+    
+    } */
+
+    .cf-vote_divider_container{
+        display: grid;
+        grid-template-columns: 10rem auto;
+    
+    }
 }
 
 @media only screen and (max-width: 768px){
@@ -309,6 +315,14 @@
 
     .cf-meetup_question_container{
         grid-template-columns: 15% 85%;
+    }
+
+    .cf-comment_form{
+        width: 70%;
+    }
+
+    .cf-comment_form form textarea {
+        width: 50vw;
     }
 
 }
