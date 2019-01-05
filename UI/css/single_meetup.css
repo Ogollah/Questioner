@@ -230,4 +230,8 @@
         height: 250px;
     }
 
+    .cf-meetup_question_container{
+        grid-template-columns: 15% 85%;
+    }
+
 }
