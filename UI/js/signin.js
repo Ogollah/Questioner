@@ -15,6 +15,11 @@ function eventListeners() {
     document.querySelector('.cf-signin_admins').addEventListener('click', function(){
         ui.showUser();
     })
+
+    // comment box
+    document.querySelector('.cf-display_btn').addEventListener('click', function(){
+        ui.showComment();
+    })
 }
 
 // constructor function
@@ -38,6 +43,11 @@ UI.prototype.showAdmin = function(){
 UI.prototype.showUser = function(){
     document.querySelector('.cf-signin_user').style.display = 'block';
     document.querySelector('.cf-signin_admin').style.display = 'none';
+}
+
+UI.prototype.showComment = function(){
+    document.querySelector('.cf-comment_form').style.display = 'inline';
+    console.log("hey there");
 }
 
 // call event listener
