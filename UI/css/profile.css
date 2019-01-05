@@ -71,9 +71,27 @@
     background: var(--brown);
 }
 
-.cf-profile_bio{
-    background:var(--grey);
+.cf-profile_question{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1rem;
+    background:var(--brown);
 }
+
+.cf-profile_question_number{
+    align-self: center;
+    justify-self: center;
+}
+
+.cf-profile_question_comment_number{
+    align-self: center;
+    justify-self: center;
+}
+
+.cf-number{
+    margin: 3rem;
+}
+
 
 .cf-profile_image{
     background: var(--grey);
@@ -144,5 +162,9 @@
         text-transform: uppercase;
         margin: 0.25rem 0;
         letter-spacing: 0.15rem;
+    }
+
+    .cf-number{
+        margin: 1rem;
     }
 }
