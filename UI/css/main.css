@@ -70,3 +70,66 @@ body{
     grid-column-gap: 0.5rem;
     justify-content: center;
 }
+
+/**nav*/
+.cf-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 10rem;
+    background: rgba(242, 180, 80, 0.9);
+    z-index: 3;
+}
+
+.cf-nav_links{
+    list-style-type: none;
+}
+
+.cf-nav_single_link{
+    display: block;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: var(--brown);
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.8s ease-in-out;
+}
+
+.cf-nav_single_link img{
+    width: 100px;
+    height: 100px;
+}
+
+.cf-nav_single_link:hover{
+    background: var(--brown);
+    color: rgba(242, 180, 80, 0.9);
+    padding-left: 1.5rem;
+}
+
+.cf-nav_logo:hover{
+    background: var(--yellow);
+}
+
+/** nav hide*/
+.cf-nav{
+    width: 0;
+    overflow: hidden;
+    transition: all 0.5s linear;
+}
+
+.cf-nav_show{
+    width: 10rem;
+}
+
+.cf-nav_btn{
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    font-size: 3rem;
+    color: var(--brightYellow);
+    cursor: pointer;
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
