@@ -6,6 +6,7 @@
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: repeat(7, 1fr);
     grid-gap: 0.3rem;
+    justify-content: center;
     grid-template-areas: 
     "one two three four five"
     "one six six six six"
@@ -79,7 +80,7 @@
 }
 
 .cf-admin_details{
-    background: gray;
+    background: #808080;
 }
 
 .cf-admin_item{
@@ -110,4 +111,52 @@
     margin: 0.5rem 0;
     letter-spacing: 0.1rem;
     color: var(--brown);
+}
+
+.cf-admin_members{
+    background: #808080;
+}
+
+.cf-admin_new_members{
+    background: var(--grey);
+}
+
+.cf-admin_new_member{
+    text-align: center;
+}
+
+.cf-admin_new_meetups{
+    background: #808080;
+}
+
+.cf-admin_manage_meetups{
+    background: var(--brown);
+}
+
+li{
+    list-style-type: none;
+    padding: 1rem;
+}
+.cf-admin_location{
+    font-size: 1rem;
+    text-transform: capitalize;
+    color: var(--yellow);
+    opacity: 0.3;
+}
+
+.cf-list{
+    margin-left: 2rem;
+}
+
+button{
+    width: 5rem;
+    overflow: hidden;
+}
+
+.cf-edit_btn{
+    background: #66b3ff;
+}
+
+.cf-delete_btn{
+    background: #ff704d;
 }
