@@ -150,3 +150,39 @@ body{
     animation-duration: 2s;
     animation-iteration-count: infinite;
 }
+
+/**video switch*/
+
+.cf-video_switch_container{
+    display: block;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    z-index: 3;
+}
+.cf-video_switch{
+    position: relative;
+    width: 5rem;
+    background: var(--yellow);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem;
+    cursor: pointer;
+    border-radius: 0.5rem; 
+}
+
+.cf-video_switch_btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: var(--brown);
+    border-radius: 0.5rem; 
+    transition: all 0.3s ease-out; 
+}
+
+.cf-btn_slide{
+    left: 50%;
+}
