@@ -1,0 +1,54 @@
+.cf-admin_meetups_container{
+    max-width: 90vw;
+    margin: 0 auto;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-gap: 0.3rem;
+    grid-template-areas: 
+    "one two three four five"
+    "one six six six six"
+    "one six six six six"
+    "one six six six six"
+    "one six six six six"
+    "one six six six six"
+    "one seven seven eight nine"
+}
+
+.cf-admin_one{
+    grid-area: one;
+}
+
+.cf-admin_two{
+    grid-area: two;
+}
+
+.cf-admin_three{
+    grid-area: three;
+}
+
+.cf-admin_four{
+    grid-area: four;
+}
+
+.cf-admin_five{
+    grid-area: five;
+}
+
+.cf-admin_six{
+    grid-area: six;
+}
+
+.cf-admin_seven{
+    grid-area: seven;
+}
+
+.cf-admin_eight{
+    grid-area: eight;
+}
+
+.cf-admin_nine{
+    grid-area: nine;
+}
+
