@@ -166,3 +166,83 @@ button{
     background-color: var(--yellow);
     color: var(--grey);
   }
+
+  /* Responsive */
+
+@media screen and (max-width: 768px){
+    .cf-admin_meetups_container{
+        max-width: 90vw;
+        margin: 0 auto;
+        height: 90vh;
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-gap: 0.3rem;
+        justify-content: center;
+        grid-template-areas: 
+        "one one one one one"
+        "two two two two two"
+        "three three three three three"
+        "four four four four four"
+        "five five five five five"
+        "six six six six six"
+    }
+    
+    .cf-admin_one{
+        grid-area: one;
+    }
+    
+    .cf-admin_two{
+        grid-area: two;
+    }
+    
+    .cf-admin_three{
+        grid-area: three;
+    }
+    
+    .cf-admin_four{
+        grid-area: four;
+    }
+    
+    .cf-admin_five{
+        grid-area: five;
+    }
+    
+    .cf-admin_six{
+        grid-area: six;
+    }
+
+    .cf-admin_bio_section{
+        height: 10rem;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 0.3rem;
+        grid-template-areas: 
+        "one three"
+        "two three"
+    }
+
+    .cf-admin_image{
+        grid-area: one;
+    }
+    .cf-admin_title{
+        grid-area: two;
+    }
+
+    .cf-admin_bio_detail{
+        height: 10rem;
+        grid-area: three;
+    }
+
+    .cf-admin_image img{
+        width: 5rem;
+        height: 5rem;
+        border: 0.25rem solid var(--grey);
+        border-radius: 0.25rem;
+        margin: 3rem;
+    }
+
+    .cf-admin_manage_meetups{
+        height: 100vh;
+    }
+}
