@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=La+Belle+Aurore|Open+Sans');
+
+:root{
+    --brightYellow: #e3b505;
+    --darkBrown: #bb9457;
+    --yellow: #f2b450;
+    --brown: #382923;
+    --black: #191919;
+    --grey: #a9b2ac;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open sans', sans-serif;
+    background: linear-gradient(rgba(255, 255, 255, 0.85),rgba(255, 255, 255, 0.85)),url('../img/bodyBcg.jpeg');
+    color: var(--black);
+}
+
+/* global style*/
+.cf-bell-fonts{
+    font-family: 'La Belle Aurore', cursive;
+}
+
+/** header */
+.cf-header{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/** banner */
+.cf-banner{
+    text-align: center;
+}
+
+.cf-banner_title{
+    font-size: 9rem; 
+    text-transform: capitalize;
+    color: var(--brightYellow);
+}
+
+.cf-banner_social-icon{
+    display: block;
+    text-decoration: none;
+    color: var(--black);
+    border: 0.1rem solid var(--black);
+    border-radius: 50%;
+    padding: 0.2rem;
+    transition: all 0.5s linear;
+}
+
+.cf-banner_social-icon:hover{
+    background: var(--brightYellow);
+    color: var(--black);
+}
+
+.cf-banner_icons{
+    width: 50%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4,2rem);
+    grid-column-gap: 0.5rem;
+    justify-content: center;
+}
