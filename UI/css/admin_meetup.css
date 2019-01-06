@@ -1,0 +1,121 @@
+.cf-grid_container{
+    max-width: 80vw;
+    height: 100vh;
+    margin: 0.5rem auto;
+    display: grid;
+    grid-row-gap: 2rem;
+}
+
+.cf-create{
+    height: 110vh;
+    background: var(--darkBrown);
+    color: var(--brown);
+    text-transform: capitalize;
+}
+
+.cf-create_form{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 50%;
+    margin: 1rem;
+    justify-content: center;
+    grid-row-gap: 1.25rem;
+}
+
+.cf-input_title, .cf-input_location, .cf-input_host, .cf-input_place, .cf-input_date, .cf-input_time, .cf-input_type,.cf-input_submit{
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--grey);
+    color: var(--brown);
+    border: none;
+    outline: none;
+}
+
+.cf-input_title::placeholder, .cf-input_location::placeholder, .cf-input_host::placeholder, .cf-input_place::placeholder, .cf-input_date::placeholder, .cf-input_time::placeholder,.cf-input_type::placeholder{
+    color: var(--brown);
+    text-transform: capitalize;
+
+}
+
+.cf-input_submit{
+    background: var(--yellow);
+    color: var(--black);
+    transition: all 0.5s linear;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.cf-input_submit:hover{
+    opacity: 0.6;
+}
+
+.cf-create_form_input_image{
+    width: 100%;
+    height: 2rem;
+    background-color: transparent;
+    border: 1px solid var(--grey);
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.cf-create_form_input_image input.upload{
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.cf-create_form_input textarea{
+    height: 8rem;
+    resize: none;
+    width: 100%;
+    padding: 0.8rem;
+    border: solid 0.1 #ccc;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+    outline: none;
+    background: var(--grey);
+}
+
+.cf-create_form_input textarea::placeholder{
+    color: var(--brown);
+    text-transform: capitalize;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px){
+    .cf-grid_container{
+        width: 90vw;
+    }
+
+
+    .cf-input_title, .cf-input_location, .cf-input_host, .cf-input_place, .cf-input_date, .cf-input_time,.cf-input_submit{
+        width: 100%;
+    }
+
+    .cf-create_form{
+        text-align: center;
+        display: grid;
+        grid-template-columns: 80%;
+        margin: 1rem;
+        justify-content: center;
+        grid-row-gap: 1.25rem;
+    }
+
+    .cf-create_form_input textarea{
+        width: 100%;
+    }
+
+    .cf-create_form_input_image{
+        width: 58vw;
+        margin-left: 0.25rem;
+    }
+}
+

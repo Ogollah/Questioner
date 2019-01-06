@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin meetup page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--main css-->
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/meetups.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/admin_meetup.css">
+    <!--font awsome-->
+    <script src="../js/all.js"></script>
+
+</head>
+
+<body>
+    <!--nav btn-->
+    <div class="cf-nav_btn">
+        <i class="fas fa-bars"></i>
+    </div>
+    <!--end of nav btn-->
+    <!--nav-->
+
+    <nav class="cf-nav">
+        <ul class="cf-nav_links">
+            <!--logo-->
+            <li><a href="#" class="cf-nav_single_link cf-nav_logo">
+                    <img src="../img/logo.png" alt="">
+                </a></li>
+            <li><a href="#" class="cf-nav_single_link">home</a></li>
+            <li><a href="#" class="cf-nav_single_link">meetups</a></li>
+            <li><a href="../templates/signin.html" class="cf-nav_single_link">signout</a></li>
+        </ul>
+    </nav>
+    <!--end of nav-->
+
+    <section class="cf-profile cf-section-padding" id="cf-profile">
+        <!-- section title -->
+        <div class="cf-section_title cf-section_title_left">
+            <h1 class="cf-section_title_name cf-bell-fonts">Create a meetup</h1>
+            <div class="cf-section_title_underline"></div>
+        </div>
+    </section>
+    <!-- enf of title -->
+
+    <!-- create a meetup section -->
+    <section class="cf-create cf-section_padding" id="cf-create">
+        <div class="cf-grid_container">
+            <form action="" class="cf-create_form">
+                <div class="cf-create_form_input_image">
+                    <span><i class="fas fa-upload"></i>Upload Image</span>
+                    <input type="file" name="file" id="file" accept="image/*" class="upload">   
+                </div>
+                <div class="cf-create_form_input">
+                    <input type="text" name="" id="" maxlength="15" class="cf-input_title" placeholder="Title">
+                </div>
+
+                <div class="cf-create_form_input">
+                        <input type="text" name="" id="" maxlength="" class="cf-input_type" placeholder="meetup type">
+                    </div>
+                <div class="cf-create_form_input">
+                    <input type="text" name="" id="" maxlength="" class="cf-input_location" placeholder="location">
+                </div>
+                <div class="cf-create_form_input">
+                    <input type="text" name="" id="" maxlength="" class="cf-input_host" placeholder="hosted by">
+                </div>
+                <div class="cf-create_form_input">
+                    <input type="text" name="" id="" maxlength="" class="cf-input_place" placeholder="host from">
+                </div>
+                <div class="cf-create_form_input">
+                    <input type="date" name="" id="" maxlength="" class="cf-input_date" placeholder="date">
+                </div>
+                <div class="cf-create_form_input">
+                    <input type="time" name="" id="" maxlength="" class="cf-input_time" placeholder="time">
+                </div>
+
+                <div class="cf-create_form_input">
+                    <textarea placeholder="description"></textarea>
+                </div>
+                <div class="cf-create_form_input">
+                <input type="submit" value="create" class="cf-input_submit">
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- end of create a meetup section -->
+
+    <script src="../js/signin.js"></script>
+</body>
+
+</html>
