@@ -52,3 +52,62 @@
     grid-area: nine;
 }
 
+.cf-admin_bio_section{
+    display: grid;
+    grid-template-rows: 15rem 5rem 20rem;
+}
+
+.cf-admin_image img{
+    width: 10rem;
+    height: 10rem;
+    border: 0.25rem solid var(--grey);
+    border-radius: 50%;
+    margin: 2rem;
+}
+
+.cf-admin_title{
+    text-transform: uppercase;
+    margin: 0.5rem 0;
+    margin-left: 3rem;
+    letter-spacing: 0.1rem;
+    font-style: italic;
+    color: var(--yellow);
+}
+
+.cf-admin_bio_detail{
+    background: var(--brown);
+}
+
+.cf-admin_details{
+    background: gray;
+}
+
+.cf-admin_item{
+    margin: 1rem 0;
+    padding: 0.5rem;
+}
+
+.cf-admin_item_text{
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--grey);
+}
+
+.cf-admin_item_title{
+    text-transform: uppercase;
+    margin: 0.5rem 0;
+    letter-spacing: 0.1rem;
+    font-style: italic;
+    color: var(--yellow);
+}
+
+.cf-admin_meetups_number{
+    background: var(--grey);
+}
+
+.cf-admin_number_title{
+    text-transform: uppercase;
+    margin: 0.5rem 0;
+    letter-spacing: 0.1rem;
+    color: var(--brown);
+}
