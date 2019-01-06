@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--main css-->
     <link rel="stylesheet" type="text/css" media="screen" href="../css/meetups.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/profile.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/admin_meetup.css">
     <!--font awsome-->
     <script src="../js/all.js"></script>
 
@@ -48,12 +48,17 @@
     <section class="cf-create cf-section_padding" id="cf-create">
         <div class="cf-grid_container">
             <form action="" class="cf-create_form">
-                <div class="cf-create_form_input">
-                    <input type="file" name="pic" accept="image/*" placeholder="Upload image">
+                <div class="cf-create_form_input_image">
+                    <span><i class="fas fa-upload"></i>Upload Image</span>
+                    <input type="file" name="file" id="file" accept="image/*" class="upload">   
                 </div>
                 <div class="cf-create_form_input">
                     <input type="text" name="" id="" maxlength="15" class="cf-input_title" placeholder="Title">
                 </div>
+
+                <div class="cf-create_form_input">
+                        <input type="text" name="" id="" maxlength="" class="cf-input_type" placeholder="meetup type">
+                    </div>
                 <div class="cf-create_form_input">
                     <input type="text" name="" id="" maxlength="" class="cf-input_location" placeholder="location">
                 </div>
@@ -61,7 +66,7 @@
                     <input type="text" name="" id="" maxlength="" class="cf-input_host" placeholder="hosted by">
                 </div>
                 <div class="cf-create_form_input">
-                    <input type="text" name="" id="" maxlength="" class="cf-input_place" placeholder="where host come from">
+                    <input type="text" name="" id="" maxlength="" class="cf-input_place" placeholder="host from">
                 </div>
                 <div class="cf-create_form_input">
                     <input type="date" name="" id="" maxlength="" class="cf-input_date" placeholder="date">
@@ -70,11 +75,12 @@
                     <input type="time" name="" id="" maxlength="" class="cf-input_time" placeholder="time">
                 </div>
 
-                <div>
+                <div class="cf-create_form_input">
                     <textarea placeholder="description"></textarea>
                 </div>
+                <div class="cf-create_form_input">
                 <input type="submit" value="ctreate" class="cf-input_submit">
-
+                </div>
             </form>
         </div>
     </section>
