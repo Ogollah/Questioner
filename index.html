@@ -1,0 +1,251 @@
+<!DOCTYPE <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Questioner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--main css-->
+    <link rel="stylesheet" type="text/css" media="screen" href="UI/css/main.css" />
+    <!--font awsome-->
+    <script src="UI/js/all.js"></script>
+</head>
+
+<body>
+    <!--header-->
+    <header class="cf-header" id="cf-header">
+        <!--banner-->
+        <div class="cf-banner">
+            <h1 class="cf-banner_title cf-bell-fonts">Questioner</h1>
+            <div class="cf-banner_icons">
+                <a href="#" class="cf-banner_social-icon">
+                    <i class="fab fa-facebook fa-fw"></i>
+                </a>
+                <a href="#" class="cf-banner_social-icon">
+                    <i class="fab fa-google-plus fa-fw"></i>
+                </a>
+                <a href="#" class="cf-banner_social-icon">
+                    <i class="fab fa-twitter fa-fw"></i>
+                </a>
+                <a href="#" class="cf-banner_social-icon">
+                    <i class="fab fa-instagram fa-fw"></i>
+                </a>
+            </div>
+        </div>
+        <!--end of banner-->
+
+        <!-- video-->
+        <article class="cf-video_container">
+            <video class="cf-video_item" autoplay muted loop>
+                <source src="UI/video/meetup_video.mp4" type="video/mp4">
+                <source src="UI/video/meetup_video.ogv" type="video/ogv">
+                <source src="UI/video/meetup_video.webm" type="video/webm"> Your browser does not support video tag
+            </video>
+        </article>
+        <!--end of video-->
+
+        <!--nav btn-->
+        <div class="cf-nav_btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!--end of nav btn-->
+        <!--nav-->
+
+        <nav class="cf-nav">
+            <ul class="cf-nav_links">
+                <!--logo-->
+                <li><a href="#" class="cf-nav_single_link cf-nav_logo">
+                        <img src="UI/img/logo.png" alt="">
+                    </a></li>
+                <li><a href="#header" class="cf-nav_single_link">home</a></li>
+                <li><a href="#cf-about" class="cf-nav_single_link cf-about_nav">about</a></li>
+                <li><a href="#cf-popular" class="cf-nav_single_link">popular meetups</a></li>
+                <li><a href="#cf-feedbacks" class="cf-nav_single_link cf-login">feedback</a></li>
+                <li><a href="#cf-contact" class="cf-nav_single_link">contact</a></li>
+                <li><a href="UI/templates/signin.html" class="cf-nav_single_link">signin</a></li>
+                <li><a href="UI/templates/signup.html" class="cf-nav_single_link">signup</a></li>
+            </ul>
+        </nav>
+        <!--end of nav-->
+        <!--video switch-->
+        <div class="cf-video_switch_container">
+            <div class="cf-video_switch">
+                <span>on</span>
+                <span>off</span>
+                <div class="cf-video_switch_btn"></div>
+            </div>
+        </div>
+        <!--end of video switch-->
+
+    </header>
+    <!--end of header-->
+
+    <!--about-->
+    <section class="cf-about cf-section_padding" id="cf-about">
+        <div class="cf-grid_container cf-grid_container_medium_2">
+            <!--about container-->
+            <article class="cf-about_container">
+                <!--first child-->
+                <div class="cf-section_title">
+                    <h1 class="cf-section_title_name cf-bell-fonts">our stories</h1>
+                    <div class="cf-section_title_underline"></div>
+                    <p class="cf-section_title_text">We helps the meetup organizer prioritize
+                        questions to be answered. Other users can vote on asked questions and they bubble to the top
+                        or bottom of the log.</p>
+                </div>
+                <!--second child-->
+                <div class="cf-about_img ">
+                    <img src="UI/img/meetup2.jpeg" alt="about_img">
+                </div>
+            </article>
+
+            <!--about container-->
+            <article class="cf-about_container">
+                <!--first child-->
+                <div class="cf-section_title">
+                    <h1 class="cf-section_title_name cf-bell-fonts">what we do</h1>
+                    <div class="cf-section_title_underline"></div>
+                    <p class="cf-section_title_text">We helps the meetup organizer prioritize
+                        questions to be answered. Other users can vote on asked questions and they bubble to the top
+                        or bottom of the log.</p>
+                </div>
+                <!--second child-->
+                <div class="cf-about_img cf-about_img_special">
+                    <img src="UI/img/meetup4.jpeg" alt="about_img">
+                </div>
+            </article>
+        </div>
+    </section>
+    <!--end of about-->
+
+    <!--popular meetups-->
+    <section class="cf-popular cf-section_padding" id="cf-popular">
+        <!-- section title -->
+        <div class="cf-section_title cf-section_title_left">
+            <h1 class="cf-section_title_name cf-bell-fonts">popular meetups</h1>
+            <div class="cf-section_title_underline"></div>
+        </div>
+        <!--end of section title-->
+
+        <!-- popular meetups -->
+        <div class="cf-popular_container">
+            <!-- single meetup -->
+            <div class="cf-meetup_card">
+                <img src="UI/img/meetup2.jpeg" alt="meetup" style="width:100%">
+                <div class="cf-card_container">
+                    <h4 class="cf-popular_item_title"><b>Young Professionals in International Affairs</b></h4>
+                    <h4 class="cf-popular_item_location">SAT, FEB 2, 8:30AM </h4>
+                    <div class="cf-popular_item_location">
+                        <P><span><i class="fa fa-map-marker" aria-hidden="true"></i></span> Location:<i>Kilgoris</i>
+                        </P>
+                    </div>
+                    <button>read more</button>
+                </div>
+            </div>
+            <!-- end of single meetup -->
+
+            <div class="cf-meetup_card">
+                <img src="UI/img/meetup1.jpeg" alt="meetup" style="width:100%">
+                <div class="cf-card_container">
+                    <h4 class="cf-popular_item_title"><b>Young Professionals in International Affairs</b></h4>
+                    <h4 class="cf-popular_item_location">SAT, FEB 2, 8:30AM </h4>
+                    <div class="cf-popular_item_location">
+                        <P><span><i class="fa fa-map-marker" aria-hidden="true"></i></span> Location:<i>Kilgoris</i>
+                        </P>
+                    </div>
+                    <button>read more</button>
+                </div>
+            </div>
+            <!-- end of single meetup -->
+
+            <div class="cf-meetup_card">
+                <img src="UI/img/meetup3.jpeg" alt="meetup" style="width:100%">
+                <div class="cf-card_container">
+                    <h4 class="cf-popular_item_title"><b>Young Professionals in International Affairs</b></h4>
+                    <h4 class="cf-popular_item_location">SAT, FEB 2, 8:30AM </h4>
+                    <div class="cf-popular_item_location">
+                        <P><span><i class="fa fa-map-marker" aria-hidden="true"></i></span> Location:<i>Kilgoris</i>
+                        </P>
+                    </div>
+                    <button>read more</button>
+                </div>
+                <!-- end of single meetup -->
+            </div>
+            <!-- end of popula meetup -->
+    </section>
+    <!--end of popular-->
+
+    <!-- feedback section -->
+    <section class="cf-popular cf-section_padding" id="cf-feedbacks">
+            <!-- section title -->
+            <div class="cf-section_title cf-section_title_left">
+                <h1 class="cf-section_title_name cf-bell-fonts">feedback</h1>
+                <div class="cf-section_title_underline"></div>
+            </div>
+            <!--end of section title-->
+
+            <!-- feedbacks -->
+            <div class="cf-feedback_containe" id="cf-feedback">
+                <div></div>
+            <div class="cf-feedback">
+                
+                    <ul>
+                        <li>
+                            <div class="cf-user-data">
+                                <img src="UI/img/person0.jpeg" alt="" />
+                                <span class="cf-user-name">Alicia Shannon</span>
+                            </div>
+                            <p>" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In suscipit eleifend tortor a finibus. Vivamus diam odio, mattis nec venenatis in, lobortis vitae diam. Aliquam erat volutpat. Nam cursus ac lacus sed semper. "</p>
+                        </li>
+                        <li>
+                            <div class="cf-user-data">
+                                <img src="UI/img/person1.jpeg" alt="" />
+                                <span class="cf-user-name">Jack Wilson</span>
+                            </div>
+                            <p>" Vivamus id metus ut ligula rutrum rhoncus. Vivamus ornare ipsum quis tincidunt commodo. Morbi eget diam sit amet sapien maximus semper. Pellentesque condimentum lacus vitae enim porta. "</p>
+                        </li>
+                        <li>
+                            <div class="cf-user-data">
+                                <img src="UI/img/person3.jpeg" alt="" />
+                                <span class="cf-user-name">Sienna Johnson</span>
+                            </div>
+                            <p>" Etiam dui nulla, laoreet at arcu ut, iaculis lacinia dolor. Fusce ac feugiat lectus. Fusce sodales nisl egestas, scelerisque nisl eu, suscipit neque. Pellentesque dapibus massa augue, vitae porta lorem viverra vitae. "</p>
+                        </li>
+                    </ul>
+    
+                    <i id="cf-feedback-prev" class="cf-arrow cf-arrow-left"></i>
+                    <i id="cf-feedback-next" class="cf-arrow cf-arrow-right"></i>
+                </div>
+            </div>
+            <!-- end of feedbacks -->
+    
+        </section>
+
+    <!-- end of feedback section -->
+
+    <!-- contact section -->
+    <section class="cf-contact cf-section_padding" id="cf-contact">
+            <!-- section title -->
+            <div class="cf-section_title cf-section_title_left">
+                <h1 class="cf-section_title_name cf-bell-fonts">leave us a message</h1>
+                <div class="cf-section_title_underline"></div>
+            </div>
+            <!--end of section title-->
+                    <form action="" method="">
+                            <input type="text" name="name" placeholder="Name" />
+                            <input type="text" name="surname" placeholder="Surname" />
+                            <input type="email" name="email" placeholder="Email" />
+                            <textarea placeholder="Your Message"></textarea>
+            
+                            <input type="submit" value="Submit" />
+                        </form>
+    
+        </section>
+
+    <!-- end of contact section -->
+
+    <script src="UI/js/main.js"></script>
+</body>
+
+</html>

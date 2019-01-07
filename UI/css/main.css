@@ -1,0 +1,561 @@
+@import url('https://fonts.googleapis.com/css?family=La+Belle+Aurore|Open+Sans');
+
+:root{
+    --brightYellow: #e3b505;
+    --darkBrown: #bb9457;
+    --yellow: #f2b450;
+    --brown: #382923;
+    --black: #191919;
+    --grey: #a9b2ac;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open sans', sans-serif;
+    background: linear-gradient(rgba(255, 255, 255, 0.85),rgba(255, 255, 255, 0.85)),url('../img/bodyBcg.jpeg');
+    color: var(--black);
+}
+
+/* global style*/
+.cf-bell-fonts{
+    font-family: 'La Belle Aurore', cursive;
+}
+
+/* section padding */
+.cf-section_padding{
+    padding: 3rem 0;
+}
+/* grid container */
+.cf-grid_container{
+    max-width: 90vw;
+    margin: 2rem auto;
+    display: grid;
+    grid-row-gap: 2rem;
+}
+
+/*section*/
+.cf-section_title{
+    padding: 1rem 0.5rem;
+}
+.cf-section_title_left{
+    margin-left: 10rem;
+}
+
+.cf-section_title_name{
+    font-size: 3rem;
+    text-transform: capitalize;
+}
+
+.cf-section_title_underline{
+    background: var(--yellow);
+    width: 5rem;
+    height: 0.25rem;
+}
+.cf-section_title_text{
+    letter-spacing: 0.1rem;
+    line-height: 1.5rem;
+    margin-top: 1rem;
+    color: var(--grey);
+}
+
+/** header */
+.cf-header{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/** banner */
+.cf-banner{
+    text-align: center;
+    z-index: 3;
+}
+
+.cf-banner_title{
+    font-size: 9rem; 
+    text-transform: capitalize;
+    color: var(--brightYellow);
+}
+
+.cf-banner_social-icon{
+    display: block;
+    text-decoration: none;
+    color: var(--black);
+    border: 0.1rem solid var(--black);
+    border-radius: 50%;
+    padding: 0.2rem;
+    transition: all 0.5s linear;
+}
+
+.cf-banner_social-icon:hover{
+    background: var(--brightYellow);
+    color: var(--black);
+}
+
+.cf-banner_icons{
+    width: 50%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4,2rem);
+    grid-column-gap: 0.5rem;
+    justify-content: center;
+}
+
+/** video */
+.cf-video_container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.cf-video_item{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/**nav*/
+.cf-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 10rem;
+    background: rgba(242, 180, 80, 0.9);
+    z-index: 3;
+}
+
+.cf-nav_links{
+    list-style-type: none;
+}
+
+.cf-nav_single_link{
+    display: block;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: var(--brown);
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.8s ease-in-out;
+}
+
+.cf-nav_single_link img{
+    width: 100px;
+    height: 100px;
+}
+
+.cf-nav_single_link:hover{
+    background: var(--brown);
+    color: rgba(242, 180, 80, 0.9);
+    padding-left: 1.5rem;
+}
+
+.cf-nav_logo:hover{
+    background: var(--yellow);
+}
+
+/** nav hide*/
+.cf-nav{
+    width: 0;
+    overflow: hidden;
+    transition: all 0.5s linear;
+}
+
+.cf-nav_show{
+    width: 10rem;
+}
+
+.cf-nav_btn{
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    font-size: 3rem;
+    color: var(--brightYellow);
+    cursor: pointer;
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+/**video switch*/
+
+.cf-video_switch_container{
+    display: block;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    z-index: 3;
+}
+.cf-video_switch{
+    position: relative;
+    width: 5rem;
+    background: var(--yellow);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem;
+    cursor: pointer;
+    border-radius: 0.5rem; 
+}
+
+.cf-video_switch_btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: var(--brown);
+    border-radius: 0.5rem; 
+    transition: all 0.3s ease-out; 
+}
+
+.cf-btn_slide{
+    left: 50%;
+}
+
+/** about */
+.cf-about_container{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto 1fr;
+    grid-gap: 2rem;
+}
+
+.cf-about_img{
+    width: 100%;
+    height:100%;
+    border-radius: 0.25rem;
+    display: block;
+}
+
+.cf-about_img img{
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+/* popular section */
+.cf-meetup_card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+  
+  .cf-meetup_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .cf-card_container {
+    padding: 8px 16px;
+  }
+
+  .cf-popular_item_title{
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.cf-popular_item_location{
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--grey);
+}
+
+  button{
+    background-color: transparent;
+    border: 1px solid #2196F3;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border-radius: .25rem;
+    text-transform: capitalize;
+  }
+
+  /* feedback */
+
+  .cf-feedback_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  #cf-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cf-feedback {
+	position: relative;
+    max-width: 500px;
+}
+
+.cf-feedback ul {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.cf-feedback ul li {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cf-feedback ul li .cf-user-data img {
+    border-radius: 100%;
+}
+
+.cf-feedback ul li .cf-user-name {
+	display: block;
+    margin: 15px 0;
+}
+
+.cf-feedback ul li > p {
+    font-style: italic;
+    font-size: 20px;
+    color: #ccc;
+    text-align: center;
+}
+
+.cf-feedback .cf-arrow {
+	position: absolute;
+	display: inline-block;
+	top: 50%;
+    padding: 20px;
+    border: solid #eee;
+    border-width: 0 2px 2px 0;
+    cursor: pointer;
+    -webkit-transition: border-color .3s ease;
+    transition: border-color .3s ease;
+}
+
+.cf-feedback .cf-arrow.cf-arrow-left {
+	right: 110%;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.cf-feedback .cf-arrow.cf-arrow-right {
+	left: 110%;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.cf-feedback .cf-arrow:hover {
+	border-color: var(--brightYellow);
+}
+
+.cf-user-data img{
+    width: 10rem;
+    height: 10rem;
+}
+
+/* Contact */
+
+#cf-contact {
+    background: #f8f8f8;
+}
+
+#cf-contact form {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#cf-contact form input:not([type="submit"]),
+#cf-contact form textarea {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: solid 1px var(--grey);
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#cf-contact form textarea {
+    height: 100px;
+    resize: none;
+}
+
+#cf-contact form *::-webkit-input-placeholder {
+	color: var(--grey);
+	font-style:italic;
+}
+
+#cf-contact form *::-moz-placeholder {
+	color: var(--grey);
+	font-style:italic;
+}
+
+#cf-contact form *:-ms-input-placeholder {
+	color: var(--grey);
+	font-style:italic;
+}
+
+#cf-contact form *:-moz-input-placeholder {
+	color: var(--grey);
+	font-style:italic;
+}
+
+#cf-contact input[type="submit"] {
+    border: none;
+    margin-top: 20px;
+    padding: 10px 30px;
+    color: #fff;
+    background-color: var(--brightYellow);
+    box-shadow: inset 0 -3px 0 0 var(--yellow);
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+#cf-contact input[type="submit"]:hover {
+    color: #f5f5f5;
+    box-shadow: inset 0 -3px 0 0 var(--darkBrown);
+}
+
+/*animation*/
+@keyframes pulse{
+    0%{
+        transform: scale(1)
+    }
+    50%{
+        transform: scale(1.5)
+    }
+    100%{
+        transform: scale(1)
+    }
+}
+
+/* responsive */
+@media screen and (max-width: 768px){
+    .cf-header{
+        background: linear-gradient(rgba(71, 49, 49, 0.85),rgba(63, 55, 55, 0.85)), url('../img/headerBcg.jpeg');
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat; 
+
+
+    }
+    .cf-banner_title{
+        font-size: 4rem;
+    }
+
+    .cf-video_switch_container{
+        display: none;
+    }
+
+    .cf-video_container{
+        display: none;
+    }
+
+    .cf-popular_container{
+        max-width: 90vw;
+        margin: 2rem auto;
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-row-gap: 2rem;
+    }
+
+    .cf-nav{
+        width: 7rem;
+    }
+
+    .cf-nav_single_link{
+        font-size: 1rem;
+    }
+
+    .cf-nav_single_link img{
+        widows: 70px;
+        height: 70px;
+    }
+
+    /** nav hide*/
+    .cf-nav{
+        width: 0;
+        overflow: hidden;
+        transition: all 0.5s linear;
+    }
+    .cf-nav_show{
+        width: 7rem;
+        height: 100%;
+    }
+
+}
+
+@media screen and (min-width: 768px){
+
+    .cf-popular_container{
+        max-width: 90vw;
+        margin: 2rem auto;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-column-gap: 2rem;
+      }
+      
+    .cf-grid_container_medium_2{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 4rem;
+
+    }
+    .cf-grid_container{
+        max-width: 75vw;
+    }
+
+    .cf-about_img_special{
+        order: -1;
+    }
+
+    .cf-about_container{
+        grid-template-rows: 1fr 1fr;
+    }
+
+}
+
+@media all and (max-width: 600px) {
+
+    .cf-feedback .aw-arrow {
+        padding: 2px;
+    }
+
+    .cf-feedback {
+        max-width: 300px;
+    }
+
+
+	.cf-feedback ul li > p {
+	    font-size: 17px;
+	}
+
+	#cf-contact form input:not([type="submit"]),
+    #cf-contact form textarea {
+    	width: 90%;
+    	padding: 12px;
+    }
+}

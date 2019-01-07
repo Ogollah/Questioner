@@ -28,11 +28,7 @@
                     <img src="../img/logo.png" alt="">
                 </a></li>
             <li><a href="#" class="cf-nav_single_link">home</a></li>
-            <li><a href="#" class="cf-nav_single_link ">about</a></li>
-            <li><a href="#" class="cf-nav_single_link">feedback</a></li>
-            <li><a href="#" class="cf-nav_single_link ">galary</a></li>
-            <li><a href="#" class="cf-nav_single_link">contact</a></li>
-            <li><a href="#" class="cf-nav_single_link">signin</a></li>
+            <li><a href="../templates/signup.html" class="cf-nav_single_link">signup</a></li>
         </ul>
     </nav>
     <!--end of nav-->
@@ -41,13 +37,13 @@
         <div class="cf-grid_container">
             <!-- User signin form -->
             <div class="cf-signin_user">
-            <form action="" class="cf-signin_form ">
+            <form action="../templates/meetups.html" class="cf-signin_form ">
                 <h3 class="cf-signin_form_title cf-bell-fonts">User signin</h3>
                 <div class="cf-signin_form_input">
-                    <input type="email" name="" id="" maxlength="" class="cf-input_email" placeholder="email">
+                    <input type="email" name="" id="" maxlength="" class="cf-input_email" placeholder="email" required>
                 </div>
                 <div class="cf-signin_form_input">
-                    <input type="password" name="" id="" maxlength="15" class="cf-input_password" placeholder="Password">
+                    <input type="password" name="" id="" maxlength="15" class="cf-input_password" placeholder="Password" required>
                 </div>
                 <input type="submit" value="user Sign in" class="cf-input_submit">
                 <p>No Account? signup<a href="#signin" class="cf-signin_btn_link"> here</a></p>
@@ -58,13 +54,13 @@
             </div>
             <div class="cf-signin_admin">
 
-            <form action="" class="cf-signin_form ">
+            <form action="../templates/admin_meetups.html" class="cf-signin_form ">
                 <h3 class="cf-signin_form_title cf-bell-fonts">admin signin</h3>
                 <div class="cf-signin_form_input">
-                    <input type="email" name="" id="" maxlength="" class="cf-input_email" placeholder="email">
+                    <input type="email" name="" id="" maxlength="" class="cf-input_email" placeholder="email" required>
                 </div>
                 <div class="cf-signin_form_input">
-                    <input type="password" name="" id="" maxlength="15" class="cf-input_password" placeholder="Password">
+                    <input type="password" name="" id="" maxlength="15" class="cf-input_password" placeholder="Password" required>
                 </div>
                 <input type="submit" value="admin Sign in" class="cf-input_submit">
                 <p>user? signin<a href="#signin" class="cf-signin_btn_link cf-signin_admins"> here</a></p>
