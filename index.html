@@ -61,7 +61,7 @@
                 <li><a href="#header" class="cf-nav_single_link">home</a></li>
                 <li><a href="#cf-about" class="cf-nav_single_link cf-about_nav">about</a></li>
                 <li><a href="#cf-popular" class="cf-nav_single_link">popular meetups</a></li>
-                <li><a href="#feedback" class="cf-nav_single_link cf-login">feedback</a></li>
+                <li><a href="#cf-feedbacks" class="cf-nav_single_link cf-login">feedback</a></li>
                 <li><a href="#cf-contact" class="cf-nav_single_link">contact</a></li>
                 <li><a href="UI/templates/signin.html" class="cf-nav_single_link">signin</a></li>
                 <li><a href="UI/templates/signup.html" class="cf-nav_single_link">signup</a></li>
@@ -177,7 +177,7 @@
     <!--end of popular-->
 
     <!-- feedback section -->
-    <section class="cf-popular cf-section_padding" id="cf-popular">
+    <section class="cf-popular cf-section_padding" id="cf-feedbacks">
             <!-- section title -->
             <div class="cf-section_title cf-section_title_left">
                 <h1 class="cf-section_title_name cf-bell-fonts">feedback</h1>
@@ -186,7 +186,7 @@
             <!--end of section title-->
 
             <!-- feedbacks -->
-            <div class="cf-popular_container_feedback">
+            <div class="cf-popular_container_feedback " id="cf-feedback">
             <div class="cf-feedback">
                 
                     <ul>
@@ -222,6 +222,27 @@
         </section>
 
     <!-- end of feedback section -->
+
+    <!-- contact section -->
+    <section class="cf-contact cf-section_padding" id="cf-contact">
+            <!-- section title -->
+            <div class="cf-section_title cf-section_title_left">
+                <h1 class="cf-section_title_name cf-bell-fonts">leave us a message</h1>
+                <div class="cf-section_title_underline"></div>
+            </div>
+            <!--end of section title-->
+                    <form action="" method="">
+                            <input type="text" name="name" placeholder="Name" />
+                            <input type="text" name="surname" placeholder="Surname" />
+                            <input type="email" name="email" placeholder="Email" />
+                            <textarea placeholder="Your Message"></textarea>
+            
+                            <input type="submit" value="Submit" />
+                        </form>
+    
+        </section>
+
+    <!-- end of contact section -->
 
     <script src="UI/js/main.js"></script>
 </body>
