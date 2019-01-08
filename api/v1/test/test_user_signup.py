@@ -269,6 +269,24 @@ class TestUserSignup(BaseTestCase):
             response = signup_user_password_no_number(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Password should contain a capital letter')
+            self.assertTrue(result['message'] == 'Password should contain atleast one number/ integer.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
+
+    
+    def test_username_length(self):
+        """
+        Username length
+        """
+
+        with self.client:
+            response = signup_user_password_no_number(self)
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['message'] == 'Username not be less than 4 characters.')
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 400)
+
+if __name__ == '__main__':
+    unittest.main()
+    
