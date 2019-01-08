@@ -2,9 +2,10 @@
 source =
     api/
 
+
 omit =
     api/__init__.py
-    api/tests/__init__.py
+    api/v1/tests/__init__.py
     api/v1/main/models.py
 
 [report]
