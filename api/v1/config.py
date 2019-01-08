@@ -17,15 +17,19 @@ class DevelopmentConfig(Configuration):
     """
     Development configuration
     """
+    DEBUG = True
 
 class TestingConfig(Configuration):
     """
     Testing configuration
     """
+    DEBUG = True
+    TESTING = True
 
 class ProductionConfig(Configuration):
     """Production configuration
     """
+    DEBUG = False
 
 # configurations
 api_congig = dict(
