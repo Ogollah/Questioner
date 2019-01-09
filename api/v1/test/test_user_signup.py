@@ -21,7 +21,23 @@ def signup_user(self):
             phoneNumber='+25422034587',
             email='mail@mail.com',
             username='example',
-            password='42qwR@#'
+            password_hash='42qwR@#'
+        )),
+        content_type='application/json'
+    )
+
+# sign up user
+def signup_user_dub(self):
+    return self.client.post(
+        '/api/v1/user/signup',
+            data=json.dumps(dict(
+            firstname='Jhone',
+            lastname='Doe',
+            othername='Johnson',
+            phoneNumber='+25422034587',
+            email='example@example.com',
+            username='example',
+            password_hash='42qwR@#'
         )),
         content_type='application/json'
     )
@@ -37,7 +53,7 @@ def signup_user_invalid_email(self):
             phoneNumber='+25422034587',
             email='mail.com',
             username='example',
-            password='42qwR@#'
+            password_hash='42qwR@#'
         )),
         content_type='application/json'
     )
@@ -51,9 +67,9 @@ def signup_user_password_no_number(self):
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail.com',
+            email='mail@mail.com',
             username='example',
-            password='rtqwyt@#'
+            password_hash='rtqwyt@#'
         )),
         content_type='application/json'
     )
@@ -67,9 +83,9 @@ def signup_user_short_password(self):
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail.com',
-            username='example',
-            password='4qR@#'
+            email='mail@mail.com',
+            username='example@example.com',
+            password_hash='4qR#'
         )),
         content_type='application/json'
     )
@@ -83,9 +99,9 @@ def signup_user_long_password(self):
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail.com',
+            email='mail@mail.com',
             username='example',
-            password='Longestpasswordfor testin#4'
+            password_hash='Longestpasswordfor testin#4'
         )),
         content_type='application/json'
     )
@@ -99,9 +115,9 @@ def signup_user_password_no_caps(self):
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail.com',
+            email='mail@mail.com',
             username='example',
-            password='42qwyt@#'
+            password_hash='42qwyt@#'
         )),
         content_type='application/json'
     )
@@ -115,9 +131,9 @@ def signup_user_password_no_special_cha(self):
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail.com',
+            email='mail@mail.com',
             username='example',
-            password='42qwRhjkh'
+            password_hash='42qwRhjkh'
         )),
         content_type='application/json'
     )
@@ -131,9 +147,9 @@ def signup_user_password_no_lower_case(self):
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail.com',
+            email='mail@mail.com',
             username='example',
-            password='QWEAS#33Y'
+            password_hash='QWEAS#33Y'
         )),
         content_type='application/json'
     )
@@ -143,13 +159,13 @@ def signup_user_invalid_length(self):
     return self.client.post(
         '/api/v1/user/signup',
             data=json.dumps(dict(
-            firstname='Jho',
+            firstname='Jhone',
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail.com',
-            username='example',
-            password='42qwRhjkh'
+            email='mail@mail.com',
+            username='exa',
+            password_hash='42qwRhjkh'
         )),
         content_type='application/json'
     )
@@ -174,9 +190,9 @@ class TestUserSignup(BaseTestCase):
         Test user signup already signup user.
         """
         # signup user
-        signup_user(self)
+        signup_user_dub(self)
         with self.client:
-            response = signup_user(self)
+            response = signup_user_dub(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 'fail')
             self.assertTrue(result['message'] == 'User with this email address already exist.')
@@ -269,6 +285,24 @@ class TestUserSignup(BaseTestCase):
             response = signup_user_password_no_number(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Password should contain a capital letter')
+            self.assertTrue(result['message'] == 'Password should contain atleast one number/ integer.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
+
+    
+    def test_username_length(self):
+        """
+        Username length
+        """
+
+        with self.client:
+            response = signup_user_invalid_length(self)
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['message'] == 'Username should not be less than 4 characters.')
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 400)
+
+if __name__ == '__main__':
+    unittest.main()
+    
