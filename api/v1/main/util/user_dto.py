@@ -8,7 +8,7 @@ class UserDto:
     # create name space for user operations
     api = Namespace('User', description='User opertaions')
     user = api.model('user',{
-        'id' : fields.Integer(description='User Identification'),
+        'user_id' : fields.Integer(description='User Identification'),
         'firstname': fields.String(required=True, description='User first name'),
         'lastname': fields.String(required=True, description='User last name'),
         'othername': fields.String(required=True, description='User other name'),
@@ -16,5 +16,6 @@ class UserDto:
         'phoneNumber': fields.String(required=True, description='User phone number'),
         'username': fields.String(required=True, description='User username'),
         'registered' : fields.String(description='User regitered date'),
+        'password_hash' : fields.String(description='User password'),
         'isAdmin' : fields.Boolean(description='User role')
     })

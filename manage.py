@@ -9,10 +9,11 @@ from flask_script import Manager
 
 # local imports
 from api.v1.main import creat_app
+from api import blueprint
 
 # call create app
 api = creat_app(os.getenv('QUESTIONER_ENV') or 'development')
-
+api.register_blueprint(blueprint)
 api.app_context().push()
 
 manager = Manager(api)

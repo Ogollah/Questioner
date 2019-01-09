@@ -14,6 +14,7 @@ _user = UserDto.user
 
 @api.route('/signup')
 class SignupUser(Resource):
+
     @api.response(201, 'You have signed up successfully.')
     @api.doc('Signup a new user')
     @api.expect(_user, validate=True)
