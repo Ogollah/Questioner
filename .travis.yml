@@ -9,8 +9,8 @@ install:
   - pip3 install -r requirements.txt
 # command to run tests
 script:
-   - pytest
-   - coverage run --source=api -m pytest && coverage report - coverage run --source=api -m pytest && coverage report 
+   - pytest --with-coverage --cover-package=api
+  #  - coverage run --source=api -m pytest && coverage report - coverage run --source=api -m pytest && coverage report 
 
 after_script:
   - coveralls
