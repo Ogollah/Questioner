@@ -12,6 +12,7 @@ from api.v1.main.service.user_service import save_new_user
 api = UserDto.api
 _user = UserDto.user
 
+
 @api.route('/signup')
 class SignupUser(Resource):
 

@@ -36,6 +36,15 @@ class User():
     def __repr__(self):
         return "User '{}'>".format(self.username)
 
+    # @staticmethod
+    # def get_user_by_email(email):
+    #     """
+    #     Get user by user email 
+    #     """
+    #     for user in USERS:
+    #         if user.email == email:
+    #             return user
+
 # save admin
 user = User()
 user.firstname = "admin"

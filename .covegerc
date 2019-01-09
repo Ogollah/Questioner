@@ -1,13 +1,1 @@
-[run]
-source =
-    api/v1/
-    api/
 
-
-omit =
-    api/__init__.py
-    api/v1/tests/__init__.py
-    api/v1/main/models.py
-
-[report]
-show_missing = True
