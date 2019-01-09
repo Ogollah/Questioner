@@ -59,8 +59,8 @@ class BaseTestCase(TestCase):
         days = 6
         now = datetime.datetime.now()
         difference = datetime.timedelta(days=days)
-        
-        happening = now+difference
+        time = now+difference
+        happening = time.strftime("%m/%d/%Y")
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
@@ -81,7 +81,8 @@ class BaseTestCase(TestCase):
         days = 6
         now = datetime.datetime.now()
         difference = datetime.timedelta(days=days)
-        happening = now+difference
+        time = now+difference
+        happening = time.strftime("%m/%d/%Y")
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
@@ -103,7 +104,8 @@ class BaseTestCase(TestCase):
         days = 6
         now = datetime.datetime.now()
         difference = datetime.timedelta(days=days)
-        happening = now+difference
+        time = now+difference
+        happening = time.strftime("%m/%d/%Y")
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
@@ -124,7 +126,8 @@ class BaseTestCase(TestCase):
         days = 6
         now = datetime.datetime.now()
         difference = datetime.timedelta(days=days)
-        happening = now+difference
+        time = now+difference
+        happening = time.strftime("%m/%d/%Y")
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
