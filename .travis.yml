@@ -10,6 +10,7 @@ install:
 # command to run tests
 script:
    - pytest
+   - coverage run --source=app -m pytest && coverage report - coverage run --source=app -m pytest && coverage report 
 
 after_script:
   - coveralls
