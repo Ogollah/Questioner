@@ -5,8 +5,11 @@ This file marshall data for api calls.
 from flask_restplus import Namespace, fields
 
 class UserDto:
+    """
+    User details dto.
+    """
     # create name space for user operations
-    api = Namespace('User', description='User opertaions')
+    api = Namespace('User Signup', description='User opertaions')
     user = api.model('user',{
         'user_id' : fields.Integer(description='User Identification'),
         'firstname': fields.String(required=True, description='User first name'),
@@ -18,4 +21,15 @@ class UserDto:
         'registered' : fields.String(description='User regitered date'),
         'password_hash' : fields.String(description='User password'),
         'isAdmin' : fields.Boolean(description='User role')
+    })
+
+class UserAuthDto:
+    """
+    User authentication details.
+    """
+
+    api = Namespace('User Signin', description='User authentication operations')
+    user_auth = api.model('Authentication details',{
+        'email': fields.String(required=True, description='User email'),
+        'password_hash':fields.String(required=True, description='User password')
     })
