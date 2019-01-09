@@ -17,7 +17,7 @@ def signup_user(self):
             lastname='Doe',
             othername='Johnson',
             phoneNumber='+25422034587',
-            email='mail@mail.com',
+            email='login@mail.com',
             username='example',
             password_hash='42qwR@#'
         )),
