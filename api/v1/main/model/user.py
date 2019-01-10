@@ -33,8 +33,8 @@ class User():
         """Check password hash."""
         return check_password_hash(self.password_hash, password_hash)
 
-    # def __repr__(self):
-    #     return "'{}'>".format(self.username)
+    def __repr__(self):
+        return "'{}'>".format(self.username)
 
     # @staticmethod
     # def get_user_by_email(email):

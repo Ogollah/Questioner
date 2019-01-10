@@ -7,7 +7,7 @@ from flask_restplus import Resource
 
 # local import
 from api.v1.main.util.meetup_dto import MeetupDto
-from api.v1.main.service.meetup_service import save_new_meetup
+from api.v1.main.service.meetup_service import save_new_meetup, accessing_meetup
 
 api = MeetupDto.api
 meetup = MeetupDto.meetup
@@ -24,4 +24,15 @@ class CreateMeetup(Resource):
         """
         data = request.json
         return save_new_meetup(meetup_data=data)
+
+@api.route('/<int:meetup_id>')
+@api.param('meetup_id', 'Meetup Identification.')
+@api.response(404, 'Meetup not found in the database')
+class SpecificMeetup(Resource):
+    @api.doc('Get a specific meetup using the meetup id')
+    @api.marshal_list_with(meetup)
+    def get(self, meetup_id):
+        """Get a specific meetup
+        """
+        return accessing_meetup(meetup_id)
         
