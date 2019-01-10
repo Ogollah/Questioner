@@ -28,7 +28,7 @@ class UserAuthDto:
     User authentication details.
     """
 
-    api = Namespace('User Signin', description='User authentication operations')
+    api = Namespace('User Auth Operation', description='User authentication operations')
     user_auth = api.model('Authentication details',{
         'email': fields.String(required=True, description='User email'),
         'password_hash':fields.String(required=True, description='User password')

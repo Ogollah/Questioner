@@ -48,3 +48,19 @@ class UserAuth:
             }
             return response_object, 401
 
+    @staticmethod
+    def signout_user():
+        user = [x for x in SIGNIN_USERS]
+        if user:
+            response_object = {
+                'status': 'success',
+                'message': 'You have signedout successfully.'
+            }
+            return response_object, 200
+        else:
+            response_object = {
+                'status': 'fail',
+                'message': 'You are not logged in'
+            }
+            return response_object, 401
+

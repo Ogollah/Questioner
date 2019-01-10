@@ -22,3 +22,14 @@ class SigninUser(Resource):
     def post(self):
         user_data = request.json
         return UserAuth.signin_user(data=user_data)
+
+
+@api.route('/signout')
+class SignoutUser(Resource):
+    """
+    User signout resource
+    """
+    @api.doc('User signout')
+    @api.expect(user_auth)
+    def post(self):
+        return UserAuth.signout_user()
