@@ -46,7 +46,7 @@ class TestCreateQuestion(BaseTestCase):
             response = self.create_a_question_no_title()
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 400)
             self.assertTrue(result['message'] == 'A title is need to create a question.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
@@ -82,7 +82,7 @@ class TestCreateQuestion(BaseTestCase):
             response = self.create_a_question()
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 401)
             self.assertTrue(result['message'] == 'Admin cannot create a question')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
