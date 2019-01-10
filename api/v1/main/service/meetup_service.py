@@ -122,3 +122,9 @@ def accessing_meetup(meetup_id):
 
     if user and meetup:
         return meetup, 200
+
+def get_all_meetups():
+    """
+    Get a list of all meetups.
+    """
+    return MEETUPS  
