@@ -65,6 +65,17 @@ class BaseTestCase(TestCase):
             content_type='application/json'
         )
 
+    # signout user
+    def signout_user(self):
+        return self.client.post(
+            '/api/v1/user/auth/signout',
+                data=json.dumps(dict(
+                email='admin2@admin.com',
+                password_hash='adm@3In'
+            )),
+            content_type='application/json'
+        )
+
     # create_meetup
     def create_meetup(self):
         return self.client.post(
