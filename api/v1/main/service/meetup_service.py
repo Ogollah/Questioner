@@ -32,6 +32,10 @@ def current_user():
     for user in SIGNIN_USERS:
         return user.isAdmin
 
+def current_normal_user():
+    for user in SIGNIN_USERS:
+        return user
+
 def create_future_date(date_data):
     """
     Create When meetup will take place.
@@ -97,5 +101,30 @@ def save_new_meetup(meetup_data):
             'message':'Meetup has been created successfully'
         }
         return response_object, 201
+
+def accessing_meetup(meetup_id):
+
+    user = current_normal_user()
+    meetup = get_specific_meetup_by_id(meetup_id)
+
+    if not user:
+        response_object = {
+            'status':'fail',
+            'message':'Signin to access this resource'
+        }
+        return response_object, 401
+
+    if not meetup:
+        response_object = {
+            'status':'fail',
+            'message':'Meetup not found in the database'
+        }
+        return response_object, 404
+
+    if user and meetup:
+        return meetup, 200
+
+    
+    
 
 

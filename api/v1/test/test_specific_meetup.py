@@ -41,6 +41,7 @@ class TestSpecificmeetup(BaseTestCase):
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['message'] == 'Meetup not found in the database')
             self.assertEqual(response.status_code, 404)
 
     def test_only_signi_users_can_access_specifi_meetup(self):
@@ -55,5 +56,6 @@ class TestSpecificmeetup(BaseTestCase):
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['message'] == 'Signin to access this resource')
             self.assertEqual(response.status_code, 401)
 
