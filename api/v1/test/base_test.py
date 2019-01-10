@@ -164,3 +164,8 @@ class BaseTestCase(TestCase):
         return self.client.get(
             '/api/v1/meetup/16')
 
+    # non existing meetup
+    def get_all_meetups_available(self):
+        return self.client.get(
+            '/api/v1/meetup/meetups')
+
