@@ -25,7 +25,7 @@ class CreateMeetup(Resource):
         data = request.json
         return save_new_meetup(meetup_data=data)
 
-@api.route('/<meetup_id>')
+@api.route('/<int:meetup_id>')
 @api.param('meetup_id', 'Meetup Identification.')
 @api.response(404, 'Meetup not found in the database')
 class SpecificMeetup(Resource):

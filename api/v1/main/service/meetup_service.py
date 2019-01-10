@@ -43,8 +43,7 @@ def create_future_date(date_data):
     now = datetime.datetime.now()
     difference = datetime.timedelta(days=date_data)
     time = now + difference
-    future = time.strftime("%m/%d/%Y")
-    return future
+    return time
 
 def save_new_meetup(meetup_data):
     # get meetup data
@@ -107,14 +106,14 @@ def accessing_meetup(meetup_id):
     user = current_normal_user()
     meetup = get_specific_meetup_by_id(meetup_id)
 
-    if not user:
+    if not user :
         response_object = {
             'status':'fail',
             'message':'Signin to access this resource'
         }
         return response_object, 401
 
-    if not meetup:
+    if user and not meetup:
         response_object = {
             'status':'fail',
             'message':'Meetup not found in the database'
