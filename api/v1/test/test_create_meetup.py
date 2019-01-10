@@ -17,7 +17,7 @@ class TestCreateMeetUp(BaseTestCase):
         
         with self.client:
             """
-            Test succesful book creation.
+            Test succesful meetup creation.
             """
 
             # signin admin

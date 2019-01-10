@@ -20,3 +20,6 @@ class MeetupsTestCases(BaseTestCase):
             self.signin_user
             response = self.get_all_meetups_available()
             self.assertEqual(response.status_code, 200)
+
+if __name__ == '__main__':
+    unittest.main()
