@@ -7,7 +7,6 @@ from flask import request
 # local import
 from api.v1.main.model.user import User
 from api.v1.main.service.user_service import get_user_by_email
-from api.v1.main.service.meetup_service import current_normal_user
 
 SIGNIN_USERS=[]
 
@@ -51,7 +50,7 @@ class UserAuth:
 
     @staticmethod
     def signout_user():
-        user = current_normal_user()
+        user = [x for x in SIGNIN_USERS]
         if user:
             response_object = {
                 'status': 'success',
