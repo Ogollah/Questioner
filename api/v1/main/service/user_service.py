@@ -8,7 +8,6 @@ import re
 # local imports
 from api.v1.main.model.user import User, USERS
 
-
 def get_user_by_email(email):
     """
     Get user by user email 
@@ -87,7 +86,6 @@ def save_new_user(user_data):
             return response_object, 400
 
     if not user:
-        print(user)
         new_user = User()
         new_user.firstname = firstname
         new_user.lastname = lastname
