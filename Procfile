@@ -1,1 +1,1 @@
-web: gunicorn -w 4 api:api
+web: gunicorn -w 4 manage:api
