@@ -10,21 +10,15 @@ from api.v1.test.base_test import BaseTestCase
 class TestSpecificmeetup(BaseTestCase):
 
     def test_succesful_get_specific_meetup(self):
-
-    
         with self.client:
             """
             Test succesfuly get specific meetup
             """
             # signup user
             self.signup_user()
-            
             # signin user
             self.signin_user
             response = self.specific_meetup()
-            # return result in json format
-            result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'success')
             self.assertEqual(response.status_code, 200)
 
     def test_unavailable_meetup(self):
@@ -38,10 +32,6 @@ class TestSpecificmeetup(BaseTestCase):
             # signin user
             self.signin_user
             response = self.unavailable_meetup()
-            # return result in json format
-            result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Meetup not found in the database')
             self.assertEqual(response.status_code, 404)
 
     def test_only_signi_users_can_access_specifi_meetup(self):
@@ -50,12 +40,6 @@ class TestSpecificmeetup(BaseTestCase):
             """
             Test user cannot get specific meetup if not signed in
             """
-            # signup user
-            self.signup_user() 
             response = self.specific_meetup()
-            # return result in json format
-            result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Signin to access this resource')
             self.assertEqual(response.status_code, 401)
 

@@ -103,7 +103,7 @@ def save_new_meetup(meetup_data):
         return response_object, 201
 
 def accessing_meetup(meetup_id):
-
+    print(meetup_id)
     user = current_normal_user()
     meetup = get_specific_meetup_by_id(meetup_id)
 
@@ -123,8 +123,3 @@ def accessing_meetup(meetup_id):
 
     if user and meetup:
         return meetup, 200
-
-    
-    
-
-

@@ -9,7 +9,7 @@ class MeetupDto:
     Meetup details.
     """
 
-    api = Namespace('Create A Meetup', description='Metup operations')
+    api = Namespace('Meetup Crude Operation', description='Metup operations')
     meetup = api.model('meet',{
         'meetup_id': fields.Integer(description='Meetup Identification'),
         'topic': fields.String(required=True, description='Meetup Title'),

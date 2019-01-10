@@ -32,5 +32,7 @@ class SpecificMeetup(Resource):
     @api.doc('Get a specific meetup using the meetup id')
     @api.marshal_list_with(meetup)
     def get(self, meetup_id):
+        """Get a specific meetup
+        """
         return accessing_meetup(meetup_id)
         
