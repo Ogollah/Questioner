@@ -8,6 +8,8 @@ from flask import request
 from api.v1.main.model.user import User
 from api.v1.main.service.user_service import get_user_by_email
 
+SIGNIN_USERS=[]
+
 class UserAuth:
 
     @staticmethod
@@ -31,6 +33,7 @@ class UserAuth:
             return response_object, 404
 
         if user and user.check_password_hash(password_hash):
+            SIGNIN_USERS.append(user)
             response_object = {
                 'status': 'success',
                 'message': 'You have signed in successfully.'

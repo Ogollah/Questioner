@@ -33,8 +33,8 @@ class User():
         """Check password hash."""
         return check_password_hash(self.password_hash, password_hash)
 
-    def __repr__(self):
-        return "User '{}'>".format(self.username)
+    # def __repr__(self):
+    #     return "'{}'>".format(self.username)
 
     # @staticmethod
     # def get_user_by_email(email):
@@ -47,13 +47,13 @@ class User():
 
 # save admin
 user = User()
-user.firstname = "admin"
-user.lastname = "admin"
-user.othername = "admin"
+user.firstname = "kalume"
+user.lastname = "Minzi"
+user.othername = "Laz"
 user.phoneNumber = "+25723456712"
 user.email = "admin@admin.com"
-user.set_password_hash("admin")
-user.username = "admin"
+user.set_password_hash("adm@3In")
+user.username = "useradmin"
 user.registered =datetime.datetime.utcnow() 
 user.isAdmin=True
 USERS.append(user)

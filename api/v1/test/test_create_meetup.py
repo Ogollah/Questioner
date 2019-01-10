@@ -2,6 +2,8 @@
 This file test create a meetup testcases.
 """
 
+import datetime
+from datetime import timedelta
 import unittest
 import json
 
@@ -27,7 +29,7 @@ class TestCreateMeetUp(BaseTestCase):
             self.assertTrue(result['status'] == 'success')
             self.assertTrue(result['message'] == 'Meetup has been created successfully')
             self.assertTrue(response.content_type == 'application/json')
-            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.status_code, 201)
 
     def test_unsuccesful_normal_user_create_meetup(self):
   
@@ -44,7 +46,7 @@ class TestCreateMeetUp(BaseTestCase):
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Your are not allowed to performe this operation.')
+            self.assertTrue(result['message'] == 'To create a meetup you need to be an admin for your meetup')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
 
@@ -82,7 +84,7 @@ class TestCreateMeetUp(BaseTestCase):
             self.assertTrue(result['status'] == 'fail')
             self.assertTrue(result['message'] == 'Provide a topic for your meetup')
             self.assertTrue(response.content_type == 'application/json')
-            self.assertEqual(response.status_code, 401)
+            self.assertEqual(response.status_code, 400)
 
     
     def test_unsuccesful_meetup_with_no_description(self):
@@ -93,13 +95,13 @@ class TestCreateMeetUp(BaseTestCase):
             """
             # signin admin
             self.admin_signin()
-            response = self.create_meetup_no_description()
+            response = self.create_meetup_no_topic()
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 'fail')
             self.assertTrue(result['message'] == 'Provide a description for your meetup')
             self.assertTrue(response.content_type == 'application/json')
-            self.assertEqual(response.status_code, 401)
+            self.assertEqual(response.status_code, 400)
 
     def test_unsuccesful_duplicate_meetup(self):
   

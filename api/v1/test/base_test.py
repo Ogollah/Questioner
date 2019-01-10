@@ -49,49 +49,43 @@ class BaseTestCase(TestCase):
             '/api/v1/user/auth/signin',
                 data=json.dumps(dict(
                 email='admin@admin.com',
-                password_hash='admin'
+                password_hash='adm@3In'
             )),
             content_type='application/json'
         )
 
     # create_meetup
     def create_meetup(self):
-        days = 6
-        now = datetime.datetime.now()
-        difference = datetime.timedelta(days=days)
-        time = now+difference
-        happening = time.strftime("%m/%d/%Y")
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
-                location='Nairobi',
-                images=['image1', 'image2'],
-                topic='Hello World',
-                happeningOn=happening,
-                tags=['tag1', 'tag2', 'tag3'],
-                description='Why do we limit the extensions that are allowed? You probably don’t want your users to be able to upload everything there if the server is directly sending out the data to the client.'
-            )),
+                topic= "string",
+                description= "string",
+                images= "string",
+                Tags="string",
+                createdOn= "string",
+                happeningOn= "4",
+                host= "string",
+                hostFrom= "string"
+                )),
             content_type='application/json'
         )
 
     # meet without image
     def create_meetup_no_image(self):
 
-        # future date
-        days = 6
-        now = datetime.datetime.now()
-        difference = datetime.timedelta(days=days)
-        time = now+difference
-        happening = time.strftime("%m/%d/%Y")
+
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
-                location='Nairobi',
-                images=[],
-                topic='Python Marathon',
-                happeningOn=happening,
-                tags=['tag1', 'tag2', 'tag3'],
-                description='Why do we limit the extensions that are allowed? You probably don’t want your users to be able to upload everything there if the server is directly sending out the data to the client.'
+                topic= "string",
+                description= "string",
+                images= "",
+                Tags="string",
+                createdOn= "string",
+                happeningOn= "4",
+                host= "string",
+                hostFrom= "string"
             )),
             content_type='application/json'
         )
@@ -100,43 +94,34 @@ class BaseTestCase(TestCase):
 
     def create_meetup_no_topic(self):
 
-        # future date
-        days = 6
-        now = datetime.datetime.now()
-        difference = datetime.timedelta(days=days)
-        time = now+difference
-        happening = time.strftime("%m/%d/%Y")
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
-                location='Nairobi',
-                images=['image1', 'image2'],
-                topic='',
-                happeningOn=happening,
-                tags=['tag1', 'tag2', 'tag3'],
-                description='Why do we limit the extensions that are allowed? You probably don’t want your users to be able to upload everything there if the server is directly sending out the data to the client.'
+                topic= "",
+                description= "string",
+                images= "string",
+                Tags="string",
+                createdOn= "string",
+                happeningOn= "4",
+                host= "string",
+                hostFrom= "string"
             )),
             content_type='application/json'
         )
 
     # meetup without description
     def create_meetup_no_description(self):
-
-        # future date
-        days = 6
-        now = datetime.datetime.now()
-        difference = datetime.timedelta(days=days)
-        time = now+difference
-        happening = time.strftime("%m/%d/%Y")
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
-                location='Nairobi',
-                images=['image1', 'image2'],
-                topic='Amazing',
-                happeningOn=happening,
-                tags=['tag1', 'tag2', 'tag3'],
-                description=''
+                topic= "string",
+                description= "",
+                images= "string",
+                Tags="string",
+                createdOn= "string",
+                happeningOn= "4",
+                host= "string",
+                hostFrom= "string"
             )),
             content_type='application/json'
         )

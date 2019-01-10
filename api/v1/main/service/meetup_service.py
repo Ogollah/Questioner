@@ -8,7 +8,8 @@ from datetime import timedelta
 # local imports
 from api.v1.main.model.meepup import Meetup, MEETUPS
 from api.v1.main.model.user import User, USERS
-from api.v1.main.service.user_auth_service import UserAuth
+from api.v1.main.service.user_service import get_user_by_email
+from api.v1.main.service.user_auth_service import UserAuth, SIGNIN_USERS
 
 def get_meetup_by_topic(topic):
     """
@@ -18,14 +19,9 @@ def get_meetup_by_topic(topic):
         if meetup.topic == topic:
             return meetup
 
-def get_user_admin(admin):
-    """
-    Get admin
-    """
-    for user in USERS:
-        if user.isAdmin == True:
-            return user
-
+def current_user():
+    for user in SIGNIN_USERS:
+        return user.isAdmin
 
 def create_future_date(date_data):
     """
@@ -41,26 +37,13 @@ def save_new_meetup(meetup_data):
     # get meetup data
     topic = meetup_data["topic"]
     description = meetup_data["description"]
-    image = meetup_data["image"]
+    images = meetup_data["images"]
     Tags = meetup_data["Tags"]
     createdOn = datetime.datetime.utcnow()
-    happeningOn = create_future_date(date_data=meetup_data["happeningOn"])
+    happeningOn = create_future_date(date_data=int(meetup_data["happeningOn"]))
 
     meetup = get_meetup_by_topic(topic=topic)
-
-    if topic == "":
-        response_object = {
-            'status':'fail',
-            'message':'Provide a topic for your meetup'
-        }
-        return response_object, 401
-
-    if description== "":
-        response_object = {
-            'status':'fail',
-            'message':'Provide a description for your meetup'
-        }
-        return response_object, 401
+    user = current_user()
 
     if meetup:
         response_object = {
@@ -69,18 +52,41 @@ def save_new_meetup(meetup_data):
         }
         return response_object, 409
 
-    else:
+    if not user:
+        response_object = {
+            'status':'fail',
+            'message':'To create a meetup you need to be an admin for your meetup'
+        }
+        return response_object, 401
+
+
+    if topic == "":
+        response_object = {
+            'status':'fail',
+            'message':'Provide a topic for your meetup'
+        }
+        return response_object, 400
+
+    if description== "":
+        response_object = {
+            'status':'fail',
+            'message':'Provide a description for your meetup'
+        }
+        return response_object, 400
+
+    if user and not meetup:
         new_meetup = Meetup()
         new_meetup.topic=topic
         new_meetup.description=description
         new_meetup.happeningOn=happeningOn
-        new_meetup.images=image
+        new_meetup.images=images
         new_meetup.Tags=Tags
         new_meetup.createdOn=createdOn
         MEETUPS.append(new_meetup)
         response_object = {
-            'status':'fail',
+            'status':'success',
             'message':'Meetup has been created successfully'
         }
-        return response_object, 200
+        return response_object, 201
+
 

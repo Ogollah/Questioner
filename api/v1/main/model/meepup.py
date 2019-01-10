@@ -14,6 +14,10 @@ class Meetup():
         self.happeningOn = None
         self.createdOn = None
         self.Tags = None
+        self.host = None
+        self.hostFrom = None
+        self.meetup_id = Meetup.class_count
+        Meetup.class_count += 1
 
     def __repr__(self):
         return "Meetup '{}'>".format(self.topic)

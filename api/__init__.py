@@ -8,6 +8,7 @@ from flask import Blueprint
 # local import
 from api.v1.main.controller.user_controller import api as user_ns
 from api.v1.main.controller.user_auth_controller import api as user_auth
+from api.v1.main.controller.meetup_controller import api as meetup
 
 # blueprint instance
 blueprint = Blueprint('api', __name__)
@@ -21,3 +22,4 @@ api = Api(blueprint,
 
 api.add_namespace(user_ns, path='/api/v1/user')
 api.add_namespace(user_auth, path='/api/v1/user/auth')
+api.add_namespace(meetup, path='/api/v1/meetup')

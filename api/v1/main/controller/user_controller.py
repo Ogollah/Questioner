@@ -25,4 +25,3 @@ class SignupUser(Resource):
         """
         user_data = request.json
         return save_new_user(user_data=user_data)
-        
