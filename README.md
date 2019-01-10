@@ -12,7 +12,10 @@ or bottom of the log.
 |------------------------------------|----------------------------------|-------------
 |/api/v1/user/signup                 |Signup account                    |POST        
 |/api/v1/user/auth/signin            |Signin in user                    |POST
-|/api/v1/meetup/create               |Create a ride offer               |POST
+|/api/v1/user/auth/signout           |Signout in user                   |POST
+|/api/v1/meetups/create              |Create a meetup record            |POST
+|/api/v1/meetups/upcoming            |Get upcoming meetups              |GET
+|/api/v1/meetups/<meetup-id>         |Fetch specific upcoming meetup    |GET
 
 ### Quick Start
 
@@ -39,6 +42,14 @@ or bottom of the log.
   ```
 
 6. Navigate to [http://localhost:5000](http://localhost:5000)
+
+## GitHub pages
+
+Go to [Questioner](https://ogollah.github.io/Questioner/UI/templates/index.html)
+
+## GitHub pages
+
+Go to [Heroku](https://metup-quiz-api-heroku.herokuapp.com/)
 
 # Project Owner
    [Andela Kenya](https://andela.com/?gclid=Cj0KCQiA1NbhBRCBARIsAKOTmUu9zzKI7k5uTm4K6kn6Wyv5Uk9S_JgBZCJia4FM98S8nMVuQ2DJePEaAlF9EALw_wcB)
