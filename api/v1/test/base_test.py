@@ -54,12 +54,40 @@ class BaseTestCase(TestCase):
             content_type='application/json'
         )
 
+    # signin admin 2
+    def admin_signin2(self):
+        return self.client.post(
+            '/api/v1/user/auth/signin',
+                data=json.dumps(dict(
+                email='admin2@admin.com',
+                password_hash='adm@3In'
+            )),
+            content_type='application/json'
+        )
+
     # create_meetup
     def create_meetup(self):
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
-                topic= "string",
+                topic= "meetup",
+                description= "string",
+                images= "string",
+                Tags="string",
+                createdOn= "string",
+                happeningOn= "4",
+                host= "string",
+                hostFrom= "string"
+                )),
+            content_type='application/json'
+        )
+
+    # create_meetup_ 2
+    def create_meetup_2(self):
+        return self.client.post(
+            '/api/v1/meetup/create',
+                data=json.dumps(dict(
+                topic= "Meetup 2",
                 description= "string",
                 images= "string",
                 Tags="string",
@@ -78,7 +106,7 @@ class BaseTestCase(TestCase):
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
-                topic= "string",
+                topic= "image",
                 description= "string",
                 images= "",
                 Tags="string",
@@ -114,7 +142,7 @@ class BaseTestCase(TestCase):
         return self.client.post(
             '/api/v1/meetup/create',
                 data=json.dumps(dict(
-                topic= "string",
+                topic= "description",
                 description= "",
                 images= "string",
                 Tags="string",

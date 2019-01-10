@@ -58,3 +58,16 @@ user.registered =datetime.datetime.utcnow()
 user.isAdmin=True
 USERS.append(user)
 
+# save admin 2
+user2 = User()
+user2.firstname = "Hezzy"
+user2.lastname = "Marimu"
+user2.othername = "John"
+user2.phoneNumber = "+25723456712"
+user2.email = "admin2@admin.com"
+user2.set_password_hash("adm@3In")
+user2.username = "useradmin2"
+user2.registered =datetime.datetime.utcnow() 
+user2.isAdmin=True
+USERS.append(user2)
+
