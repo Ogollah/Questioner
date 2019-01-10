@@ -7,6 +7,7 @@ from flask import request
 # local import
 from api.v1.main.model.user import User
 from api.v1.main.service.user_service import get_user_by_email
+from api.v1.main.service.meetup_service import current_normal_user
 
 SIGNIN_USERS=[]
 
@@ -45,6 +46,22 @@ class UserAuth:
             response_object = {
                 'status': 'fail',
                 'message': 'Wrong email or password, please try again.'
+            }
+            return response_object, 401
+
+    @staticmethod
+    def signout_user():
+        user = current_normal_user()
+        if user:
+            response_object = {
+                'status': 'success',
+                'message': 'You have signedout successfully.'
+            }
+            return response_object, 200
+        else:
+            response_object = {
+                'status': 'fail',
+                'message': 'You are not logged in'
             }
             return response_object, 401
 
