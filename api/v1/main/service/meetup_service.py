@@ -19,6 +19,15 @@ def get_meetup_by_topic(topic):
         if meetup.topic == topic:
             return meetup
 
+def get_specific_meetup_by_id(meetup_id):
+    """
+    Get specific meetup using meetup id.
+    """
+    for meetup in MEETUPS:
+        if meetup.meetup_id == meetup_id:
+            return meetup
+    
+
 def current_user():
     for user in SIGNIN_USERS:
         return user.isAdmin
