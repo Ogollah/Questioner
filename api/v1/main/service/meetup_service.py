@@ -102,7 +102,6 @@ def save_new_meetup(meetup_data):
         return response_object, 201
 
 def accessing_meetup(meetup_id):
-    print(meetup_id)
     user = current_normal_user()
     meetup = get_specific_meetup_by_id(meetup_id)
 
@@ -127,4 +126,15 @@ def get_all_meetups():
     """
     Get a list of all meetups.
     """
-    return MEETUPS  
+    user = current_normal_user()
+    if user:
+        return MEETUPS  
+
+    else:
+        response_object = {
+            'status':'fail',
+            'message':'You need to login first.'
+        }
+        return response_object, 401
+
+
