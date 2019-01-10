@@ -9,7 +9,8 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-   - nosetests --with-coverage --cover-package=api
+  - pytest
+  - coverage run --source=app -m pytest && coverage report
 
 after_script:
   - coveralls
