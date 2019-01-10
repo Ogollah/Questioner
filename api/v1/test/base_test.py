@@ -153,3 +153,14 @@ class BaseTestCase(TestCase):
             )),
             content_type='application/json'
         )
+
+    # def get specific meetup using meetup id
+    def specific_meetup(self):
+        return self.client.get(
+            '/api/v1/meetup/1')
+
+    # non existing meetup
+    def unavailable_meetup(self):
+        return self.client.get(
+            '/api/v1/meetup/16')
+
