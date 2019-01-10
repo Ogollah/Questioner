@@ -180,3 +180,38 @@ class BaseTestCase(TestCase):
         return self.client.get(
             '/api/v1/meetup/meetups')
 
+    # question successfully
+    def create_a_question(self):
+        return self.client.post(
+            '/api/v1/questions/create',
+                data=json.dumps(dict(
+                title="A sinple title",
+                body="Just a very long text"
+            )),
+            content_type='application/json'
+        )
+
+    # question with no title
+    def create_a_question_no_title(self):
+        return self.client.post(
+            '/api/v1/questions/create',
+                data=json.dumps(dict(
+                title="",
+                body="Just a very long text",
+                createdOn=datetime.datetime.utcnow
+            )),
+            content_type='application/json'
+        )
+
+    # question with no body
+    def create_a_question_no_body(self):
+        return self.client.post(
+            '/api/v1/questions/create',
+                data=json.dumps(dict(
+                title="A sinple title",
+                body="",
+                createdOn=datetime.datetime.utcnow
+            )),
+            content_type='application/json'
+        )
+
