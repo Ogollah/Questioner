@@ -27,3 +27,6 @@ class UserSignoutTestCases(BaseTestCase):
             self.assertTrue(result['message'] == 'You have signedout successfully.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 200)
+        
+if __name__ == '__main__':
+    unittest.main()

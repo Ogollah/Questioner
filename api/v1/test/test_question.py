@@ -86,3 +86,6 @@ class TestCreateQuestion(BaseTestCase):
             self.assertTrue(result['message'] == 'Admin cannot create a question')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
+
+if __name__ == '__main__':
+    unittest.main()

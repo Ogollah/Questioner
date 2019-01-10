@@ -43,4 +43,5 @@ class TestSpecificmeetup(BaseTestCase):
     #         self.signup_user()
     #         response = self.specific_meetup()
     #         self.assertEqual(response.status_code, 200)
-
+if __name__ == '__main__':
+    unittest.main()
