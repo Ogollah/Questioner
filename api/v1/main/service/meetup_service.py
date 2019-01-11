@@ -86,7 +86,7 @@ def save_new_meetup(meetup_data):
         }
         return response_object, 400
 
-    if user and not meetup:
+    if user and meetup:
         new_meetup = Meetup()
         new_meetup.topic=topic
         new_meetup.description=description

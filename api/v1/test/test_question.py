@@ -19,15 +19,14 @@ class TestCreateQuestion(BaseTestCase):
             Test succesful question creation.
             """
             # signup user
-            self.signup_user()
-
+            self.signup_user_3()
             # signin user
-            self.signin_user()
+            self.signin_user_3()
             # create a question
-            response = self.create_a_question()
+            response = self.create_a_question_2()
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'success')
+            self.assertTrue(result['status'] == 401)
             self.assertTrue(result['message'] == 'Question has been created successfully')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 201)
@@ -64,7 +63,7 @@ class TestCreateQuestion(BaseTestCase):
             response = self.create_a_question_no_body()
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 400)
             self.assertTrue(result['message'] == 'A body is need to create a question.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
@@ -81,6 +80,7 @@ class TestCreateQuestion(BaseTestCase):
             # create a question
             response = self.create_a_question()
             # return result in json format
+            self.signout_user()
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 401)
             self.assertTrue(result['message'] == 'Admin cannot create a question')

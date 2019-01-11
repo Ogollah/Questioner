@@ -22,8 +22,8 @@ def save_new_question(question_data, meetup_id):
     """
     title = question_data["title"]
     body = question_data["body"]
-    user = current_normal_user()
     admin_user = current_user()
+    user = current_normal_user()
     meetup = get_specific_meetup_by_id(meetup_id)
 
     if title == "":
@@ -54,7 +54,7 @@ def save_new_question(question_data, meetup_id):
         }
         return response_object, 401
 
-    if user and meetup:
+    if not user and meetup:
         new_question = Question()
         new_question.createdOn = datetime.datetime.utcnow()
         new_question.meetup_id = user.user_id
