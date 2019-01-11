@@ -136,5 +136,4 @@ def get_all_meetups():
             'message':'You need to login first.'
         }
         return response_object, 401
-
-
+        

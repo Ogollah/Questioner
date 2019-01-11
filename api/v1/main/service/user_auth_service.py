@@ -52,8 +52,9 @@ class UserAuth:
     def signout_user():
         user = [x for x in SIGNIN_USERS]
         if user:
+            SIGNIN_USERS.pop()
             response_object = {
-                'status': 'success',
+                'status': 200,
                 'message': 'You have signedout successfully.'
             }
             return response_object, 200

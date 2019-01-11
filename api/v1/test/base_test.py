@@ -31,6 +31,34 @@ class BaseTestCase(TestCase):
             content_type='application/json'
         )
 
+
+    # sign up user 3
+    def signup_user_3(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Mary',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='example@mail.com',
+                username='example',
+                password_hash='42qwR@#'
+            )),
+            content_type='application/json'
+        )
+
+    # sign in user 3
+    def signin_user_3(self):
+        return self.client.post(
+            '/api/v1/user/auth/signin',
+                data=json.dumps(dict(
+                email='example@mail.com',
+                password_hash='42qwR@#'
+            )),
+            content_type='application/json'
+        )
+
     
     # signin user
     def signin_user(self):
@@ -183,7 +211,18 @@ class BaseTestCase(TestCase):
     # question successfully
     def create_a_question(self):
         return self.client.post(
-            '/api/v1/questions/create',
+            '/api/v1/questions/1/create',
+                data=json.dumps(dict(
+                title="A sinple title",
+                body="Just a very long text"
+            )),
+            content_type='application/json'
+        )
+
+    # question successfully
+    def create_a_question_2(self):
+        return self.client.post(
+            '/api/v1/questions/1/create',
                 data=json.dumps(dict(
                 title="A sinple title",
                 body="Just a very long text"
@@ -194,11 +233,11 @@ class BaseTestCase(TestCase):
     # question with no title
     def create_a_question_no_title(self):
         return self.client.post(
-            '/api/v1/questions/create',
+            '/api/v1/questions/1/create',
                 data=json.dumps(dict(
                 title="",
                 body="Just a very long text",
-                createdOn=datetime.datetime.utcnow
+                # createdOn=datetime.datetime.utcnow()
             )),
             content_type='application/json'
         )
@@ -206,11 +245,11 @@ class BaseTestCase(TestCase):
     # question with no body
     def create_a_question_no_body(self):
         return self.client.post(
-            '/api/v1/questions/create',
+            '/api/v1/questions/1/create',
                 data=json.dumps(dict(
                 title="A sinple title",
                 body="",
-                createdOn=datetime.datetime.utcnow
+                # createdOn=datetime.datetime.utcnow()
             )),
             content_type='application/json'
         )

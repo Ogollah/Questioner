@@ -23,7 +23,7 @@ class UserSignoutTestCases(BaseTestCase):
             response = self.signout_user()
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'success')
+            self.assertTrue(result['status'] == 200)
             self.assertTrue(result['message'] == 'You have signedout successfully.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 200)

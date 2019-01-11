@@ -9,8 +9,8 @@ class MeetupDto:
     Meetup details.
     """
 
-    api = Namespace('Meetup Crude Operation', description='Metup operations')
-    meetup = api.model('meet',{
+    api = Namespace('Meetup Crude Operation', description='Meetup operations')
+    meetup = api.model('meetup',{
         'meetup_id': fields.Integer(description='Meetup Identification'),
         'topic': fields.String(required=True, description='Meetup Title'),
         'description':fields.String(required=True, description='Meetup description'),
