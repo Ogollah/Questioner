@@ -16,6 +16,13 @@ def get_question_by_id(question_id):
         if question.question_id == question_id:
             return question
 
+def get_all_questions():
+    """
+    Get all available questions.
+    """
+    for question in QUESTIONS:
+        return question
+
 def save_new_question(question_data, meetup_id):
     """
     Save a new question.
