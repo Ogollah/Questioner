@@ -254,3 +254,8 @@ class BaseTestCase(TestCase):
             content_type='application/json'
         )
 
+    # non existing meetup
+    def get_all_questions_available(self):
+        return self.client.get(
+            '/api/v1/questions')
+

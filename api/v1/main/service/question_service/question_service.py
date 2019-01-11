@@ -7,6 +7,7 @@ import datetime
 # local imports
 from api.v1.main.model.question import Question, QUESTIONS
 from api.v1.main.service.meetup_service import current_normal_user, current_user, get_specific_meetup_by_id
+from api.v1.main.service.user_auth_service import UserAuth, SIGNIN_USERS
 
 def get_question_by_id(question_id):
     """
@@ -15,6 +16,20 @@ def get_question_by_id(question_id):
     for question in QUESTIONS:
         if question.question_id == question_id:
             return question
+
+def get_all_questions():
+    """
+    Get all available questions.
+    """
+    user = current_normal_user()
+    if user:
+        return QUESTIONS, 200
+    else:
+        response_object = {
+            'status':'fail',
+            'message':'You need to login first.'
+        }
+        return response_object, 401
 
 def save_new_question(question_data, meetup_id):
     """

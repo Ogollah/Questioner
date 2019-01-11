@@ -7,7 +7,7 @@ from flask_restplus import Resource
 
 # local imports
 from api.v1.main.util.question_dto import QuestionDto
-from api.v1.main.service.question_service.question_service import save_new_question
+from api.v1.main.service.question_service.question_service import save_new_question,get_all_questions
 
 api = QuestionDto.api
 quiz = QuestionDto.question
@@ -25,3 +25,12 @@ class CreateQuestion(Resource):
         """
         quiz_data = request.json
         return save_new_question(question_data=quiz_data, meetup_id=meetup_id)
+
+@api.route('/questions') 
+@api.response(401, 'You need to login first')   
+class GetMeetups(Resource):
+    @api.doc('List of all available questions')
+    @api.marshal_list_with(quiz, envelope='Questions')
+    def get(self):
+        """Get a list of all available questionss"""
+        return  get_all_questions()
