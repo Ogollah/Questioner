@@ -86,7 +86,7 @@ def save_new_meetup(meetup_data):
         }
         return response_object, 400
 
-    if user and meetup:
+    if user and not meetup:
         new_meetup = Meetup()
         new_meetup.topic=topic
         new_meetup.description=description
@@ -136,5 +136,4 @@ def get_all_meetups():
             'message':'You need to login first.'
         }
         return response_object, 401
-
-
+        

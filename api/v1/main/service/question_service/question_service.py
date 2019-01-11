@@ -53,8 +53,7 @@ def save_new_question(question_data, meetup_id):
             'message':'Admin cannot create a question'
         }
         return response_object, 401
-
-    if not user and meetup:
+    else:
         new_question = Question()
         new_question.createdOn = datetime.datetime.utcnow()
         new_question.meetup_id = user.user_id
