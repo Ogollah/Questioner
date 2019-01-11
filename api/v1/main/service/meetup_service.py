@@ -128,7 +128,7 @@ def get_all_meetups():
     """
     user = current_normal_user()
     if user:
-        return MEETUPS  
+        return MEETUPS, 200  
 
     else:
         response_object = {
