@@ -14,28 +14,27 @@ class UserAuth:
 
     @staticmethod
     def signin_user(data):
-        password_hash = data['password_hash']
-        email = data['email']
-        user = get_user_by_email(email=email)
+        password = data['password']
+        user = get_user_by_email(email=data['email'])
 
-        if password_hash == "":
+        if password == "":
             response_object = {
-                'status': 'fail',
+                'status': 400,
                 'message': 'password needed.'
             }
             return response_object, 400
 
         if not user:
             response_object = {
-                'status': 'fail',
+                'status': 404,
                 'message': 'User not found, Kindly signup to user this service'
             }
             return response_object, 404
 
-        if user and user.check_password_hash(password_hash):
+        if user and user.check_password_hash(password):
             SIGNIN_USERS.append(user)
             response_object = {
-                'status': 'success',
+                'status': 200,
                 'message': 'You have signed in successfully.'
             }
             return response_object, 200
@@ -43,7 +42,7 @@ class UserAuth:
         else:
             #  user_password and not user:
             response_object = {
-                'status': 'fail',
+                'status': 401,
                 'message': 'Wrong email or password, please try again.'
             }
             return response_object, 401
@@ -60,7 +59,7 @@ class UserAuth:
             return response_object, 200
         else:
             response_object = {
-                'status': 'fail',
+                'status': 401,
                 'message': 'You are not logged in'
             }
             return response_object, 401

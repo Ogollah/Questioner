@@ -26,7 +26,7 @@ def get_all_questions():
         return QUESTIONS, 200
     else:
         response_object = {
-            'status':'fail',
+            'status':401,
             'message':'You need to login first.'
         }
         return response_object, 401

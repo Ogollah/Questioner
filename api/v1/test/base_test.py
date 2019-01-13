@@ -13,7 +13,165 @@ from manage import api
 class BaseTestCase(TestCase):
     def create_app(self):
         api.config.from_object('api.v1.config.TestingConfig')
-        return api
+        return api# sign up user
+    def signup_user_reg(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='mail@mail.com',
+                username='example',
+                password='42qwR@#'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user
+    def signup_user_dub(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='example@example.com',
+                username='example',
+                password='42qwR@#'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with invalid email
+    def signup_user_invalid_email(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='mail.com',
+                username='example',
+                password='42qwR@#'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with password with no numeric value
+    def signup_user_password_no_number(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='nomail@mail.com',
+                username='example',
+                password='rtqwyM'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with short password
+    def signup_user_short_password(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='somail@mail.com',
+                username='example',
+                password='tyw'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with long password
+    def signup_user_long_password(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='lomail@mail.com',
+                username='example',
+                password='Longestpasswordfortestin#4'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with password with no caps lock
+    def signup_user_password_no_caps(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='cmail@mail.com',
+                username='example',
+                password='ytyyutututy'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with no special character
+    def signup_user_password_no_special_cha(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='spmail@mail.com',
+                username='example',
+                password='aaaaaaa'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with no lower case
+    def signup_user_password_no_lower_case(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='Lmail@mail.com',
+                username='example',
+                password='QWEASLLRE'
+            )),
+            content_type='application/json'
+        )
+
+    # sign up user with invalid username length of less than 4 character
+    def signup_user_invalid_length(self):
+        return self.client.post(
+            '/api/v1/user/signup',
+                data=json.dumps(dict(
+                firstname='Jhone',
+                lastname='Doe',
+                othername='Johnson',
+                phoneNumber='+25422034587',
+                email='kmail@mail.com',
+                username='ex',
+                password='42qwRhjkh'
+            )),
+            content_type='application/json'
+        )
 
     # sign up user
     def signup_user(self):
@@ -26,7 +184,7 @@ class BaseTestCase(TestCase):
                 phoneNumber='+25422034587',
                 email='login@mail.com',
                 username='example',
-                password_hash='42qwR@#'
+                password='42qwR@#'
             )),
             content_type='application/json'
         )
@@ -41,9 +199,9 @@ class BaseTestCase(TestCase):
                 lastname='Doe',
                 othername='Johnson',
                 phoneNumber='+25422034587',
-                email='example@mail.com',
+                email='u3example@mail.com',
                 username='example',
-                password_hash='42qwR@#'
+                password='42qwR@#'
             )),
             content_type='application/json'
         )
@@ -54,7 +212,7 @@ class BaseTestCase(TestCase):
             '/api/v1/user/auth/signin',
                 data=json.dumps(dict(
                 email='example@mail.com',
-                password_hash='42qwR@#'
+                password='42qwR@#'
             )),
             content_type='application/json'
         )
@@ -66,7 +224,7 @@ class BaseTestCase(TestCase):
             '/api/v1/user/auth/signin',
                 data=json.dumps(dict(
                 email='login@mail.com',
-                password_hash='42qwR@#'
+                password='42qwR@#'
             )),
             content_type='application/json'
         )
@@ -77,7 +235,7 @@ class BaseTestCase(TestCase):
             '/api/v1/user/auth/signin',
                 data=json.dumps(dict(
                 email='admin@admin.com',
-                password_hash='adm@3In'
+                password='adm@3In'
             )),
             content_type='application/json'
         )
@@ -88,7 +246,7 @@ class BaseTestCase(TestCase):
             '/api/v1/user/auth/signin',
                 data=json.dumps(dict(
                 email='admin2@admin.com',
-                password_hash='adm@3In'
+                password='adm@3In'
             )),
             content_type='application/json'
         )
@@ -99,7 +257,7 @@ class BaseTestCase(TestCase):
             '/api/v1/user/auth/signout',
                 data=json.dumps(dict(
                 email='admin2@admin.com',
-                password_hash='adm@3In'
+                password='adm@3In'
             )),
             content_type='application/json'
         )
