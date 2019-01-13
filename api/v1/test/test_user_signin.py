@@ -19,7 +19,7 @@ def signup_user(self):
             phoneNumber='+25422034587',
             email='login@mail.com',
             username='example',
-            password_hash='42qwR@#'
+            password='42qwR@#'
         )),
         content_type='application/json'
     )
@@ -30,7 +30,7 @@ def signin_user(self):
         '/api/v1/user/auth/signin',
             data=json.dumps(dict(
             email='login@mail.com',
-            password_hash='42qwR@#'
+            password='42qwR@#'
         )),
         content_type='application/json'
     )
@@ -41,7 +41,7 @@ def signin_invalid_pass(self):
         '/api/v1/user/auth/signin',
             data=json.dumps(dict(
             email='login@mail.com',
-            password_hash='wrongpass'
+            password='wrongpass'
         )),
         content_type='application/json'
     )
@@ -52,7 +52,7 @@ def signin_invalid_email(self):
        '/api/v1/user/auth/signin',
             data=json.dumps(dict(
             email='invalid@mail.com',
-            password_hash='42qwR@#'
+            password='42qwR@#'
         )),
         content_type='application/json'
     )
@@ -63,7 +63,7 @@ def signin_non_registered_user(self):
         '/api/v1/user/auth/signin',
             data=json.dumps(dict(
             email='invalid@mail.com',
-            password_hash='wrongpass'
+            password='wrongpass'
         )),
         content_type='application/json'
     )
@@ -83,7 +83,7 @@ class TestUserSignin(BaseTestCase):
             response = signin_user(self)
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'success')
+            self.assertTrue(result['status'] == 200)
             self.assertTrue(result['message'] == 'You have signed in successfully.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 200)
@@ -98,7 +98,7 @@ class TestUserSignin(BaseTestCase):
             response = signin_invalid_pass(self)
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 401)
             self.assertTrue(result['message'] == 'Wrong email or password, please try again.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
@@ -115,7 +115,7 @@ class TestUserSignin(BaseTestCase):
             response = signin_invalid_email(self)
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 404)
             self.assertTrue(result['message'] == 'User not found, Kindly signup to user this service')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 404)
@@ -130,7 +130,7 @@ class TestUserSignin(BaseTestCase):
             response = signin_non_registered_user(self)
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 404)
             self.assertTrue(result['message'] == 'User not found, Kindly signup to user this service')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 404)

@@ -10,166 +10,6 @@ import datetime
 from api.v1.main.model.user import User, USERS
 from api.v1.test.base_test import BaseTestCase
 
-# sign up user
-def signup_user(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='example',
-            password_hash='42qwR@#'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user
-def signup_user_dub(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='example@example.com',
-            username='example',
-            password_hash='42qwR@#'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with invalid email
-def signup_user_invalid_email(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail.com',
-            username='example',
-            password_hash='42qwR@#'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with password with no numeric value
-def signup_user_password_no_number(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='example',
-            password_hash='rtqwyt@#'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with short password
-def signup_user_short_password(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='example@example.com',
-            password_hash='4qR#'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with long password
-def signup_user_long_password(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='example',
-            password_hash='Longestpasswordfor testin#4'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with password with no caps lock
-def signup_user_password_no_caps(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='example',
-            password_hash='42qwyt@#'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with no special character
-def signup_user_password_no_special_cha(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='example',
-            password_hash='42qwRhjkh'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with no lower case
-def signup_user_password_no_lower_case(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='example',
-            password_hash='QWEAS#33Y'
-        )),
-        content_type='application/json'
-    )
-
-# sign up user with invalid username length of less than 4 character
-def signup_user_invalid_length(self):
-    return self.client.post(
-        '/api/v1/user/signup',
-            data=json.dumps(dict(
-            firstname='Jhone',
-            lastname='Doe',
-            othername='Johnson',
-            phoneNumber='+25422034587',
-            email='mail@mail.com',
-            username='exa',
-            password_hash='42qwRhjkh'
-        )),
-        content_type='application/json'
-    )
-
 class TestUserSignup(BaseTestCase):
     def test_succesful_user_signup(self):
         with self.client:
@@ -177,10 +17,11 @@ class TestUserSignup(BaseTestCase):
             Test succesful signup.
             """
             # signup user
-            response = signup_user(self)
+            response = self.signup_user_reg()
+            print(response)
             # return result in json format
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'success')
+            self.assertTrue(result['status'] == 201)
             self.assertTrue(result['message'] == 'You have signed up successfully.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 201)
@@ -190,11 +31,13 @@ class TestUserSignup(BaseTestCase):
         Test user signup already signup user.
         """
         # signup user
-        signup_user_dub(self)
+        
         with self.client:
-            response = signup_user_dub(self)
+            self.signup_user_dub()
+            response = self.signup_user_dub()
+            print(response)
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 409)
             self.assertTrue(result['message'] == 'User with this email address already exist.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 409)
@@ -204,9 +47,9 @@ class TestUserSignup(BaseTestCase):
         Test for email validity
         """
         with self.client:
-            response = signup_user_invalid_email(self)
+            response = self.signup_user_invalid_email()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 400)
             self.assertTrue(result['message'] == 'Check format of your email.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
@@ -217,10 +60,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = signup_user_long_password(self)
+            response = self.signup_user_long_password()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Password should not be more than 16 characters.')
+            self.assertTrue(result['status'] == 400)
+            self.assertTrue(result['message'] == 'Password must be between 4 and 16 characters.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -230,10 +73,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = signup_user_short_password(self)
+            response = self.signup_user_short_password()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Password should not be less than 6 characters.')
+            self.assertTrue(result['status'] == 400)
+            self.assertTrue(result['message'] == 'Password must be between 4 and 16 characters.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -243,10 +86,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = signup_user_password_no_special_cha(self)
+            response = self.signup_user_password_no_special_cha()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Password should contain a special character.')
+            self.assertTrue(result['status'] == 400)
+            self.assertTrue(result['message'] == 'Password must contain a special character.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -256,9 +99,9 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = signup_user_password_no_lower_case(self)
+            response = self.signup_user_password_no_lower_case()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 400)
             self.assertTrue(result['message'] == 'Password should contain a lower case character')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
@@ -269,9 +112,9 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = signup_user_password_no_caps(self)
+            response = self.signup_user_password_no_caps()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
+            self.assertTrue(result['status'] == 400)
             self.assertTrue(result['message'] == 'Password should contain a capital letter')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
@@ -282,10 +125,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = signup_user_password_no_number(self)
+            response = self.signup_user_password_no_number()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Password should contain atleast one number/ integer.')
+            self.assertTrue(result['status'] == 400)
+            self.assertTrue(result['message'] == 'Password should contain a number.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -296,10 +139,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = signup_user_invalid_length(self)
+            response = self.signup_user_invalid_length()
             result = json.loads(response.data.decode())
-            self.assertTrue(result['status'] == 'fail')
-            self.assertTrue(result['message'] == 'Username should not be less than 4 characters.')
+            self.assertTrue(result['status'] == 400)
+            self.assertTrue(result['message'] == 'Username must be between 4 and 15 characters')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 

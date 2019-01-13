@@ -59,14 +59,14 @@ def save_new_meetup(meetup_data):
 
     if meetup:
         response_object = {
-            'status':'fail',
+            'status':409,
             'message':'This meetup already exists.'
         }
         return response_object, 409
 
     if not user:
         response_object = {
-            'status':'fail',
+            'status':401,
             'message':'To create a meetup you need to be an admin for your meetup'
         }
         return response_object, 401
@@ -74,14 +74,14 @@ def save_new_meetup(meetup_data):
 
     if topic == "":
         response_object = {
-            'status':'fail',
+            'status':400,
             'message':'Provide a topic for your meetup'
         }
         return response_object, 400
 
     if description== "":
         response_object = {
-            'status':'fail',
+            'status':400,
             'message':'Provide a description for your meetup'
         }
         return response_object, 400
@@ -96,7 +96,7 @@ def save_new_meetup(meetup_data):
         new_meetup.createdOn=createdOn
         MEETUPS.append(new_meetup)
         response_object = {
-            'status':'success',
+            'status':201,
             'message':'Meetup has been created successfully'
         }
         return response_object, 201
@@ -107,14 +107,14 @@ def accessing_meetup(meetup_id):
 
     if not user :
         response_object = {
-            'status':'fail',
+            'status':401,
             'message':'Signin to access this resource'
         }
         return response_object, 401
 
     if user and not meetup:
         response_object = {
-            'status':'fail',
+            'status':404,
             'message':'Meetup not found in the database'
         }
         return response_object, 404
@@ -132,7 +132,7 @@ def get_all_meetups():
 
     else:
         response_object = {
-            'status':'fail',
+            'status':401,
             'message':'You need to login first.'
         }
         return response_object, 401

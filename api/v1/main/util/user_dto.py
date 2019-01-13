@@ -19,7 +19,7 @@ class UserDto:
         'phoneNumber': fields.String(required=True, description='User phone number'),
         'username': fields.String(required=True, description='User username'),
         'registered' : fields.String(description='User regitered date'),
-        'password_hash' : fields.String(description='User password'),
+        'password' : fields.String(description='User password'),
         'isAdmin' : fields.Boolean(description='User role')
     })
 
@@ -31,5 +31,5 @@ class UserAuthDto:
     api = Namespace('User Auth Operation', description='User authentication operations')
     user_auth = api.model('Authentication details',{
         'email': fields.String(required=True, description='User email'),
-        'password_hash':fields.String(required=True, description='User password')
+        'password':fields.String(required=True, description='User password')
     })
