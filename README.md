@@ -16,6 +16,8 @@ or bottom of the log.
 |/api/v1/meetups/create              |Create a meetup record            |POST
 |/api/v1/meetups/upcoming            |Get upcoming meetups              |GET
 |/api/v1/meetups/<meetup-id>         |Fetch specific upcoming meetup    |GET
+|/api/v1/questions/questions         |Fetch all question                |GET
+|/api/v1/questions/<meetup-id>/create|Create a question                 |GET
 
 ### Quick Start
 
@@ -47,7 +49,7 @@ or bottom of the log.
 
 Go to [Questioner](https://ogollah.github.io/Questioner/UI/templates/index.html)
 
-## GitHub pages
+## Heroku
 
 Go to [Heroku](https://metup-quiz-api-heroku.herokuapp.com/)
 
