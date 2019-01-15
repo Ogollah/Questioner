@@ -25,7 +25,7 @@ def save_new_user(user_data):
     othername = user_data["othername"]
     phoneNumber = user_data["phoneNumber"]
     email = user_data["email"]
-    password =password=user_data['password']
+    password =user_data['password']
     username = user_data['username']
     user = get_user_by_email(email=email)
 
@@ -51,6 +51,7 @@ def save_new_user(user_data):
         except AssertionError as exc_msg:
             response_object = {
                 'status': 400,
+                'message': '{}'.format(exc_msg)
             }
             return response_object, 400
 

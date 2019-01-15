@@ -17,7 +17,7 @@ class MeetupDto:
         'images':fields.String(description='Meetup images'),
         'Tags':fields.String(description='Meetup tags'),
         'createdOn':fields.Date(description='Created date'),
-        'happeningOn':fields.String(description='When meetup will be held'),
+        'happeningOn':fields.String(required=True,description='When meetup will be held'),
         'host':fields.String(required=True, description='Who is hosting the meetup'),
         'hostFrom':fields.String(description='Where the host come from')
 

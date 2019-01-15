@@ -3,11 +3,13 @@ This file helps signin and out user.
 """
 
 from flask import request
+from flask_jwt_extended import jwt_required, get_raw_jwt, create_access_token, get_jwt_identity
+
 
 # local import
 from api.v1.main.model.user import User
 from api.v1.main.service.user_service import get_user_by_email
-from flask_jwt_extended import jwt_required, get_raw_jwt, create_access_token, get_jwt_identity
+from api.v1.main.util.validator.user_validator import Validator
 blacklist = set()
 class UserAuth:
 
@@ -16,6 +18,13 @@ class UserAuth:
         password = data['password']
         email = data['email']
         user = get_user_by_email(email=email)
+
+        if email == "":
+            response_object = {
+                'status': 400,
+                'message': 'Provide your email adress to signin.'
+            }
+            return response_object, 400
 
         if password == "":
             response_object = {
