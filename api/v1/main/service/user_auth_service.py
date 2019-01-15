@@ -7,15 +7,15 @@ from flask import request
 # local import
 from api.v1.main.model.user import User
 from api.v1.main.service.user_service import get_user_by_email
-
-SIGNIN_USERS=[]
-
+from flask_jwt_extended import jwt_required, get_raw_jwt, create_access_token, get_jwt_identity
+blacklist = set()
 class UserAuth:
 
     @staticmethod
     def signin_user(data):
         password = data['password']
-        user = get_user_by_email(email=data['email'])
+        email = data['email']
+        user = get_user_by_email(email=email)
 
         if password == "":
             response_object = {
@@ -32,10 +32,12 @@ class UserAuth:
             return response_object, 404
 
         if user and user.check_password_hash(password):
-            SIGNIN_USERS.append(user)
+            # generate access token which will be used for authorization header
+            access_token = create_access_token(identity=email)
             response_object = {
                 'status': 200,
-                'message': 'You have signed in successfully.'
+                'message': 'You have signed in successfully.', 
+                'access_token': 'Bearer {}'.format(access_token)
             }
             return response_object, 200
 
@@ -49,18 +51,28 @@ class UserAuth:
 
     @staticmethod
     def signout_user():
-        user = [x for x in SIGNIN_USERS]
-        if user:
-            SIGNIN_USERS.pop()
-            response_object = {
-                'status': 200,
-                'message': 'You have signedout successfully.'
-            }
-            return response_object, 200
-        else:
-            response_object = {
-                'status': 401,
-                'message': 'You are not logged in'
-            }
-            return response_object, 401
+
+        jti = get_raw_jwt()['jti']
+        blacklist.add(jti)
+        response_object = {
+            'status': 200,
+            'message': 'You have signedout successfully.'
+        }
+        return response_object, 200
+
+    @staticmethod
+    def get_admin():
+        current_user = get_jwt_identity()
+        user = get_user_by_email(current_user)
+        is_admin = user.isAdmin
+        return is_admin
+
+    @staticmethod
+    def get_user_id():
+        current_user = get_jwt_identity()
+        user = get_user_by_email(current_user)
+        user_id = user.user_id
+        return user_id
+
+    
 

@@ -4,6 +4,7 @@ This file handles meetup related HTTP requests.
 
 from flask import request
 from flask_restplus import Resource
+from flask_jwt_extended import jwt_required
 
 # local import
 from api.v1.main.util.meetup_dto import MeetupDto
@@ -17,7 +18,9 @@ class CreateMeetup(Resource):
 
     @api.response(201, 'Meetup has been created successfully')
     @api.doc('Create a new meetup')
+    @api.doc(security='Bearer Auth')
     @api.expect(meetup, validate=True)
+    @jwt_required
     def post(self):
         """
         Create a new meetup.
@@ -26,10 +29,12 @@ class CreateMeetup(Resource):
         return save_new_meetup(meetup_data=data)
 
 @api.route('/meetups') 
+@api.doc(security='Bearer Auth')
 @api.response(401, 'You need to login first')   
 class GetMeetups(Resource):
     @api.doc('List of all available meetups')
     @api.marshal_list_with(meetup, envelope='Meetups')
+    @jwt_required
     def get(self):
         """Get a list of all available meetups"""
         return get_all_meetups() 
@@ -40,6 +45,7 @@ class GetMeetups(Resource):
 class SpecificMeetup(Resource):
     @api.doc('Get a specific meetup using the meetup id')
     @api.marshal_list_with(meetup)
+    @jwt_required
     def get(self, meetup_id):
         """Get a specific meetup
         """

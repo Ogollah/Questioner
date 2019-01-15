@@ -4,6 +4,7 @@ This file handles user related HTTP requests
 
 from flask import request
 from flask_restplus import Resource
+from flask_jwt_extended import jwt_required
 
 # local import
 from api.v1.main.util.user_dto import UserAuthDto
@@ -31,5 +32,7 @@ class SignoutUser(Resource):
     """
     @api.doc('User signout')
     @api.expect(user_auth)
+    @api.doc(security='Bearer Auth')
+    @jwt_required
     def post(self):
         return UserAuth.signout_user()

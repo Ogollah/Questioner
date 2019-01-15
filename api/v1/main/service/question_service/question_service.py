@@ -3,11 +3,13 @@ This file holds question model logic.
 """
 
 import datetime
+from flask_jwt_extended import jwt_required, get_current_user
 
 # local imports
 from api.v1.main.model.question import Question, QUESTIONS
-from api.v1.main.service.meetup_service import current_normal_user, current_user, get_specific_meetup_by_id
-from api.v1.main.service.user_auth_service import UserAuth, SIGNIN_USERS
+from api.v1.main.service.meetup_service import get_specific_meetup_by_id
+from api.v1.main.service.user_auth_service import UserAuth
+from api.v1.main.service.user_service import get_user_by_email
 
 def get_question_by_id(question_id):
     """
@@ -21,15 +23,7 @@ def get_all_questions():
     """
     Get all available questions.
     """
-    user = current_normal_user()
-    if user:
-        return QUESTIONS, 200
-    else:
-        response_object = {
-            'status':401,
-            'message':'You need to login first.'
-        }
-        return response_object, 401
+    return QUESTIONS, 200
 
 def save_new_question(question_data, meetup_id):
     """
@@ -37,9 +31,9 @@ def save_new_question(question_data, meetup_id):
     """
     title = question_data["title"]
     body = question_data["body"]
-    admin_user = current_user()
-    user = current_normal_user()
     meetup = get_specific_meetup_by_id(meetup_id)
+    user_id = UserAuth.get_user_id()
+    is_admin = UserAuth.get_admin()
 
     if title == "":
         response_object = {
@@ -55,14 +49,7 @@ def save_new_question(question_data, meetup_id):
         }
         return response_object, 400
 
-    if not user:
-        response_object = {
-            'status':401,
-            'message':'Loggin to post a question.'
-        }
-        return response_object, 401
-
-    if admin_user:
+    if is_admin:
         response_object = {
             'status':401,
             'message':'Admin cannot create a question'
@@ -71,7 +58,7 @@ def save_new_question(question_data, meetup_id):
     else:
         new_question = Question()
         new_question.createdOn = datetime.datetime.utcnow()
-        new_question.meetup_id = user.user_id
+        new_question.user_id = user_id 
         new_question.title = title
         new_question.body = body
         new_question.meetup_id = meetup.meetup_id

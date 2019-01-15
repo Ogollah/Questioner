@@ -10,28 +10,58 @@ import datetime
 from api.v1.test.base_test import BaseTestCase
 
 class TestCreateQuestion(BaseTestCase):
+    def setUp(self):
+        self.question_data = dict(
+                title="A sinple title",
+                body="Just a very long text"
+            )
 
-    # Todo here
+        self.question_data_no_title = dict(
+                title="",
+                body="Just a very long text"
+            )
 
-    # def test_succesful_crete_question(self):
+        self.question_data_no_body = dict(
+                title="A sinple title",
+                body=""
+            )
+    def login_user(self):
+        """This helper method helps log in a test user."""
+        return self.client.post(
+        '/api/v1/user/auth/signin',
+            data=json.dumps(dict(
+            email='meetups@mail.com',
+            password='42qwR@#'
+        )),
+        content_type='application/json'
+    )
+
+    def login_user_admin(self):
+        """This helper method helps log in a test user."""
+        return self.client.post(
+        '/api/v1/user/auth/signin',
+            data=json.dumps(dict(
+            email='admin@admin.com',
+            password='#Sadm@3In'
+        )),
+        content_type='application/json'
+    )
+
+    def test_succesful_crete_question(self):
 
         
-    #     with self.client:
-    #         """
-    #         Test succesful question creation.
-    #         """
-    #         # signup user
-    #         self.signup_user_3()
-    #         # signin user
-    #         self.signin_user_3()
-    #         # create a question
-    #         response = self.create_a_question_2()
-    #         # return result in json format
-    #         result = json.loads(response.data.decode())
-    #         self.assertFalse(result['status'] == 201)
-    #         # self.assertTrue(result['message'] == 'Question has been created successfully')
-    #         # self.assertTrue(response.content_type == 'application/json')
-    #         # self.assertEqual(response.status_code, 201)
+        with self.client:
+            """
+            Test succesful question creation.
+            """
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json')
+            # return result in json format
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 201)
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 201)
 
     
     def test_unsuccessful_create_question_with_no_title(self):  
@@ -39,12 +69,9 @@ class TestCreateQuestion(BaseTestCase):
             """
             Test user cannot create a question with no title.
             """
-            # signup user
-            self.signup_user()
-            # signin user
-            self.signin_user()
-            # create a question
-            response = self.create_a_question_no_title()
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data_no_title),content_type='application/json')
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
@@ -57,12 +84,9 @@ class TestCreateQuestion(BaseTestCase):
             """
             Test user cannot create a question with no body.
             """
-            # signup user
-            self.signup_user()
-            # signin user
-            self.signin_user()
-            # create a question
-            response = self.create_a_question_no_body()
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data_no_body),content_type='application/json')
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
@@ -77,30 +101,40 @@ class TestCreateQuestion(BaseTestCase):
             Test user admin canot create a question.
             """
             
-            # signin user admin
-            self.admin_signin()
-            # create a question
-            response = self.create_a_question()
-            # return result in json format
-            self.signout_user()
+            resp = self.login_user_admin()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json')
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 401)
             self.assertTrue(result['message'] == 'Admin cannot create a question')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
             
-# class TestAccessQuestion(BaseTestCase):
-#     def test_successful_get_all_questions(self):
-#         with self.client:
-#             """
-#             Test succesfuly get a list of all questions
-#             """
-#             # signup user
-#             self.signup_user()
-#             # signin user
-#             self.signin_user
-#             self.create_a_question_2()
-#             response = self.get_all_questions_available()
-#             self.assertEqual(response.status_code, 200)
+class TestAccessQuestion(BaseTestCase):
+    def setUp(self):
+        self.question_data = dict(
+                title="A That simple title",
+                body="Just a very long text"
+            )
+    def login_user(self):
+        """This helper method helps log in a test user."""
+        return self.client.post(
+        '/api/v1/user/auth/signin',
+            data=json.dumps(dict(
+            email='meetups@mail.com',
+            password='42qwR@#'
+        )),
+        content_type='application/json'
+    )
+    def test_successful_get_all_questions(self):
+        with self.client:
+            """
+            Test succesfuly get a list of all questions
+            """
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token']
+            self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
+            response = self.client.get('/api/v1/questions/questions', headers=dict(Authorization=access_token),content_type='application/json')
+            self.assertEqual(response.status_code, 200)
 if __name__ == '__main__':
     unittest.main()

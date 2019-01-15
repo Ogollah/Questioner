@@ -24,7 +24,7 @@ class Meetup():
 
 meetup = Meetup()
 meetup.description = "Just another meetup"
-meetup.happeningOn = "4/5/201"
+meetup.happeningOn = "4/5/2019"
 meetup.host = "mwaura"
 meetup.hostFrom = "Kenya"
 meetup.images = "image"

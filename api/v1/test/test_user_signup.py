@@ -10,19 +10,190 @@ import datetime
 from api.v1.main.model.user import User, USERS
 from api.v1.test.base_test import BaseTestCase
 
+
+# create normal user 
+def signup_user(self):
+    return self.client.post(
+        '/api/v1/user/signup',
+            data=json.dumps(dict(
+            firstname='Jhone',
+            lastname='Doe',
+            othername='Johnson',
+            phoneNumber='+25422034587',
+            email='mail@mail.com',
+            username='example',
+            password='42qwR@#'
+        )),
+        content_type='application/json'
+    )
+
+# create normal user 
+def signup_user_dub(self):
+    return self.client.post(
+        '/api/v1/user/signup',
+            data=json.dumps(dict(
+            firstname='Jhone',
+            lastname='Doe',
+            othername='Johnson',
+            phoneNumber='+25422034587',
+            email='duplicate@mail.com',
+            username='example',
+            password='42qwR@#'
+        )),
+        content_type='application/json'
+    )
+
+
+# create invalid email
+def user_data_invalid_email(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='Johnson',
+    phoneNumber='+25422034587',
+    email='mail.com',
+    username='example',
+    password='42qwR@#'   
+    )),
+    content_type='application/json'
+)
+
+# create invalid min number of password
+def user_data_invalid_min_pass(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='Johnson',
+    phoneNumber='+25422034587',
+    email='min@mail.com',
+    username='example',
+    password='4wW@'
+    )),
+    content_type='application/json'
+)
+
+# create invalid max number of password
+def user_data_invalid_max_pass(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='Johnson',
+    phoneNumber='+25422034587',
+    email='max@mail.com',
+    username='example',
+    password='4wW@ujkkjkksgfattutuytytyfgf' 
+    )),
+    content_type='application/json'
+)
+
+
+
+# create invalid upper case password
+def user_data_invalid_upper_case(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='Johnson',
+    phoneNumber='+25422034587',
+    email='upper@mail.com',
+    username='example',
+    password='@2wrong'    
+    )),
+    content_type='application/json'
+)
+
+
+
+# create invalid lower case password
+def user_data_invalid_lower_case(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='Johnson',
+    phoneNumber='+25422034587',
+    email='lower@mail.com',
+    username='example',
+    password='4KKKKKKKKW@'   
+    )),
+    content_type='application/json'
+)
+
+
+
+# create invalid special password
+def user_data_invalid_special(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='Johnson',
+    phoneNumber='+25422034587',
+    email='special@mail.com',
+    username='example',
+    password='wWrong'  
+    )),
+    content_type='application/json'
+)
+
+
+
+# create invalid number case password
+def user_data_invalid_number(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='Johnson',
+    phoneNumber='+25422034587',
+    email='number@mail.com',
+    username='example',
+    password='wWrong@'  
+        )),
+    content_type='application/json'
+)
+
+
+
+# create invalid username length
+def user_data_invalid_username(self):
+    return self.client.post(
+    '/api/v1/user/signup',
+        data=json.dumps(dict(
+    firstname='Jhone',
+    lastname='Doe',
+    othername='John',
+    phoneNumber='+25422034587',
+    email='username@mail.com',
+    username='exa',
+    password='Pass@2'   
+    )),
+    content_type='application/json'
+)
+
+
 class TestUserSignup(BaseTestCase):
+
     def test_succesful_user_signup(self):
         with self.client:
             """
             Test succesful signup.
             """
-            # signup user
-            response = self.signup_user_reg()
-            print(response)
+            response = signup_user(self)
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 201)
-            self.assertTrue(result['message'] == 'You have signed up successfully.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 201)
 
@@ -30,15 +201,12 @@ class TestUserSignup(BaseTestCase):
         """
         Test user signup already signup user.
         """
-        # signup user
         
         with self.client:
-            self.signup_user_dub()
-            response = self.signup_user_dub()
-            print(response)
+            signup_user_dub(self)
+            response = signup_user_dub(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 409)
-            self.assertTrue(result['message'] == 'User with this email address already exist.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 409)
 
@@ -47,10 +215,10 @@ class TestUserSignup(BaseTestCase):
         Test for email validity
         """
         with self.client:
-            response = self.signup_user_invalid_email()
+                                    
+            response = user_data_invalid_email(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Check format of your email.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -60,10 +228,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = self.signup_user_long_password()
+                                    
+            response = user_data_invalid_max_pass(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Password must be between 4 and 16 characters.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -73,10 +241,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = self.signup_user_short_password()
+                                   
+            response = user_data_invalid_min_pass(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Password must be between 4 and 16 characters.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -86,23 +254,23 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = self.signup_user_password_no_special_cha()
+                                   
+            response = user_data_invalid_special(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Password must contain a special character.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
     def test_no_lower_password(self):
         """
-        Password with no special lowercase character.
+        Password with no lowercase character.
         """
 
         with self.client:
-            response = self.signup_user_password_no_lower_case()
+                                   
+            response = user_data_invalid_lower_case(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Password should contain a lower case character')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -112,10 +280,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = self.signup_user_password_no_caps()
+                                   
+            response = user_data_invalid_upper_case(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Password should contain a capital letter')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -125,10 +293,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = self.signup_user_password_no_number()
+                                   
+            response =user_data_invalid_number(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Password should contain a number.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -139,10 +307,10 @@ class TestUserSignup(BaseTestCase):
         """
 
         with self.client:
-            response = self.signup_user_invalid_length()
+                                   
+            response = user_data_invalid_username(self)
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Username must be between 4 and 15 characters')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 

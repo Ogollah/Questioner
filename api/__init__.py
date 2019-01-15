@@ -14,7 +14,15 @@ from api.v1.main.controller.question_controller import api as quiz
 # blueprint instance
 blueprint = Blueprint('api', __name__)
 
-api = Api(blueprint,
+authorizations = {
+    'Bearer Auth': {
+        'type': 'apiKey',
+        'in': 'header',
+        'name': 'Authorization'
+    },
+}
+
+api = Api(blueprint, authorizations=authorizations,
             title='QUESTIONER API',
             version='1',
             description='Crowd-source questions for a meetup. Questioner helps the' 

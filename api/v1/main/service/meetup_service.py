@@ -4,12 +4,13 @@ This file holds meetup model logic.
 
 import datetime
 from datetime import timedelta
+from flask_jwt_extended import jwt_required, get_current_user
 
 # local imports
 from api.v1.main.model.meepup import Meetup, MEETUPS
 from api.v1.main.model.user import User, USERS
 from api.v1.main.service.user_service import get_user_by_email
-from api.v1.main.service.user_auth_service import UserAuth, SIGNIN_USERS
+from api.v1.main.service.user_auth_service import UserAuth
 
 def get_meetup_by_topic(topic):
     """
@@ -26,15 +27,6 @@ def get_specific_meetup_by_id(meetup_id):
     for meetup in MEETUPS:
         if meetup.meetup_id == meetup_id:
             return meetup
-    
-
-def current_user():
-    for user in SIGNIN_USERS:
-        return user.isAdmin
-
-def current_normal_user():
-    for user in SIGNIN_USERS:
-        return user
 
 def create_future_date(date_data):
     """
@@ -55,7 +47,7 @@ def save_new_meetup(meetup_data):
     happeningOn = create_future_date(date_data=int(meetup_data["happeningOn"]))
 
     meetup = get_meetup_by_topic(topic=topic)
-    user = current_user()
+    is_admin = UserAuth.get_admin
 
     if meetup:
         response_object = {
@@ -64,7 +56,7 @@ def save_new_meetup(meetup_data):
         }
         return response_object, 409
 
-    if not user:
+    if not is_admin:
         response_object = {
             'status':401,
             'message':'To create a meetup you need to be an admin for your meetup'
@@ -86,7 +78,7 @@ def save_new_meetup(meetup_data):
         }
         return response_object, 400
 
-    if user and not meetup:
+    if  is_admin:
         new_meetup = Meetup()
         new_meetup.topic=topic
         new_meetup.description=description
@@ -102,38 +94,30 @@ def save_new_meetup(meetup_data):
         return response_object, 201
 
 def accessing_meetup(meetup_id):
-    user = current_normal_user()
     meetup = get_specific_meetup_by_id(meetup_id)
+    user = get_current_user()
 
-    if not user :
-        response_object = {
-            'status':401,
-            'message':'Signin to access this resource'
-        }
-        return response_object, 401
+    # if not user :
+    #     response_object = {
+    #         'status':401,
+    #         'message':'Signin to access this resource'
+    #     }
+    #     return response_object, 401
 
-    if user and not meetup:
+    if not meetup:
         response_object = {
             'status':404,
             'message':'Meetup not found in the database'
         }
         return response_object, 404
 
-    if user and meetup:
+    if meetup:
         return meetup, 200
 
 def get_all_meetups():
     """
     Get a list of all meetups.
     """
-    user = current_normal_user()
-    if user:
-        return MEETUPS, 200  
+    return MEETUPS, 200  
 
-    else:
-        response_object = {
-            'status':401,
-            'message':'You need to login first.'
-        }
-        return response_object, 401
         
