@@ -40,7 +40,7 @@ def save_new_meetup(meetup_data):
     images = meetup_data["images"]
     Tags = meetup_data["Tags"]
     createdOn = datetime.datetime.utcnow()
-    happeningOn = create_future_date(date_data=meetup_data["happeningOn"])
+    happeningOn = date_data=meetup_data["happeningOn"]
 
     meetup = get_meetup_by_topic(topic=topic)
     is_admin = UserAuth.get_admin

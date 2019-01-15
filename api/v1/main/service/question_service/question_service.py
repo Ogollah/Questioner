@@ -68,3 +68,17 @@ def save_new_question(question_data, meetup_id):
             'message':'Question has been created successfully'
         }
         return response_object, 201
+
+def specific_question(question_id):
+    """
+    Get a specific question.
+    """
+    question = get_question_by_id(question_id)
+    if question:
+        return question, 200
+    else:
+        response_object = {
+            'status':404,
+            'message':'Question you are looking for is nologer there.'
+        }
+        return response_object, 404
