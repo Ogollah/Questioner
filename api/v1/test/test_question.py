@@ -136,5 +136,27 @@ class TestAccessQuestion(BaseTestCase):
             self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
             response = self.client.get('/api/v1/questions/questions', headers=dict(Authorization=access_token),content_type='application/json')
             self.assertEqual(response.status_code, 200)
+
+    def test_access_specific_question(self):
+        with self.client:
+            """
+            Test succesfuly get a specific question
+            """
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
+            response = self.client.get('/api/v1/questions/1', headers=dict(Authorization=access_token),content_type='application/json')
+            self.assertEqual(response.status_code, 200)
+
+    def test_can_not_access_specific_question(self):
+        with self.client:
+            """
+            Test unavailable question
+            """
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.get('/api/v1/questions/16', headers=dict(Authorization=access_token),content_type='application/json')
+            self.assertEqual(response.status_code, 404)
+
 if __name__ == '__main__':
     unittest.main()
