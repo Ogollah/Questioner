@@ -20,7 +20,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4/11/2019",
+                happeningOn= "2018-06-29 08:15:27",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -31,7 +31,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4/11/2019",
+                happeningOn= "2018-06-29 08:15:27",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -41,7 +41,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "",
                 Tags="string",
                 createdOn= "string",
-                happeningOn="4/11/2019",
+                happeningOn="2018-06-29 08:15:27",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -52,7 +52,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4/11/2019",
+                happeningOn= "2018-06-29 08:15:27",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -63,7 +63,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4/11/2019",
+                happeningOn= "2018-06-29 08:15:27",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -117,11 +117,11 @@ class TestCreateMeetUp(BaseTestCase):
             
             resp = self.login_user_admin()
             access_token = json.loads(resp.data.decode())['access_token'] 
-            response = self.client.post('/api/v1/meetup/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data),content_type='application/json')
+            response = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data),content_type='application/json')
             # return result in json format
             result = json.loads(response.data.decode())
+            print(result)
             self.assertTrue(result['status'] == 201)
-            self.assertTrue(result['message'] == 'Meetup has been created successfully')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 201)
 
@@ -153,11 +153,10 @@ class TestCreateMeetUp(BaseTestCase):
             """
             resp = self.login_user_admin()
             access_token = json.loads(resp.data.decode())['access_token'] 
-            response = self.client.post('/api/v1/meetup/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_no_image),content_type='application/json')
+            response = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_no_image),content_type='application/json')
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 201)
-            self.assertTrue(result['message'] == 'Meetup has been created successfully')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 201)
 
@@ -169,11 +168,10 @@ class TestCreateMeetUp(BaseTestCase):
             """
             resp = self.login_user_admin()
             access_token = json.loads(resp.data.decode())['access_token'] 
-            response = self.client.post('/api/v1/meetup/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_no_topic),content_type='application/json')
+            response = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_no_topic),content_type='application/json')
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Provide a topic for your meetup')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -187,11 +185,10 @@ class TestCreateMeetUp(BaseTestCase):
 
             resp = self.login_user_admin()
             access_token = json.loads(resp.data.decode())['access_token'] 
-            response = self.client.post('/api/v1/meetup/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_no_desc),content_type='application/json')
+            response = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_no_desc),content_type='application/json')
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 400)
-            self.assertTrue(result['message'] == 'Provide a description for your meetup')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
@@ -204,11 +201,10 @@ class TestCreateMeetUp(BaseTestCase):
             
             resp = self.login_user_admin()
             access_token = json.loads(resp.data.decode())['access_token'] 
-            response = self.client.post('/api/v1/meetup/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data),content_type='application/json')
+            response = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data),content_type='application/json')
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 409)
-            self.assertTrue(result['message'] == 'This meetup already exists.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 409)
 

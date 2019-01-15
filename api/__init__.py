@@ -32,5 +32,5 @@ api = Api(blueprint, authorizations=authorizations,
 
 api.add_namespace(user_ns, path='/api/v1/user')
 api.add_namespace(user_auth, path='/api/v1/user/auth')
-api.add_namespace(meetup, path='/api/v1/meetup')
+api.add_namespace(meetup, path='/api/v1/meetups')
 api.add_namespace(quiz, path='/api/v1/questions')

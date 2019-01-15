@@ -18,6 +18,7 @@ class DevelopmentConfig(Configuration):
     Development configuration
     """
     DEBUG = True
+    ERROR_404_HELP = False
 
 class TestingConfig(Configuration):
     """

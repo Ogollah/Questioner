@@ -17,7 +17,8 @@ or bottom of the log.
 |/api/v1/meetups/upcoming            |Get upcoming meetups              |GET
 |/api/v1/meetups/<meetup-id>         |Fetch specific upcoming meetup    |GET
 |/api/v1/questions/questions         |Fetch all question                |GET
-|/api/v1/questions/<meetup-id>/create|Create a question                 |GET
+|/api/v1/questions/<meetup-id>/create|Create a question                 |POST
+|/api/v1/questions/<question-id>     |Access a question                 |GET
 
 ### Quick Start
 

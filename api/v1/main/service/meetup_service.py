@@ -40,7 +40,7 @@ def save_new_meetup(meetup_data):
     images = meetup_data["images"]
     Tags = meetup_data["Tags"]
     createdOn = datetime.datetime.utcnow()
-    happeningOn = create_future_date(date_data=meetup_data["happeningOn"])
+    happeningOn = meetup_data["happeningOn"]
 
     meetup = get_meetup_by_topic(topic=topic)
     is_admin = UserAuth.get_admin
@@ -92,23 +92,22 @@ def save_new_meetup(meetup_data):
         MEETUPS.append(new_meetup)
         response_object = {
             'status':201,
-            'message':'Meetup has been created successfully'
+            'message':'{}, Meetup has been created successfully'.format(topic)
         }
         return response_object, 201
 
 def accessing_meetup(meetup_id):
     meetup = get_specific_meetup_by_id(meetup_id)
-    user = get_current_user()
 
-    if not meetup:
+    if meetup:
+        return meetup, 200
+    else:
         response_object = {
             'status':404,
             'message':'Meetup not found in the database'
         }
         return response_object, 404
-
-    if meetup:
-        return meetup, 200
+        
 
 def get_all_meetups():
     """
