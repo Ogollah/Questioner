@@ -28,12 +28,12 @@ class CreateMeetup(Resource):
         data = request.json
         return save_new_meetup(meetup_data=data)
 
-@api.route('/meetups') 
+@api.route('/upcoming') 
 @api.doc(security='Bearer Auth')
 @api.response(401, 'You need to login first')   
 class GetMeetups(Resource):
     @api.doc('List of all available meetups')
-    @api.marshal_list_with(meetup, envelope='Meetups')
+    @api.marshal_list_with(meetup)
     @jwt_required
     def get(self):
         """Get a list of all available meetups"""

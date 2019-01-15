@@ -65,7 +65,7 @@ def save_new_question(question_data, meetup_id):
         QUESTIONS.append(new_question)
         response_object = {
             'status':201,
-            'message':'Question has been created successfully'
+            'message':'{}, Question has been created successfully'.format(title)
         }
         return response_object, 201
 
@@ -76,9 +76,9 @@ def specific_question(question_id):
     question = get_question_by_id(question_id)
     if question:
         return question, 200
-    else:
+    if not question:
         response_object = {
             'status':404,
-            'message':'Question you are looking for is nologer there.'
+            'message':'Question you are looking for is nolonger there.'
         }
         return response_object, 404

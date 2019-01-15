@@ -33,8 +33,8 @@ class CreateQuestion(Resource):
 @api.response(401, 'You need to login first')   
 class GetQuestions(Resource):
     @api.doc('List of all available questions')
-    @api.marshal_list_with(quiz, envelope='Questions')
     @api.doc(security='Bearer Auth')
+    @api.marshal_list_with(quiz)
     @jwt_required
     def get(self):
         """Get a list of all available questionss"""
@@ -45,8 +45,8 @@ class GetQuestions(Resource):
 @api.response(404, 'Question not found in the database')
 class SpecificQuestion(Resource):
     @api.doc('Get a specific question using the question id')
-    @api.marshal_list_with(quiz)
     @api.doc(security='Bearer Auth')
+    @api.marshal_list_with(quiz)
     @jwt_required
     def get(self, question_id):
         """Get a specific question

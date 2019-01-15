@@ -45,7 +45,7 @@ def save_new_user(user_data):
             USERS.append(new_user)
             response_object = {
                 'status': 201,
-                'message':'You have signed up successfully.'
+                'message':'{}, You have signed up successfully.'.format(username)
             }
             return response_object, 201 
         except AssertionError as exc_msg:
@@ -58,6 +58,6 @@ def save_new_user(user_data):
     else:
         response_object = {
             'status':409,
-            'message':'User with this email address already exist.'
+            'message':'User with {} email address already exist.'.format(email)
         }
         return response_object, 409
