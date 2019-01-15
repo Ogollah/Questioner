@@ -31,11 +31,7 @@ def get_specific_meetup_by_id(meetup_id):
 def create_future_date(date_data):
     """
     Create When meetup will take place.
-    """
-    now = datetime.datetime.now()
-    difference = datetime.timedelta(days=date_data)
-    time = now + difference
-    return time
+    """ 
 
 def save_new_meetup(meetup_data):
     # get meetup data
@@ -44,10 +40,17 @@ def save_new_meetup(meetup_data):
     images = meetup_data["images"]
     Tags = meetup_data["Tags"]
     createdOn = datetime.datetime.utcnow()
-    happeningOn = create_future_date(date_data=int(meetup_data["happeningOn"]))
+    happeningOn = create_future_date(date_data=meetup_data["happeningOn"])
 
     meetup = get_meetup_by_topic(topic=topic)
     is_admin = UserAuth.get_admin
+
+    if happeningOn == "":
+        response_object = {
+            'status':400,
+            'message':'Provide the number of days to meetup day'
+        }
+        return response_object, 400
 
     if meetup:
         response_object = {
@@ -56,7 +59,7 @@ def save_new_meetup(meetup_data):
         }
         return response_object, 409
 
-    if not is_admin:
+    if not is_admin and not meetup:
         response_object = {
             'status':401,
             'message':'To create a meetup you need to be an admin for your meetup'
@@ -96,13 +99,6 @@ def save_new_meetup(meetup_data):
 def accessing_meetup(meetup_id):
     meetup = get_specific_meetup_by_id(meetup_id)
     user = get_current_user()
-
-    # if not user :
-    #     response_object = {
-    #         'status':401,
-    #         'message':'Signin to access this resource'
-    #     }
-    #     return response_object, 401
 
     if not meetup:
         response_object = {

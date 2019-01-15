@@ -20,7 +20,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4",
+                happeningOn= "4/11/2019",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -31,7 +31,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4",
+                happeningOn= "4/11/2019",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -41,7 +41,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4",
+                happeningOn="4/11/2019",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -52,7 +52,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4",
+                happeningOn= "4/11/2019",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -63,7 +63,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "4",
+                happeningOn= "4/11/2019",
                 host= "string",
                 hostFrom= "string"
                 )

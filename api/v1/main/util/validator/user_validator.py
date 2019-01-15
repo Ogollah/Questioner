@@ -27,7 +27,7 @@ class Validator(User):
         This method validates the usernname.
         """
         if not self.username:
-            raise AssertionError('No uaername provided')
+            raise AssertionError('No username provided')
         if len(self.username)<4 or len(self.username) >15:
             raise AssertionError('Username must be between 4 and 15 characters')
 
