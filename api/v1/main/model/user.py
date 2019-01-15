@@ -4,7 +4,6 @@ This class holds user model to store user details
 import re
 import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.orm import validates
 
 USERS = []
 class User():
