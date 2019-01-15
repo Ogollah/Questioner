@@ -7,7 +7,7 @@ from datetime import timedelta
 from flask_jwt_extended import jwt_required, get_current_user
 
 # local imports
-from api.v1.main.model.meepup import Meetup, MEETUPS
+from api.v1.main.model.meetup import Meetup, MEETUPS
 from api.v1.main.model.user import User, USERS
 from api.v1.main.service.user_service import get_user_by_email
 from api.v1.main.service.user_auth_service import UserAuth
