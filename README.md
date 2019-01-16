@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Ogollah/Questioner.svg?branch=develop)](https://travis-ci.org/Ogollah/Questioner) [![Coverage Status](https://coveralls.io/repos/github/Ogollah/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/Ogollah/Questioner?branch=develop)
+[![Build Status](https://travis-ci.org/Ogollah/Questioner.svg?branch=develop)](https://travis-ci.org/Ogollah/Questioner)  [![Coverage Status](https://coveralls.io/repos/github/Ogollah/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/Ogollah/Questioner?branch=develop)  [![Maintainability](https://api.codeclimate.com/v1/badges/eab2d4d71fc565021f7e/maintainability)](https://codeclimate.com/github/Ogollah/Questioner/maintainability)
 
 # Questioner
 ```
@@ -8,17 +8,20 @@ or bottom of the log.
 ```
 
 # Questioner API Endpoints
-|Endpoint                            | Functionality                    |HTTP method 
-|------------------------------------|----------------------------------|-------------
-|/api/v1/user/signup                 |Signup account                    |POST        
-|/api/v1/user/auth/signin            |Signin in user                    |POST
-|/api/v1/user/auth/signout           |Signout in user                   |POST
-|/api/v1/meetups/create              |Create a meetup record            |POST
-|/api/v1/meetups/upcoming            |Get upcoming meetups              |GET
-|/api/v1/meetups/<meetup-id>         |Fetch specific upcoming meetup    |GET
-|/api/v1/questions/questions         |Fetch all question                |GET
-|/api/v1/questions/<meetup-id>/create|Create a question                 |POST
-|/api/v1/questions/<question-id>     |Access a question                 |GET
+|Endpoint                                 | Functionality                    |HTTP method 
+|-----------------------------------------|----------------------------------|-------------
+|/api/v1/user/signup                      |Signup account                    |POST        
+|/api/v1/user/auth/signin                 |Signin in user                    |POST
+|/api/v1/user/auth/signout                |Signout in user                   |POST
+|/api/v1/meetups/create                   |Create a meetup record            |POST
+|/api/v1/meetups/upcoming                 |Get upcoming meetups              |GET
+|/api/v1/meetups/<meetup-id>              |Fetch specific upcoming meetup    |GET
+|/api/v1/questions/questions              |Fetch all question                |GET
+|/api/v1/questions/<meetup-id>/create     |Create a question                 |POST
+|/api/v1/questions/<question-id>          |Access a question                 |GET
+|/api/v1/questions/<question-id>/upvote   |upvote specific question          |PATCH
+|/api/v1/questions/<question-id>/downvote |downvote specific question        |PATCH
+|/api/v1/questions/<meetup-id>/rsvp       |Rsvp a specific meetup            |POST
 
 ### Quick Start
 

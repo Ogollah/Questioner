@@ -16,3 +16,4 @@ class QuestionDto:
         'votes':fields.Integer(description='Question votes'),
         'user_id':fields.Integer(description='User Identification')
     })
+    

@@ -28,11 +28,6 @@ def get_specific_meetup_by_id(meetup_id):
         if meetup.meetup_id == meetup_id:
             return meetup
 
-def create_future_date(date_data):
-    """
-    Create When meetup will take place.
-    """ 
-
 def save_new_meetup(meetup_data):
     # get meetup data
     topic = meetup_data["topic"]

@@ -10,7 +10,7 @@ from api.v1.main.controller.user_controller import api as user_ns
 from api.v1.main.controller.user_auth_controller import api as user_auth
 from api.v1.main.controller.meetup_controller import api as meetup
 from api.v1.main.controller.question_controller import api as quiz
-from api.v1.main import creat_app
+from api.v1.main.controller.rsvp_controller import api as rsvp
 
 # blueprint instance
 blueprint = Blueprint('api', __name__)
@@ -34,3 +34,4 @@ api.add_namespace(user_ns, path='/api/v1/user')
 api.add_namespace(user_auth, path='/api/v1/user/auth')
 api.add_namespace(meetup, path='/api/v1/meetups')
 api.add_namespace(quiz, path='/api/v1/questions')
+api.add_namespace(rsvp, path='/api/v1/meetups')
