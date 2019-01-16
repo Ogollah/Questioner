@@ -13,5 +13,6 @@ class QuestionDto:
         'body':fields.String(required=True, description='Question Body'),
         'createdOn':fields.Date(description='Question Created Date'),
         'meetup_id':fields.Integer(description='Meetup Identification'),
+        'votes':fields.Integer(description='Question votes'),
         'user_id':fields.Integer(description='User Identification')
     })

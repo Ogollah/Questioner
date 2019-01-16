@@ -8,7 +8,7 @@ from flask_jwt_extended import jwt_required
 
 # local imports
 from api.v1.main.util.question_dto import QuestionDto
-from api.v1.main.service.question_service.question_service import save_new_question,get_all_questions, specific_question
+from api.v1.main.service.question_service.question_service import save_new_question,get_all_questions, specific_question, upvote_question, downvote_question
 
 api = QuestionDto.api
 quiz = QuestionDto.question
@@ -52,3 +52,31 @@ class SpecificQuestion(Resource):
         """Get a specific question
         """
         return specific_question(question_id)
+
+@api.route('/<int:question_id>/upvote')
+@api.param('question_id', 'Question Identification')
+class CreateQuestion(Resource):
+
+    @api.response(201, 'You have successfully upvoted')
+    @api.doc('Upvote a Question')
+    @api.doc(security='Bearer Auth')
+    @jwt_required
+    def post(self, question_id):
+        """
+        Upvote a Question
+        """
+        return upvote_question(question_id)
+
+@api.route('/<int:question_id>/downvote')
+@api.param('question_id', 'Question Identification')
+class CreateQuestion(Resource):
+
+    @api.response(201, 'You have successfully downvoted')
+    @api.doc('Downvote a Question')
+    @api.doc(security='Bearer Auth')
+    @jwt_required
+    def post(self, question_id):
+        """
+        Downvote a Question
+        """
+        return downvote_question(question_id)

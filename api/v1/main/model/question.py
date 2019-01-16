@@ -11,5 +11,6 @@ class Question():
         self.createdOn=None
         self.user_id = None
         self.meetup_id = None
+        self.votes = None
         self.question_id = Question.class_count
         Question.class_count_=1
