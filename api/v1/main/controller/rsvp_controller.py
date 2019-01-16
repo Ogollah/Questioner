@@ -4,6 +4,8 @@ This file handles Reservation related HTTP request.
 from flask import request
 from flask_restplus import Resource
 from flask_jwt_extended import jwt_required
+from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError
+from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local imports
 from api.v1.main.service.rsvp_service import save_new_rsvp
@@ -14,6 +16,10 @@ rsvp = RsvpDto.rsvp
 
 @api.route('/<int:meetup_id>/rsvp')
 @api.param('meetup_id', 'Meetup Identification')
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
 class CreateQuestion(Resource):
 
     @api.response(201, 'You have successfully reserved a meetup')

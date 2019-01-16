@@ -5,6 +5,8 @@ This file handles question related HTTP request.
 from flask import request
 from flask_restplus import Resource
 from flask_jwt_extended import jwt_required
+from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError
+from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local imports
 from api.v1.main.util.question_dto import QuestionDto
@@ -15,6 +17,10 @@ quiz = QuestionDto.question
 
 @api.route('/<int:meetup_id>/create')
 @api.param('meetup_id', 'Meetup Identification')
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
 class CreateQuestion(Resource):
 
     @api.response(201, 'Question has been created successfully')
@@ -29,8 +35,13 @@ class CreateQuestion(Resource):
         quiz_data = request.json
         return save_new_question(question_data=quiz_data, meetup_id=meetup_id)
 
+
 @api.route('/questions') 
-@api.response(401, 'You need to login first')   
+@api.response(401, 'You need to login first') 
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)  
 class GetQuestions(Resource):
     @api.doc('List of all available questions')
     @api.doc(security='Bearer Auth')
@@ -40,9 +51,14 @@ class GetQuestions(Resource):
         """Get a list of all available questionss"""
         return  get_all_questions()
 
+
 @api.route('/<int:question_id>')
 @api.param('question_id', 'Question Identification.')
 @api.response(404, 'Question not found in the database')
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
 class SpecificQuestion(Resource):
     @api.doc('Get a specific question using the question id')
     @api.doc(security='Bearer Auth')
@@ -55,6 +71,10 @@ class SpecificQuestion(Resource):
 
 @api.route('/<int:question_id>/upvote')
 @api.param('question_id', 'Question Identification')
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
 class CreateQuestion(Resource):
 
     @api.response(201, 'You have successfully upvoted')
@@ -69,6 +89,10 @@ class CreateQuestion(Resource):
 
 @api.route('/<int:question_id>/downvote')
 @api.param('question_id', 'Question Identification')
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
 class CreateQuestion(Resource):
 
     @api.response(201, 'You have successfully downvoted')

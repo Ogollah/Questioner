@@ -5,6 +5,8 @@ This file handles user related HTTP requests
 from flask import request
 from flask_restplus import Resource
 from flask_jwt_extended import jwt_required
+from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError
+from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local import
 from api.v1.main.util.user_dto import UserAuthDto
@@ -26,6 +28,10 @@ class SigninUser(Resource):
 
 
 @api.route('/signout')
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
 class SignoutUser(Resource):
     """
     User signout resource
