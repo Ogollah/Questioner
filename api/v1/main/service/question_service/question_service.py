@@ -88,10 +88,8 @@ def specific_question(question_id):
 def upvote_question(question_id):
     question = get_question_by_id(question_id)
 
-
     if question:
-        
-        print(question.votes)
+        question.votes+=1
         response_object = {
             'status':201,
             'message':'You have successfully upvoted this question'
