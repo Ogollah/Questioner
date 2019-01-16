@@ -87,16 +87,22 @@ def specific_question(question_id):
 
 def upvote_question(question_id):
     question = get_question_by_id(question_id)
-
+    admin = UserAuth.get_admin()
     if question:
-        question.votes+=1
-        response_object = {
-            'status':201,
-            'message':'You have successfully upvoted this question'
-        }
-        return response_object, 201
+        if admin:
+            response_object = {
+            'status':401,
+            }
+            return response_object, 401
+        else:
+            question.votes+=1
+            response_object = {
+                'status':201,
+                'message':'You have successfully upnvoted this question'
+            }
+            return response_object, 201
 
-    else:
+    if not question:
         response_object = {
             'status':404,
             'message':'Question not available.'
@@ -106,21 +112,26 @@ def upvote_question(question_id):
 def downvote_question(question_id):
     question = get_question_by_id(question_id)
 
-
+    admin = UserAuth.get_admin()
     if question:
-        question.votes-=1
-        response_object = {
-            'status':201,
-            'message':'You have successfully downvoted this question'
-        }
-        return response_object, 201
+        if admin:
+            response_object = {
+            'status':401,
+            'message':'Admin can not downvote a question'
+            }
+            return response_object, 401
+        else:
+            question.votes-=1
+            response_object = {
+                'status':201,
+                'message':'You have successfully downvoted this question'
+            }
+            return response_object, 201
 
-    else:
+    if not question:
         response_object = {
             'status':404,
             'message':'Question not available.'
         }
         return response_object, 404
-
-        
 

@@ -49,6 +49,10 @@ class TestRsvpTestCases(BaseTestCase):
         self.status_no =dict(
                 status= "no",
                 )
+
+        self.status_nill =dict(
+                status= "",
+                )
     
     def login_user(self):
         """This helper method helps log in a test user."""
@@ -106,10 +110,10 @@ class TestRsvpTestCases(BaseTestCase):
 
         
     
-    def test_resp_no_do_not_reserve_meetup(self):
+    def test_unavailable_meetup(self):
         with self.client:
                 """
-                Test status no does not reserve meetup
+                Test unavailable meetup can not be reserved
                 """
                 resp = self.login_user()
                 admin_login = self.login_user_admin()
@@ -121,4 +125,55 @@ class TestRsvpTestCases(BaseTestCase):
                 self.assertTrue(result['status'] == 404)
                 print(response)
                 self.assertEqual(response.status_code, 404)
+
+    def test_status_no(self):
+        with self.client:
+                """
+                Test status no can not reserve meetup
+                """
+                resp = self.login_user()
+                admin_login= self.login_user_admin()
+                admin_header = json.loads(admin_login.data.decode())['access_token']
+                access_token = json.loads(resp.data.decode())['access_token']
+                rt = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=admin_header),data=json.dumps(self.meetup_data_no),content_type='application/json')
+                response = self.client.post('api/v1/meetups/3/rsvp', headers=dict(Authorization=access_token),data=json.dumps(self.status_no),content_type='application/json')
+                result = json.loads(response.data.decode())
+                self.assertTrue(result['status'] == 200)
+                self.assertTrue(result['message'] == 'Meetup is not reserved.')
+                self.assertEqual(response.status_code, 200)
+
+    def test_admin_can_not_rsvpt(self):
+        with self.client:
+            """
+            Test status no does not reserve meetup
+            """
+            resp = self.login_user_admin()
+            access_token = json.loads(resp.data.decode())['access_token']
+            rt = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_no),content_type='application/json')
+            response = self.client.post('api/v1/meetups/4/rsvp', headers=dict(Authorization=access_token),data=json.dumps(self.status),content_type='application/json')
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 401)
+            self.assertTrue(result['message'] == 'Admin cannot reserve a meetup')
+            self.assertEqual(response.status_code, 401)
+
+
+    def test_blank_status(self):
+        with self.client:
+            """
+            Test status no does not reserve meetup
+            """
+            resp = self.login_user()
+            admin_login= self.login_user_admin()
+            admin_header = json.loads(admin_login.data.decode())['access_token']
+            access_token = json.loads(resp.data.decode())['access_token']
+            rt = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=admin_header),data=json.dumps(self.meetup_data_no),content_type='application/json')
+            response = self.client.post('api/v1/meetups/3/rsvp', headers=dict(Authorization=access_token),data=json.dumps(self.status_nill),content_type='application/json')
+            result = json.loads(response.data.decode())
+            print(result)
+            self.assertTrue(result['status'] == 400)
+            self.assertTrue(result['message'] == 'Provide a status (yes, no, or maybe).')
+            self.assertEqual(response.status_code, 400)
+
+if __name__ == '__main__':
+    unittest.main()
                 

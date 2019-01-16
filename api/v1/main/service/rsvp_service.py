@@ -69,7 +69,7 @@ def save_new_rsvp(meetup_id, user_input):
             'status':200,
             'message':'Meetup is not reserved.'
             }
-            return response_object, 400
+            return response_object, 200
         
         if not rsvp:
             save_rsvp = Rsvp()

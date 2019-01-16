@@ -116,6 +116,18 @@ class TestAccessQuestion(BaseTestCase):
                 title="A That simple title",
                 body="Just a very long text"
             )
+
+    def login_user_admin(self):
+        """This helper method helps log in a test user."""
+        return self.client.post(
+        '/api/v1/user/auth/signin',
+            data=json.dumps(dict(
+            email='admin@admin.com',
+            password='#Sadm@3In'
+        )),
+        content_type='application/json'
+    )
+    
     def login_user(self):
         """This helper method helps log in a test user."""
         return self.client.post(
@@ -181,6 +193,17 @@ class TestAccessQuestion(BaseTestCase):
             response = self.client.patch('/api/v1/questions/18/upvote', headers=dict(Authorization=access_token),content_type='application/json') 
             self.assertEqual(response.status_code, 404)
 
+    def test_admin_can_not_upwnvote_question(self):
+        with self.client:
+            """
+            Test admin can not upvote a question
+            """
+            resp = self.login_user_admin()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
+            response = self.client.patch('/api/v1/questions/1/downvote', headers=dict(Authorization=access_token),content_type='application/json') 
+            self.assertEqual(response.status_code, 401)
+
     def test_successful_downvote(self):
         with self.client:
             """
@@ -203,6 +226,17 @@ class TestAccessQuestion(BaseTestCase):
             self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
             response = self.client.patch('/api/v1/questions/18/downvote', headers=dict(Authorization=access_token),content_type='application/json') 
             self.assertEqual(response.status_code, 404)
+
+    def test_admin_can_not_downvote_question(self):
+        with self.client:
+            """
+            Test admin can not upvote a question
+            """
+            resp = self.login_user_admin()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
+            response = self.client.patch('/api/v1/questions/1/downvote', headers=dict(Authorization=access_token),content_type='application/json') 
+            self.assertEqual(response.status_code, 401)
 
 if __name__ == '__main__':
     unittest.main()
