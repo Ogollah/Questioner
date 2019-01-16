@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Ogollah/Questioner.svg?branch=develop)](https://travis-ci.org/Ogollah/Questioner) [![Coverage Status](https://coveralls.io/repos/github/Ogollah/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/Ogollah/Questioner?branch=develop)
+[![Build Status](https://travis-ci.org/Ogollah/Questioner.svg?branch=develop)](https://travis-ci.org/Ogollah/Questioner)  [![Coverage Status](https://coveralls.io/repos/github/Ogollah/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/Ogollah/Questioner?branch=develop)  [![Maintainability](https://api.codeclimate.com/v1/badges/eab2d4d71fc565021f7e/maintainability)](https://codeclimate.com/github/Ogollah/Questioner/maintainability)
 
 # Questioner
 ```
