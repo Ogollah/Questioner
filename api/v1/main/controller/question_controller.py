@@ -61,7 +61,7 @@ class CreateQuestion(Resource):
     @api.doc('Upvote a Question')
     @api.doc(security='Bearer Auth')
     @jwt_required
-    def post(self, question_id):
+    def patch(self, question_id):
         """
         Upvote a Question
         """
@@ -75,7 +75,7 @@ class CreateQuestion(Resource):
     @api.doc('Downvote a Question')
     @api.doc(security='Bearer Auth')
     @jwt_required
-    def post(self, question_id):
+    def patch(self, question_id):
         """
         Downvote a Question
         """

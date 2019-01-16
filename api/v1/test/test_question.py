@@ -166,7 +166,7 @@ class TestAccessQuestion(BaseTestCase):
             resp = self.login_user()
             access_token = json.loads(resp.data.decode())['access_token'] 
             self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
-            response = self.client.post('/api/v1/questions/1/upvote', headers=dict(Authorization=access_token),content_type='application/json') 
+            response = self.client.patch('/api/v1/questions/1/upvote', headers=dict(Authorization=access_token),content_type='application/json') 
             self.assertEqual(response.status_code, 201)
 
     
@@ -178,7 +178,7 @@ class TestAccessQuestion(BaseTestCase):
             resp = self.login_user()
             access_token = json.loads(resp.data.decode())['access_token'] 
             self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
-            response = self.client.post('/api/v1/questions/18/upvote', headers=dict(Authorization=access_token),content_type='application/json') 
+            response = self.client.patch('/api/v1/questions/18/upvote', headers=dict(Authorization=access_token),content_type='application/json') 
             self.assertEqual(response.status_code, 404)
 
     def test_successful_downvote(self):
@@ -189,7 +189,7 @@ class TestAccessQuestion(BaseTestCase):
             resp = self.login_user()
             access_token = json.loads(resp.data.decode())['access_token'] 
             self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
-            response = self.client.post('/api/v1/questions/1/downvote', headers=dict(Authorization=access_token),content_type='application/json') 
+            response = self.client.patch('/api/v1/questions/1/downvote', headers=dict(Authorization=access_token),content_type='application/json') 
             self.assertEqual(response.status_code, 201)
 
     
@@ -201,7 +201,7 @@ class TestAccessQuestion(BaseTestCase):
             resp = self.login_user()
             access_token = json.loads(resp.data.decode())['access_token'] 
             self.client.post('/api/v1/questions/1/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json') 
-            response = self.client.post('/api/v1/questions/18/downvote', headers=dict(Authorization=access_token),content_type='application/json') 
+            response = self.client.patch('/api/v1/questions/18/downvote', headers=dict(Authorization=access_token),content_type='application/json') 
             self.assertEqual(response.status_code, 404)
 
 if __name__ == '__main__':
