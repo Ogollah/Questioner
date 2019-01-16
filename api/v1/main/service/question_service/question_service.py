@@ -31,6 +31,7 @@ def save_new_question(question_data, meetup_id):
     """
     title = question_data["title"]
     body = question_data["body"]
+    votes = 0
     meetup = get_specific_meetup_by_id(meetup_id)
     user_id = UserAuth.get_user_id()
     is_admin = UserAuth.get_admin()
@@ -62,6 +63,7 @@ def save_new_question(question_data, meetup_id):
         new_question.title = title
         new_question.body = body
         new_question.meetup_id = meetup.meetup_id
+        new_question.votes=votes
         QUESTIONS.append(new_question)
         response_object = {
             'status':201,
@@ -82,3 +84,43 @@ def specific_question(question_id):
             'message':'Question you are looking for is nolonger there.'
         }
         return response_object, 404
+
+def upvote_question(question_id):
+    question = get_question_by_id(question_id)
+
+    if question:
+        question.votes+=1
+        response_object = {
+            'status':201,
+            'message':'You have successfully upvoted this question'
+        }
+        return response_object, 201
+
+    else:
+        response_object = {
+            'status':404,
+            'message':'Question not available.'
+        }
+        return response_object, 404
+
+def downvote_question(question_id):
+    question = get_question_by_id(question_id)
+
+
+    if question:
+        question.votes-=1
+        response_object = {
+            'status':201,
+            'message':'You have successfully downvoted this question'
+        }
+        return response_object, 201
+
+    else:
+        response_object = {
+            'status':404,
+            'message':'Question not available.'
+        }
+        return response_object, 404
+
+        
+
