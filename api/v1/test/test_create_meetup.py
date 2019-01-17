@@ -263,5 +263,54 @@ class TestCreateMeetUp(BaseTestCase):
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 200)
 
+    def test_delete_meetup(self):
+
+        with self.client:
+            """
+            Test delete successfully.
+            """
+            
+            resp = self.login_user_admin()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            rer=self.client.post('/api/v1/meetups/create', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_normal),content_type='application/json')
+            response = self.client.delete('/api/v1/meetups/2/delete', headers=dict(Authorization=access_token),content_type='application/json')
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 200)
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 200)
+
+
+    def test_delete_unexisting_meetup(self):
+
+        with self.client:
+            """
+            Test cannote delete a non existing meetup.
+            """
+            
+            resp = self.login_user_admin()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.delete('/api/v1/meetups/13/delete', headers=dict(Authorization=access_token),content_type='application/json')
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 404)
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 404)
+
+
+    def test_delete_normal_user_meetup(self):
+
+        with self.client:
+            """
+            Test normal user cannot delete a meetup
+            """
+            
+            self.signup_user()
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.delete('/api/v1/meetups/1/delete', headers=dict(Authorization=access_token),content_type='application/json')
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 401)
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 401)
+
 if __name__ == '__main__':
     unittest.main()
