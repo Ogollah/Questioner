@@ -5,7 +5,7 @@ This file handles meetup related HTTP requests.
 from flask import request
 from flask_restplus import Resource
 from flask_jwt_extended import jwt_required
-from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError
+from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError,RevokedTokenError
 from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local import
@@ -20,6 +20,7 @@ meetup = MeetupDto.meetup
 @api.route('/create')
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)
 class CreateMeetup(Resource):
@@ -42,6 +43,7 @@ class CreateMeetup(Resource):
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
 @api.errorhandler(InvalidTokenError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidHeaderError)
 @api.doc(security='Bearer Auth')
 @api.response(401, 'You need to login first')   
@@ -57,6 +59,7 @@ class GetMeetups(Resource):
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
 @api.errorhandler(InvalidTokenError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidHeaderError)
 @api.route('/<int:meetup_id>')
 @api.param('meetup_id', 'Meetup Identification.')
@@ -75,6 +78,7 @@ class SpecificMeetup(Resource):
 
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)
 @api.route('/<int:meetup_id>/update')
@@ -97,6 +101,7 @@ class UpdateSpecificMeetup(Resource):
 @api.param('meetup_id', 'Meetup Identification')
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)
 class CreateQuestion(Resource):

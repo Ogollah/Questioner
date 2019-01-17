@@ -59,7 +59,7 @@ def save_new_meetup(meetup_data):
     if not is_admin and not meetup:
         response_object = {
             'status':401,
-            'message':'To create a meetup you need to be an admin for your meetup'
+            'message':'To create a meetup you need to be an admin'
         }
         return response_object, 401
 
@@ -132,7 +132,7 @@ def update_meetup(meetup_data, meetup_id):
     """
     meetup = get_specific_meetup_by_id(meetup_id)
     admin = UserAuth.get_admin()
-    
+
     topic = meetup_data["topic"]
     description = meetup_data["description"]
     images = meetup_data["images"]

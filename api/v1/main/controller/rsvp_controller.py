@@ -4,7 +4,7 @@ This file handles Reservation related HTTP request.
 from flask import request
 from flask_restplus import Resource
 from flask_jwt_extended import jwt_required
-from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError
+from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError,RevokedTokenError
 from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local imports
@@ -17,6 +17,7 @@ rsvp = RsvpDto.rsvp
 @api.route('/<int:meetup_id>/rsvp')
 @api.param('meetup_id', 'Meetup Identification')
 @api.errorhandler(NoAuthorizationError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(ExpiredSignatureError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)
