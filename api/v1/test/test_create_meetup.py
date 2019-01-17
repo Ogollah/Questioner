@@ -148,7 +148,7 @@ class TestCreateMeetUp(BaseTestCase):
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 401)
-            self.assertTrue(result['message'] == 'To create a meetup you need to be an admin for your meetup')
+            self.assertTrue(result['message'] == 'Only admin can perform this action.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
 
