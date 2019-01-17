@@ -10,10 +10,12 @@ from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local import
 from api.v1.main.util.meetup_dto import MeetupDto
-from api.v1.main.service.meetup_service import save_new_meetup, accessing_meetup, get_all_meetups
+from api.v1.main.service.meetup_service import save_new_meetup, accessing_meetup, get_all_meetups, update_meetup
 
 api = MeetupDto.api
 meetup = MeetupDto.meetup
+
+# create a meetup
 
 @api.route('/create')
 @api.errorhandler(NoAuthorizationError)
@@ -33,6 +35,9 @@ class CreateMeetup(Resource):
         data = request.json
         return save_new_meetup(meetup_data=data)
 
+
+# accessing all meetups
+
 @api.route('/upcoming') 
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
@@ -48,6 +53,7 @@ class GetMeetups(Resource):
         """Get a list of all available meetups"""
         return get_all_meetups() 
 
+
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
 @api.errorhandler(InvalidTokenError)
@@ -56,6 +62,7 @@ class GetMeetups(Resource):
 @api.param('meetup_id', 'Meetup Identification.')
 @api.response(404, 'Meetup not found in the database')
 class SpecificMeetup(Resource):
+    @api.doc(security='Bearer Auth')
     @api.doc('Get a specific meetup using the meetup id')
     @api.marshal_list_with(meetup)
     @jwt_required
@@ -63,4 +70,25 @@ class SpecificMeetup(Resource):
         """Get a specific meetup
         """
         return accessing_meetup(meetup_id)
+
         
+
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
+@api.route('/<int:meetup_id>/update')
+@api.param('meetup_id', 'Meetup Identification.')
+@api.response(404, 'Meetup not found in the database')
+class SpecificMeetup(Resource):
+    @api.doc(security='Bearer Auth')
+    @api.doc('Update a specific meetup using the meetup id')
+    @api.expect(meetup, validate=True)
+    @jwt_required
+    def patch(self, meetup_id):
+        """Get a specific meetup
+        """
+
+        input_data = request.json
+        return update_meetup(meetup_data=input_data, meetup_id=meetup_id)
+
