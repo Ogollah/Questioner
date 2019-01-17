@@ -151,3 +151,32 @@ def update_meetup(meetup_data, meetup_id):
             'message':'No meetup record in the database'
         }
         return response_object, 404
+
+def delete_meetup(meetup_id):
+    """
+    Delete a meetup.
+    """
+    available_meetup = get_specific_meetup_by_id(meetup_id)
+    user_admin = UserAuth.get_admin()
+
+    if available_meetup:
+        if user_admin:
+            MEETUPS.remove(available_meetup)
+            response_object = {
+            'status':200,
+            'message':'Meetup deleted successfully'
+            }
+            return response_object, 200
+
+        else:
+            response_object = {
+            'status':401,
+            'message':'You need to be admin to perform this operation'
+            }
+            return response_object, 401
+    else:
+        response_object = {
+            'status':404,
+            'message':'Meetup you are looking for is not available'
+        }
+        return response_object, 404
