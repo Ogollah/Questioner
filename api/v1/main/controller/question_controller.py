@@ -68,6 +68,7 @@ class SpecificQuestion(Resource):
         """Get a specific question
         """
         return specific_question(question_id)
+        
 
 @api.route('/<int:question_id>/upvote')
 @api.param('question_id', 'Question Identification')
@@ -86,6 +87,7 @@ class CreateQuestion(Resource):
         Upvote a Question
         """
         return upvote_question(question_id)
+
 
 @api.route('/<int:question_id>/downvote')
 @api.param('question_id', 'Question Identification')

@@ -90,7 +90,7 @@ def save_new_meetup(meetup_data):
             'message':'{}, Meetup has been created successfully'.format(topic)
         }
         return response_object, 201
-        
+
 def accessing_meetup(meetup_id):
     meetup = get_specific_meetup_by_id(meetup_id)
 
@@ -134,10 +134,10 @@ def update_meetup(meetup_data, meetup_id):
             happeningOn=happeningOn
 
             response_object = {
-            'status':204,
+            'status':200,
             'message':'Meetup updated successfully'
             }
-            return response_object, 204
+            return response_object, 200
 
         else:
             response_object = {

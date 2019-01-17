@@ -247,6 +247,21 @@ class TestCreateMeetUp(BaseTestCase):
             self.assertTrue(result['status'] == 401)
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
+            
+    def test_update_meetup(self):
+
+        with self.client:
+            """
+            Test update a meetup successfully.
+            """
+            
+            resp = self.login_user_admin()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.patch('/api/v1/meetups/1/update', headers=dict(Authorization=access_token),data=json.dumps(self.meetup_data_update),content_type='application/json')
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 200)
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':
     unittest.main()
