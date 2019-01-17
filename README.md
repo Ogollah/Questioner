@@ -22,6 +22,7 @@ or bottom of the log.
 |/api/v1/questions/<question-id>/upvote   |upvote specific question          |PATCH
 |/api/v1/questions/<question-id>/downvote |downvote specific question        |PATCH
 |/api/v1/questions/<meetup-id>/rsvp       |Rsvp a specific meetup            |POST
+|/api/v1/meetups/<meetup-id>/update       |Update specific upcoming meetup   |PATCH
 
 ### Quick Start
 
