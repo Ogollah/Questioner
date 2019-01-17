@@ -12,6 +12,15 @@ from api.v1.main.model.user import User, USERS
 from api.v1.main.service.user_service import get_user_by_email
 from api.v1.main.service.user_auth_service import UserAuth
 
+def time_format(happeningOn):
+    try:
+        valid_time = datetime.datetime.strptime(happeningOn, '%Y-%m-%d %H:%M')
+
+        return valid_time
+    except Exception as exc:
+        print(exc)
+        return None
+
 def get_meetup_by_topic(topic):
     """
     Get a meetup by topic.
@@ -34,21 +43,29 @@ def save_new_meetup(meetup_data):
     description = meetup_data["description"]
     images = meetup_data["images"]
     Tags = meetup_data["Tags"]
+    host=meetup_data["host"]
+    hostFrom=meetup_data["hostFrom"]
     createdOn = datetime.datetime.utcnow()
-    happeningOn = meetup_data["happeningOn"]
-    host=meetup_data['host']
-    hostFrom=meetup_data['hostFrom']
+    happeningOn =time_format(happeningOn=meetup_data["happeningOn"])
 
     meetup = get_meetup_by_topic(topic=topic)
     is_admin = UserAuth.get_admin()
 
-    if happeningOn == "":
+    if not happeningOn:
         response_object = {
             'status':400,
-            'message':'Provide the number of days to meetup day'
+            'message':'Use correct format OF date and time (YY-MM-DD HH:MM)'
+        }
+        return response_object, 400
+    
+    if not topic:
+        response_object = {
+            'status':400,
+            'message':'Provide a topic for your meetup'
         }
         return response_object, 400
 
+    
     if meetup:
         response_object = {
             'status':409,
@@ -56,29 +73,14 @@ def save_new_meetup(meetup_data):
         }
         return response_object, 409
 
-    if not is_admin and not meetup:
-        response_object = {
-            'status':401,
-            'message':'Only admin can perform this action.'
-        }
-        return response_object, 401
-
-
-    if topic == "":
-        response_object = {
-            'status':400,
-            'message':'Provide a topic for your meetup'
-        }
-        return response_object, 400
-
-    if description== "":
+    if not description:
         response_object = {
             'status':400,
             'message':'Provide a description for your meetup'
         }
         return response_object, 400
 
-    if  is_admin:
+    if  is_admin and not meetup:
         new_meetup = Meetup()
         new_meetup.topic=topic
         new_meetup.description=description
@@ -89,23 +91,29 @@ def save_new_meetup(meetup_data):
         new_meetup.host=host
         new_meetup.hostFrom=hostFrom
         MEETUPS.append(new_meetup)
-
         saved_meetup = {
-            'meetup_id':new_meetup.meetup_id,
-            'topic':new_meetup.topic,
-            'description':new_meetup.description,
-            'happeningOn':new_meetup.happeningOn,
-            'images':new_meetup.images,
-            'Tags':new_meetup.Tags,
-            'host':new_meetup.host,
-            'hostFrom':new_meetup.hostFrom
-        }
+                'meetup_id':new_meetup.meetup_id,
+                'topic':new_meetup.topic,
+                'description':new_meetup.description,
+                'happeningOn':str(new_meetup.happeningOn),
+                'images':new_meetup.images,
+                'Tags':new_meetup.Tags,
+                'host':new_meetup.host,
+                'hostFrom':new_meetup.hostFrom,
+                'createdOn':str(new_meetup.createdOn)
+                }
         response_object = {
             'status':201,
             'data':saved_meetup,
             'message':'{}, Meetup has been created successfully'.format(topic)
         }
         return response_object, 201
+    else:
+        response_object = {
+            'status':401,
+            'message':'Only admin can perform this operation.'
+        }
+        return response_object, 401
 
 def accessing_meetup(meetup_id):
     meetup = get_specific_meetup_by_id(meetup_id)
@@ -138,11 +146,33 @@ def update_meetup(meetup_data, meetup_id):
     images = meetup_data["images"]
     Tags = meetup_data["Tags"]
     createdOn = datetime.datetime.utcnow()
-    happeningOn = meetup_data["happeningOn"]
+    happeningOn = time_format(happeningOn=meetup_data["happeningOn"])
     host=meetup_data['host']
     hostFrom=meetup_data['hostFrom']
 
     if meetup:
+
+        if not happeningOn:
+            response_object = {
+                'status':400,
+                'message':'Use correct format OF date and time (YY-MM-DD HH:MM)'
+            }
+            return response_object, 400
+    
+        if not topic:
+            response_object = {
+                'status':400,
+                'message':'Provide a topic for your meetup'
+            }
+            return response_object, 400
+
+        if not description:
+            response_object = {
+                'status':400,
+                'message':'Provide a description for your meetup'
+            }
+            return response_object, 400
+
         if admin:
             meetup.topic=topic
             meetup.description=description
@@ -154,14 +184,14 @@ def update_meetup(meetup_data, meetup_id):
             meetup.hostFrom=hostFrom
 
             update_meetup = {
-            'meetup_id':meetup.meetup_id,
-            'topic':meetup.topic,
-            'description':meetup.description,
-            'happeningOn':meetup.happeningOn,
-            'images':meetup.images,
-            'Tags':meetup.Tags,
-            'host':meetup.host,
-            'hostFrom':meetup.hostFrom
+                'meetup_id':meetup.meetup_id,
+                'topic':meetup.topic,
+                'description':meetup.description,
+                'happeningOn':str(meetup.happeningOn),
+                'images':meetup.images,
+                'Tags':meetup.Tags,
+                'host':meetup.host,
+                'hostFrom':meetup.hostFrom
             }
 
             response_object = {

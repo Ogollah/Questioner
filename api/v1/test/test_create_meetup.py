@@ -20,7 +20,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -31,7 +31,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -42,7 +42,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -52,7 +52,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "",
                 Tags="string",
                 createdOn= "string",
-                happeningOn="2018-06-29 08:15:27",
+                happeningOn="2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -63,7 +63,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -74,7 +74,7 @@ class TestCreateMeetUp(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -148,7 +148,6 @@ class TestCreateMeetUp(BaseTestCase):
             # return result in json format
             result = json.loads(response.data.decode())
             self.assertTrue(result['status'] == 401)
-            self.assertTrue(result['message'] == 'Only admin can perform this action.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
 

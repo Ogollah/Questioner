@@ -15,7 +15,7 @@ class TestRsvpTestCases(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -26,7 +26,7 @@ class TestRsvpTestCases(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -37,7 +37,7 @@ class TestRsvpTestCases(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
