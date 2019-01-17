@@ -10,7 +10,7 @@ from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local import
 from api.v1.main.util.meetup_dto import MeetupDto
-from api.v1.main.service.meetup_service import save_new_meetup, accessing_meetup, get_all_meetups, update_meetup
+from api.v1.main.service.meetup_service import save_new_meetup, accessing_meetup, get_all_meetups, update_meetup, delete_meetup
 
 api = MeetupDto.api
 meetup = MeetupDto.meetup
@@ -80,7 +80,7 @@ class SpecificMeetup(Resource):
 @api.route('/<int:meetup_id>/update')
 @api.param('meetup_id', 'Meetup Identification.')
 @api.response(404, 'Meetup not found in the database')
-class SpecificMeetup(Resource):
+class UpdateSpecificMeetup(Resource):
     @api.doc(security='Bearer Auth')
     @api.doc('Update a specific meetup using the meetup id')
     @api.expect(meetup, validate=True)
@@ -91,4 +91,23 @@ class SpecificMeetup(Resource):
 
         input_data = request.json
         return update_meetup(meetup_data=input_data, meetup_id=meetup_id)
+
+
+@api.route('/<int:meetup_id>/delete')
+@api.param('meetup_id', 'Meetup Identification')
+@api.errorhandler(NoAuthorizationError)
+@api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(InvalidTokenError)
+@api.errorhandler(InvalidHeaderError)
+class CreateQuestion(Resource):
+
+    @api.response(200, 'Meetup deleted successfully')
+    @api.doc('Downvote a Question')
+    @api.doc(security='Bearer Auth')
+    @jwt_required
+    def delete(self,meetup_id):
+        """
+        Delete a meetup
+        """
+        return delete_meetup(meetup_id)
 
