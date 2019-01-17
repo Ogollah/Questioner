@@ -15,7 +15,7 @@ class TestRsvpTestCases(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -26,7 +26,7 @@ class TestRsvpTestCases(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -37,7 +37,7 @@ class TestRsvpTestCases(BaseTestCase):
                 images= "string",
                 Tags="string",
                 createdOn= "string",
-                happeningOn= "2018-06-29 08:15:27",
+                happeningOn= "2018-06-29 08:15",
                 host= "string",
                 hostFrom= "string"
                 )
@@ -86,7 +86,7 @@ class TestRsvpTestCases(BaseTestCase):
                 admin_header = json.loads(resp.data.decode())['access_token']
                 access_token = json.loads(resp.data.decode())['access_token']
                 rt = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=admin_header),data=json.dumps(self.meetup_data_succ),content_type='application/json')
-                response = self.client.post('api/v1/meetups/2/rsvp', headers=dict(Authorization=access_token),data=json.dumps(self.status),content_type='application/json')
+                response = self.client.post('api/v1/meetups/3/rsvp', headers=dict(Authorization=access_token),data=json.dumps(self.status),content_type='application/json')
                 result = json.loads(response.data.decode())
                 self.assertTrue(result['status'] == 201)
                 self.assertEqual(response.status_code, 201)
@@ -123,7 +123,6 @@ class TestRsvpTestCases(BaseTestCase):
                 response = self.client.post('api/v1/meetups/30/rsvp', headers=dict(Authorization=access_token),data=json.dumps(self.status_no),content_type='application/json')
                 result = json.loads(response.data.decode())
                 self.assertTrue(result['status'] == 404)
-                print(response)
                 self.assertEqual(response.status_code, 404)
 
     def test_status_no(self):
@@ -169,7 +168,6 @@ class TestRsvpTestCases(BaseTestCase):
             rt = self.client.post('/api/v1/meetups/create', headers=dict(Authorization=admin_header),data=json.dumps(self.meetup_data_no),content_type='application/json')
             response = self.client.post('api/v1/meetups/3/rsvp', headers=dict(Authorization=access_token),data=json.dumps(self.status_nill),content_type='application/json')
             result = json.loads(response.data.decode())
-            print(result)
             self.assertTrue(result['status'] == 400)
             self.assertTrue(result['message'] == 'Provide a status (yes, no, or maybe).')
             self.assertEqual(response.status_code, 400)

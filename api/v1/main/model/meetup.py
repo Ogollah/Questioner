@@ -22,13 +22,3 @@ class Meetup():
     def __repr__(self):
         return "Meetup '{}'>".format(self.topic)
 
-meetup = Meetup()
-meetup.description = "Just another meetup"
-meetup.happeningOn = "4/5/2019"
-meetup.host = "mwaura"
-meetup.hostFrom = "Kenya"
-meetup.images = "image"
-meetup.Tags ="tags"
-meetup.topic ="Nice topic"
-MEETUPS.append(meetup)
-

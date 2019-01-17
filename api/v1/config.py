@@ -12,6 +12,10 @@ class Configuration:
     """
     SECRET_KEY = os.getenv('SECRET_KEY', 'this_is_very_secret')
     DEBUG = False
+    JWT_ALGORITHM = 'HS256'
+    JWT_SECRET_KEY = 'no-need-to-ask-it-is-a-secret'
+    JWT_BLACKLIST_ENABLED = True
+    JWT_BLACKLIST_TOKEN_CKECKS = ['access','refresh']
 
 class DevelopmentConfig(Configuration):
     """

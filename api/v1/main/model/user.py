@@ -51,7 +51,7 @@ class User():
     def __repr__(self):
         return "'{}'>".format(self.username)
 
-# save admin
+# save admin 
 user = User()
 user.firstname = "kalume"
 user.lastname = "Minzi"
@@ -63,17 +63,4 @@ user.username = "useradmin"
 user.registered =datetime.datetime.now()
 user.isAdmin=True
 USERS.append(user)
-
-# save admin 2
-user2 = User()
-user2.firstname = "Hezzy"
-user2.lastname = "Marimu"
-user2.othername = "John"
-user2.phoneNumber = "+25723456712"
-user2.email = "admin2@admin.com"
-user2.set_password_hash("@Aadm@3In")
-user2.username = "useradmin2"
-user2.registered =datetime.datetime.now()
-user2.isAdmin=True
-USERS.append(user2)
 

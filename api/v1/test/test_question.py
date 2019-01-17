@@ -94,6 +94,21 @@ class TestCreateQuestion(BaseTestCase):
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 400)
 
+      
+    def test_create_question_with_no_meetup(self):  
+        with self.client:
+            """
+            Test user cannot create a question with unavailable meetup.
+            """
+            resp = self.login_user()
+            access_token = json.loads(resp.data.decode())['access_token'] 
+            response = self.client.post('/api/v1/questions/10/create', headers=dict(Authorization=access_token),data=json.dumps(self.question_data),content_type='application/json')
+            # return result in json format
+            result = json.loads(response.data.decode())
+            self.assertTrue(result['status'] == 404)
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 404)
+
           
     def test_admin_can_not_create_question(self):  
         with self.client:

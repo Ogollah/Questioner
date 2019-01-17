@@ -5,7 +5,7 @@ This file handles question related HTTP request.
 from flask import request
 from flask_restplus import Resource
 from flask_jwt_extended import jwt_required
-from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError
+from flask_jwt_extended.exceptions import NoAuthorizationError,InvalidHeaderError,RevokedTokenError
 from jwt import ExpiredSignatureError, InvalidTokenError, InvalidAudienceError
 
 # local imports
@@ -19,6 +19,7 @@ quiz = QuestionDto.question
 @api.param('meetup_id', 'Meetup Identification')
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)
 class CreateQuestion(Resource):
@@ -40,6 +41,7 @@ class CreateQuestion(Resource):
 @api.response(401, 'You need to login first') 
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)  
 class GetQuestions(Resource):
@@ -57,6 +59,7 @@ class GetQuestions(Resource):
 @api.response(404, 'Question not found in the database')
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)
 class SpecificQuestion(Resource):
@@ -69,10 +72,12 @@ class SpecificQuestion(Resource):
         """
         return specific_question(question_id)
 
+
 @api.route('/<int:question_id>/upvote')
 @api.param('question_id', 'Question Identification')
 @api.errorhandler(NoAuthorizationError)
 @api.errorhandler(ExpiredSignatureError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)
 class CreateQuestion(Resource):
@@ -87,9 +92,11 @@ class CreateQuestion(Resource):
         """
         return upvote_question(question_id)
 
+
 @api.route('/<int:question_id>/downvote')
 @api.param('question_id', 'Question Identification')
 @api.errorhandler(NoAuthorizationError)
+@api.errorhandler(RevokedTokenError)
 @api.errorhandler(ExpiredSignatureError)
 @api.errorhandler(InvalidTokenError)
 @api.errorhandler(InvalidHeaderError)

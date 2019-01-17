@@ -36,14 +36,14 @@ def save_new_question(question_data, meetup_id):
     user_id = UserAuth.get_user_id()
     is_admin = UserAuth.get_admin()
 
-    if title == "":
+    if not title:
         response_object = {
             'status':400,
             'message':'A title is need to create a question.'
         }
         return response_object, 400
 
-    if body == "":
+    if not body:
         response_object = {
             'status':400,
             'message':'A body is need to create a question.'
@@ -56,6 +56,13 @@ def save_new_question(question_data, meetup_id):
             'message':'Admin cannot create a question'
         }
         return response_object, 401
+
+    if not meetup:
+        response_object = {
+            'status':404,
+            'message':'Meetup not in the database.'
+        }
+        return response_object, 404
     else:
         new_question = Question()
         new_question.createdOn = datetime.datetime.utcnow()
@@ -65,8 +72,19 @@ def save_new_question(question_data, meetup_id):
         new_question.meetup_id = meetup.meetup_id
         new_question.votes=votes
         QUESTIONS.append(new_question)
+        
+        saved_question = {
+            'question_id':new_question.question_id,
+            'user_id': new_question.user_id,
+            'meetup_id':new_question.meetup_id,
+            'title':new_question.title,
+            'body':new_question.body,
+            'createdOn':str(new_question.createdOn),
+            'votes':new_question.votes
+        }
         response_object = {
             'status':201,
+            'data':saved_question,
             'message':'{}, Question has been created successfully'.format(title)
         }
         return response_object, 201
@@ -98,6 +116,7 @@ def upvote_question(question_id):
             question.votes+=1
             response_object = {
                 'status':201,
+                'data':question.votes,
                 'message':'You have successfully upnvoted this question'
             }
             return response_object, 201
