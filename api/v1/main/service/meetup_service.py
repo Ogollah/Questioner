@@ -36,6 +36,8 @@ def save_new_meetup(meetup_data):
     Tags = meetup_data["Tags"]
     createdOn = datetime.datetime.utcnow()
     happeningOn = meetup_data["happeningOn"]
+    host=meetup_data['host']
+    hostFrom=meetup_data['hostFrom']
 
     meetup = get_meetup_by_topic(topic=topic)
     is_admin = UserAuth.get_admin()
@@ -84,9 +86,23 @@ def save_new_meetup(meetup_data):
         new_meetup.images=images
         new_meetup.Tags=Tags
         new_meetup.createdOn=createdOn
+        new_meetup.host=host
+        new_meetup.hostFrom=hostFrom
         MEETUPS.append(new_meetup)
+
+        saved_meetup = {
+            'meetup_id':new_meetup.meetup_id,
+            'topic':new_meetup.topic,
+            'description':new_meetup.description,
+            'happeningOn':new_meetup.happeningOn,
+            'images':new_meetup.images,
+            'Tags':new_meetup.Tags,
+            'host':new_meetup.host,
+            'hostFrom':new_meetup.hostFrom
+        }
         response_object = {
             'status':201,
+            'data':saved_meetup,
             'message':'{}, Meetup has been created successfully'.format(topic)
         }
         return response_object, 201
@@ -116,13 +132,15 @@ def update_meetup(meetup_data, meetup_id):
     """
     meetup = get_specific_meetup_by_id(meetup_id)
     admin = UserAuth.get_admin()
-
+    
     topic = meetup_data["topic"]
     description = meetup_data["description"]
     images = meetup_data["images"]
     Tags = meetup_data["Tags"]
     createdOn = datetime.datetime.utcnow()
     happeningOn = meetup_data["happeningOn"]
+    host=meetup_data['host']
+    hostFrom=meetup_data['hostFrom']
 
     if meetup:
         if admin:
@@ -131,10 +149,24 @@ def update_meetup(meetup_data, meetup_id):
             meetup.images=images
             meetup.Tags=Tags
             meetup.createdOn=createdOn
-            happeningOn=happeningOn
+            meetup.happeningOn=happeningOn
+            meetup.host=host
+            meetup.hostFrom=hostFrom
+
+            update_meetup = {
+            'meetup_id':meetup.meetup_id,
+            'topic':meetup.topic,
+            'description':meetup.description,
+            'happeningOn':meetup.happeningOn,
+            'images':meetup.images,
+            'Tags':meetup.Tags,
+            'host':meetup.host,
+            'hostFrom':meetup.hostFrom
+            }
 
             response_object = {
             'status':200,
+            'data':update_meetup,
             'message':'Meetup updated successfully'
             }
             return response_object, 200

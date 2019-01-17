@@ -43,8 +43,19 @@ def save_new_user(user_data):
             new_user.username=validate.validate_username()
             new_user.registered =datetime.datetime.utcnow()
             USERS.append(new_user)
+            saved_user={
+                'user_id':new_user.user_id,
+                'firstname':new_user.firstname,
+                'lastname':new_user.lastname,
+                'username':new_user.username,
+                'phoneNumber':new_user.phoneNumber,
+                'email':new_user.email,
+                'registeredOn':str(new_user.registered),
+                'password':new_user.password
+            }
             response_object = {
                 'status': 201,
+                'data':saved_user,
                 'message':'{}, You have signed up successfully.'.format(username)
             }
             return response_object, 201 

@@ -79,8 +79,16 @@ def save_new_rsvp(meetup_id, user_input):
             save_rsvp.user_id = user_id
 
             RVSPS.append(save_rsvp)
+            rsvp_meetup = {
+                'rsvp_id':save_rsvp.rsvp_id,
+                'meetup_id':save_rsvp.meetup_id,
+                'user_id':save_rsvp.user_id,
+                'topic':save_rsvp.topic,
+                'status':save_rsvp.status
+            }
             response_object = {
                 'status':201,
+                'data':rsvp_meetup,
                 'message':'{}, Meetup has been successfully reserved'.format(topic)
             }
             return response_object, 201

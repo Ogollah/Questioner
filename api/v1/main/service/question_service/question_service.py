@@ -65,8 +65,19 @@ def save_new_question(question_data, meetup_id):
         new_question.meetup_id = meetup.meetup_id
         new_question.votes=votes
         QUESTIONS.append(new_question)
+        
+        saved_question = {
+            'question_id':new_question.question_id,
+            'user_id': new_question.user_id,
+            'meetup_id':new_question.meetup_id,
+            'title':new_question.title,
+            'body':new_question.body,
+            'createdOn':str(new_question.createdOn),
+            'votes':new_question.votes
+        }
         response_object = {
             'status':201,
+            'data':saved_question,
             'message':'{}, Question has been created successfully'.format(title)
         }
         return response_object, 201
@@ -98,6 +109,7 @@ def upvote_question(question_id):
             question.votes+=1
             response_object = {
                 'status':201,
+                'data':question.votes,
                 'message':'You have successfully upnvoted this question'
             }
             return response_object, 201
