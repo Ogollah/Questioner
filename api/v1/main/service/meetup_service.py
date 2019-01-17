@@ -38,7 +38,7 @@ def save_new_meetup(meetup_data):
     happeningOn = meetup_data["happeningOn"]
 
     meetup = get_meetup_by_topic(topic=topic)
-    is_admin = UserAuth.get_admin
+    is_admin = UserAuth.get_admin()
 
     if happeningOn == "":
         response_object = {
@@ -90,7 +90,7 @@ def save_new_meetup(meetup_data):
             'message':'{}, Meetup has been created successfully'.format(topic)
         }
         return response_object, 201
-
+        
 def accessing_meetup(meetup_id):
     meetup = get_specific_meetup_by_id(meetup_id)
 
@@ -110,4 +110,44 @@ def get_all_meetups():
     """
     return MEETUPS, 200  
 
-        
+def update_meetup(meetup_data, meetup_id):
+    """
+    Update a meetup.
+    """
+    meetup = get_specific_meetup_by_id(meetup_id)
+    admin = UserAuth.get_admin()
+
+    topic = meetup_data["topic"]
+    description = meetup_data["description"]
+    images = meetup_data["images"]
+    Tags = meetup_data["Tags"]
+    createdOn = datetime.datetime.utcnow()
+    happeningOn = meetup_data["happeningOn"]
+
+    if meetup:
+        if admin:
+            meetup.topic=topic
+            meetup.description=description
+            meetup.images=images
+            meetup.Tags=Tags
+            meetup.createdOn=createdOn
+            happeningOn=happeningOn
+
+            response_object = {
+            'status':204,
+            'message':'Meetup updated successfully'
+            }
+            return response_object, 204
+
+        else:
+            response_object = {
+            'status':401,
+            'message':'Only admin can update a meetup'
+            }
+            return response_object, 401
+    else:
+        response_object = {
+            'status':404,
+            'message':'No meetup record in the database'
+        }
+        return response_object, 404
