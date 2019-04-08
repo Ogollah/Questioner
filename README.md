@@ -63,5 +63,5 @@ Go to [Heroku](https://metup-quiz-api-heroku.herokuapp.com/)
    [Andela Kenya](https://andela.com/?gclid=Cj0KCQiA1NbhBRCBARIsAKOTmUu9zzKI7k5uTm4K6kn6Wyv5Uk9S_JgBZCJia4FM98S8nMVuQ2DJePEaAlF9EALw_wcB)
 
 # Developer
-   [Stephen Ogolla](https://github.com/Ogollah/)
+   [Stephen O. Ogolla](https://github.com/Ogollah/)
 
